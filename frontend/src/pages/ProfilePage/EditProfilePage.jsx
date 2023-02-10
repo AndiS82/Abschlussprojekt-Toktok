@@ -1,4 +1,4 @@
-import './EditProfilPage.css';
+import './EditProfilePage.css';
 
 const EditProfilePage = () => {
     return (
