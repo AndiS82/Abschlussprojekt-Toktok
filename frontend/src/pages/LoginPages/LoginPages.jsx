@@ -1,28 +1,64 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom'
 import './LoginPages.css';
 import LoginLogo from '../../img/LoginLogo.png';
 
-const LoginPages = () => {
+const LoginPages = ({ setUser }) => {
 
     const [createOrLogin, setCreateOrLogin] = useState(false);
     const [isActive, setIsActive] = useState(false);
+    const nav = useNavigate()
+
+    const emailRef = useRef()
+    const passwordRef = useRef()
 
     const handleClick = () => {
         setIsActive(prev => !prev);
         setCreateOrLogin(prev => !prev);
     }
 
+    const userData = async (e) => {
+        e.preventDefault()
+        const form = {
+            user: emailRef.current.value,
+            password: passwordRef.current.value
+        }
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${isActive ? 'register' : 'login'}`, {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(form)
+        })
+
+        if (response.ok) {
+            if (isActive === false) {
+                nav('/home')
+                setUser(true)
+            }
+            else {
+                nav('/login')
+                setIsActive(false)
+            }
+        }
+        else {
+            console.log('fetch failed')
+        }
+    }
+
+
     return (
         <div>
-            <h1>{createOrLogin ? "Create " : "Login to "}your Account</h1>
+            <h1>{createOrLogin ? "Login to " : "Create "}your Account</h1>
             <img src={LoginLogo} alt="Login Logo"></img>
             <form>
-                <input type='email' placeholder='Email'></input>
-                <input type='password' placeholder='Password'></input>
-                <button type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
+                <input ref={emailRef} type='email' placeholder='Email'></input>
+                <input ref={passwordRef} type='password' placeholder='Password'></input>
+                <button onClick={userData} type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
             </form>
             <div>
-                <p>Already have an account?</p>
+                <p>{isActive ? "Already have an account?" : "Don't have an account?"}</p>
                 <button onClick={handleClick} className='ButtonStyle'>{isActive ? "Sign in" : "Sign up"}</button>
             </div>
         </div>

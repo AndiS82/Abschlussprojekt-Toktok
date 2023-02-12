@@ -4,14 +4,18 @@ import cors from 'cors'
 import morgan from 'morgan'
 import { login, register } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
-
+import cookieParser from 'cookie-parser'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
 const PORT = process.env.PORT
 const app = express()
 
+app.use(cookieParser())
 app.use(morgan('dev'))
-app.use(cors())
+app.use(cors({
+    origin: true,
+    credentials: true
+}))
 app.use(express.json())
 
 // hier ist genung Platz für alle eure Routen
