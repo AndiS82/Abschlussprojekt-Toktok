@@ -1,6 +1,6 @@
 import './LandingPage.css'
 import { useNavigate } from 'react-router-dom'
-import LoginPages from './pages/LoginPages/LoginPages';
+import { useEffect } from 'react'
 import LandLogo from '../../img/Group.png'
 
 function LandingPage() {
