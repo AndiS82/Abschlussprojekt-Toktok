@@ -9,16 +9,20 @@ export const login = (req, res) => {
         .then(user => {
             if (user === null) {
                 //falls nein:
-                res.status(401).end()
+                console.log('user not found')
+                res.status(400).end()
             }
             //wenn ja, das Passwort dazu prüfen:
             else {
+                console.log('user', user)
+                console.log('req', req.body.password)
                 if (user.password === req.body.password) {
                     const token = createToken(user._id)
                     res.json({ token }).end()
                 }
                 else {
                     //wenn das Passwort falsch ist:
+                    console.log('password ist falsch')
                     res.status(401).end()
                 }
             }

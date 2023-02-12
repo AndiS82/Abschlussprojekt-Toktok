@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import CommentsPage from './pages/CommentsPage/CommentsPage';
@@ -11,13 +12,14 @@ import SearchPage from './pages/SearchPage/SearchPage';
 import UnderConstructionPage from './pages/UnderConstructionPage/UnderConstructionPage';
 
 function App() {
+  const [user, setUser] = useState(false)
   return (
     <div>
       <Router>
         <Routes>
           <Route path='/' element={<LandingPage />} />
-          <Route path='/Login' element={<LoginPages />} />
-          <Route path='/Home' element={<HomePage />} />
+          <Route path='/Login' element={<LoginPages setUser={setUser} />} />
+          <Route path='/Home' element={<HomePage user={user} />} />
           <Route path='/Comments/:postID' element={<CommentsPage />} />
           <Route path='/Newpost' element={<NewpostPage />} />
           <Route path='/Search' element={<SearchPage />} />
