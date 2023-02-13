@@ -3,8 +3,10 @@
 }
 
 .loginTitle {
-    width: 50%;
+    width: 60%;
     padding: 8px;
+    font-size: 3rem;
+    margin: 20px 0;
 }
 
 .loginLogo {
@@ -50,17 +52,25 @@
     align-items: center;
     padding: 14px 0;
     outline: none;
+    cursor: pointer;
+    font-size: 1.5rem;
 }
 
 .loginIcon {
     color: rgba(158, 158, 158, 1);
-    padding: 14px;
+    /* padding: 14px; */
+    font-size: 2.2rem;
+    margin: 0 14px;
 }
 
 .showPWIcon {
     color: rgba(158, 158, 158, 1);
-    padding: 14px;
-    align-self: flex-end;
+    /* color: blue; */
+    /* padding: 14px; */
+    /* align-self: flex-end; */
+    cursor: pointer;
+    font-size: 2.2rem;
+    margin: 0 14px;
 }
 
 
@@ -70,19 +80,28 @@
     border: none;
     border-radius: 10px;
     color: white;
+    cursor: pointer;
+    font-size: 1.6rem;
 }
 
 .loginFooter {
     display: flex;
     /* align-items: center; */
     justify-content: center;
-    position: absolute;
+    /* position: absolute; */
     bottom: 30px;
     width: 90%;
+
+}
+
+.loginFooter p {
+    font-size: 1.6rem;
 }
 
 .inTextButton {
     color: rgba(233, 128, 144, 1);
     background-color: transparent;
     border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
 }
