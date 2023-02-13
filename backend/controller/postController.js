@@ -1,4 +1,5 @@
 import { ObjectId, Timestamp } from "mongodb"
+import { getDb } from "../util/db.js"
 import { verifyToken } from "../util/token.js"
 
 const COL = 'posts'
@@ -17,7 +18,7 @@ export const newPost = async (req, res) => {
                 public_id: req.body.public_id
             },
             content: req.body.content,
-            tags: req.body.tags, // ARRAY ? BITTE # mitspeichern
+            tags: req.body.tags, // STRING, bitte #s mitspeichern
             createdAt: new Timestamp(),
             updatedAt: new Timestamp() // wird mit jedem folgenden Update wieder mit new Timestamp() geupdated
         }
@@ -26,5 +27,16 @@ export const newPost = async (req, res) => {
     } catch (error) {
         console.log(error.message)
         res.status(400).end()
+    }
+}
+
+export const getAllPosts = async (req, res) => {
+    console.log('get all posts')
+    try {
+        const db = await getDb()
+        const posts = await db.collection(COL).find().toArray()
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(400).end(error.message)
     }
 }

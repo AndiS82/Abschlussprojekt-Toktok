@@ -1,5 +1,5 @@
 import { getDb } from "../util/db.js";
-import { createToken } from "../util/token.js";
+import { createToken, verifyToken } from "../util/token.js";
 
 const COL = 'users'
 
@@ -55,5 +55,20 @@ export const getAllUsers = async (req, res) => {
     } catch (error) {
         console.log(error.message)
         res.status(400).end()
+    }
+}
+
+export const getOneUser = async (req, res) => {
+    console.log('get one user')
+    const token = req.cookies.token
+    const db = await getDb()
+    try {
+        const verify = verifyToken(token)
+        const dbUser = await db.collection(COL).find({ _id: new ObjectId(verify.userid) })
+        console.log(dbUser)
+        res.status(200).json(dbUser)
+    } catch (error) {
+        console.log(error.message)
+        res.status(401).end()
     }
 }

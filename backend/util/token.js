@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken'
 
 export function createToken(userId) {
-    return jwt.sign({ userid: userId }, process.env.JWT_SECRET, { expiresIn: '30sec' })
+    return jwt.sign({ userid: userId }, process.env.JWT_SECRET, { expiresIn: '30min' })
 }
 
-
 export function verifyToken(token) {
+    console.log('verify')
     return jwt.verify(token, process.env.JWT_SECRET)
 }
