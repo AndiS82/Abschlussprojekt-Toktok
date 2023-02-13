@@ -5,6 +5,16 @@
     padding: 20px;
 }
 
+.homeNavbar div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.homeNavbar div h1 {
+    font-size: 2.4rem;
+}
+
 .homeIcon {
     font-size: 24px;
     color: #000;

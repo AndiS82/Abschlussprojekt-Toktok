@@ -5,6 +5,32 @@
     padding: 20px;
 }
 
+.miniProfil div {
+    display: flex;
+    gap: 5px;
+}
+
+.miniProfil div h1 {
+    font-size: 1.6rem;
+}
+
+.miniProfil div p {
+    font-size: 1.4rem;
+}
+
+.miniProfil img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+}
+
 .miniProfilIcon {
     font-size: 24px;
     color: #000;
