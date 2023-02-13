@@ -1,0 +1,31 @@
+.landingPage {
+    height: 100vh;
+}
+
+.landLogo {
+    display: flex;
+    width: 85%;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.warteUhr {
+    display: flex;
+    width: 20%;
+    position: absolute;
+    bottom: 20%;
+    left: 41%;
+    animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}

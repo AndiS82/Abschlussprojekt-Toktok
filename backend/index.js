@@ -29,6 +29,9 @@ app.get('/', (req, res) => {
 //Einloggen
 app.post('/api/login', encryptFunktion, login)
 
+//Route zum Token verifizieren
+app.get('/api/token', verifyToken)
+
 //User neu registrieren
 app.post('/api/register', encryptFunktion, register)
 
