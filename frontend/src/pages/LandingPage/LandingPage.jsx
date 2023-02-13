@@ -9,7 +9,7 @@ function LandingPage() {
     useEffect(() => {
         setTimeout(() => {
             redirect('/Login')
-        }, 300000)
+        }, 3000)
     }
 
     )

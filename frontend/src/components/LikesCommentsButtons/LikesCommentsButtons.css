@@ -1,0 +1,23 @@
+.LCB {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px;
+}
+
+.LCB p {
+    font-size: 1.4rem;
+}
+
+.homeHeartIconBottom {
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
+
+.homeCommentButtonBottom {
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+    margin-left: 20px;
+}
