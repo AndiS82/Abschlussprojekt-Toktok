@@ -6,7 +6,7 @@ import Profil from '../../components/Profil/Profil';
 
 const HomePage = () => {
     return (
-        <>
+        <div className='homeMainStyle'>
             <div>
                 <nav className="homeNavbar">
                     <div>
@@ -19,7 +19,7 @@ const HomePage = () => {
                 </nav>
             </div>
             <Profil />
-        </>
+        </div>
     );
 };
 

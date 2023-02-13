@@ -2,8 +2,8 @@ import './PostImage.css'
 
 const PostImage = () => {
     return (
-        <div>
-
+        <div className='postImgStyle'>
+            <img src='https://source.unsplash.com/random/?face' alt="User Picture Placeholder" />
         </div>
     );
 }
