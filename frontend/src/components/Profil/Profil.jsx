@@ -1,7 +1,12 @@
+import ProfilMini from '../ProfilMini/ProfilMini';
 import './Profil.css'
 
 const Profil = () => {
-    return (  );
+    return (
+        <div>
+            <ProfilMini />
+        </div>
+    );
 }
 
 export default Profil;
