@@ -73,6 +73,7 @@ const LoginPages = ({ setUser }) => {
                     <AiOutlineEyeInvisible onClick={togglePw} className='showPWIcon' />
                 </div>
                 <button className='pinkButton' onClick={userData} type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
+
             </form>
             <div className='loginFooter'>
                 <p>{isActive ? "Already have an account?" : "Don't have an account?"}</p>
