@@ -2,21 +2,22 @@ import './LandingPage.css'
 import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import LandLogo from '../../img/Group.png'
+import warteUhr from '../../img/Frame.png'
 
 function LandingPage() {
     const redirect = useNavigate()
     useEffect(() => {
         setTimeout(() => {
             redirect('/Login')
-        }, 3000)
+        }, 300000)
     }
 
     )
 
     return (
-        <div>
-            <img className="LandLogo" src={LandLogo} />
-            <p>Hier ist dann die Warteanimation</p>
+        <div className='landingPage'>
+            <img className='landLogo' src={LandLogo} alt='Logo toktok' />
+            <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
         </div>
     );
 }

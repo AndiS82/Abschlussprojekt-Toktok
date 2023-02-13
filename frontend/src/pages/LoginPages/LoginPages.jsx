@@ -51,8 +51,8 @@ const LoginPages = ({ setUser }) => {
     return (
         <div>
             <h1>{createOrLogin ? "Login to " : "Create "}your Account</h1>
-            <img src={LoginLogo} alt="Login Logo"></img>
-            <form>
+            <img className='loginLogo' src={LoginLogo} alt="Login Logo"></img>
+            <form className='loginForm'>
                 <input ref={emailRef} type='email' placeholder='Email'></input>
                 <input ref={passwordRef} type='password' placeholder='Password'></input>
                 <button onClick={userData} type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
