@@ -1,8 +1,12 @@
+.homeMainStyle {
+    margin: 0 20px;
+}
+
 .homeNavbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 0;
 }
 
 .homeNavbar div {

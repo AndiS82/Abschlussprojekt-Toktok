@@ -1,0 +1,6 @@
+.postImgStyle img {
+    height: 50vh;
+    border-radius: 5%;
+    object-fit: cover;
+    width: 90vw;
+}
