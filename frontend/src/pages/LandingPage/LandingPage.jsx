@@ -15,7 +15,7 @@ function LandingPage() {
 
     return (
         <div>
-            <img className="LandLogo" src={LandLogo} />
+            <img className="LandLogo" src={LandLogo} alt='LandLogo' />
             <p>Hier ist dann die Warteanimation</p>
         </div>
     );

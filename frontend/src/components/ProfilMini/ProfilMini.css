@@ -1,0 +1,12 @@
+.miniProfil {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.miniProfilIcon {
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
