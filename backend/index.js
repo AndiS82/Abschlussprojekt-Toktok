@@ -2,7 +2,7 @@ import './config.js'
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import { login, register } from './controller/userController.js'
+import { getAllUsers, login, register } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
 
@@ -18,19 +18,36 @@ app.use(cors({
 }))
 app.use(express.json())
 
-// hier ist genung Platz für alle eure Routen
+// hier ist unsere default Route fürs Backend, wir sehen das wenn wir erfolgreich das Backend deployed haben
 app.get('/', (req, res) => {
     res.status(200).send('Alles OKAY')
 })
 
+//USER
 //Einloggen
 app.post('/api/login', encryptFunktion, login)
 
 //User neu registrieren
 app.post('/api/register', encryptFunktion, register)
 
+//Alle Users für die Suchfunktion
+app.get('/api/users', getAllUsers)
+
 //Routen zum Token verifizieren
 
+// POST im Einzeln 
+// Erstelle einen neuen Post
+app.post('/api/:user/post')
+// get einen einzelnen Post
+app.get('/api/:user/posts/:id')
+// bearbeite einen einzelnen Post
+app.put('/api/:user/posts/:id')
+
+// POSTS - Sammlung 
+// get alle Posts von einem User
+app.get('/api/:user/posts')
+// get alle Posts von allen Usern
+app.get('/api/posts')
 
 
 // dann werfen wir den Server mal an
