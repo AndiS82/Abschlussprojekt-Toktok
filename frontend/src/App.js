@@ -21,8 +21,8 @@ function App() {
         <Router>
           <Routes>
             <Route path='/' element={<LandingPage />} />
-            <Route path='/Login' element={<LoginPages setUser={setUser} setUserData={setUserData} />} />
-            <Route path='/Home' element={<HomePage user={user} />} />
+            <Route path='/Login' element={<LoginPages setUser={setUser} />} />
+            <Route path='/Home' element={<HomePage user={user} setUserData={setUserData} userData={userData} />} />
             <Route path='/Comments/:postID' element={<CommentsPage />} />
             <Route path='/Newpost' element={<NewpostPage />} />
             <Route path='/Search' element={<SearchPage />} />
