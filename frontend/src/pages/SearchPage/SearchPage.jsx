@@ -5,8 +5,7 @@ const SearchPage = () => {
     return (
         <div>
             <PersonSearch />
-        </div>
-    );
+        </div>)
 }
 
 export default SearchPage;
