@@ -1,0 +1,12 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.icon {
+    font-size: 24px;
+    color: #000;
+    cursor: pointer;
+}
