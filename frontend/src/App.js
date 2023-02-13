@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import { UserContext } from './contexts/UserContext';
 import CommentsPage from './pages/CommentsPage/CommentsPage';
 import HomePage from './pages/HomePage/HomePage';
 import LandingPage from './pages/LandingPage/LandingPage';
@@ -13,21 +14,24 @@ import UnderConstructionPage from './pages/UnderConstructionPage/UnderConstructi
 
 function App() {
   const [user, setUser] = useState(false)
+  const [userData, setUserData] = useState(null)
   return (
     <div>
-      <Router>
-        <Routes>
-          <Route path='/' element={<LandingPage />} />
-          <Route path='/Login' element={<LoginPages setUser={setUser} />} />
-          <Route path='/Home' element={<HomePage user={user} />} />
-          <Route path='/Comments/:postID' element={<CommentsPage />} />
-          <Route path='/Newpost' element={<NewpostPage />} />
-          <Route path='/Search' element={<SearchPage />} />
-          <Route path='/UnderConstruction' element={<UnderConstructionPage />} />
-          <Route path='/Profile' element={<ProfilePage />} />
-          <Route path='/EditProfile' element={<EditProfilePage />} />
-        </Routes>
-      </Router>
+      <UserContext.Provider value={userData}>
+        <Router>
+          <Routes>
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/Login' element={<LoginPages setUser={setUser} setUserData={setUserData} />} />
+            <Route path='/Home' element={<HomePage user={user} />} />
+            <Route path='/Comments/:postID' element={<CommentsPage />} />
+            <Route path='/Newpost' element={<NewpostPage />} />
+            <Route path='/Search' element={<SearchPage />} />
+            <Route path='/UnderConstruction' element={<UnderConstructionPage />} />
+            <Route path='/Profile' element={<ProfilePage />} />
+            <Route path='/EditProfile' element={<EditProfilePage />} />
+          </Routes>
+        </Router>
+      </UserContext.Provider>
     </div>
   );
 }

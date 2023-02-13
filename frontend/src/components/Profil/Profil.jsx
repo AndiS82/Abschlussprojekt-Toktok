@@ -1,7 +1,7 @@
 import './Profil.css'
 
 const Profil = () => {
-    return (  );
+    return (<h1>profil</h1>);
 }
 
 export default Profil;

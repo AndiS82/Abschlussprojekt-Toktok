@@ -2,15 +2,18 @@ import './config.js'
 import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
-import { getAllUsers, login, register } from './controller/userController.js'
+import multer from 'multer'
+import { getAllUsers, getOneUser, login, register } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { newPost } from './controller/postController.js'
+import { getAllPosts, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
 const PORT = process.env.PORT
 const app = express()
+
+const formReader = multer()
 
 app.use(cookieParser())
 app.use(morgan('dev'))
@@ -38,12 +41,15 @@ app.post('/api/register', encryptFunktion, register)
 //Alle Users für die Suchfunktion
 app.get('/api/users', getAllUsers)
 
+// Find einen User
+app.get('/api/user', getOneUser)
+
 //Routen zum Token verifizieren
 app.get('/api/token', verifyToken)
 
 // POST im Einzeln 
 // Erstelle einen neuen Post
-app.post('/api/:user/post', newPost)
+app.post('/api/:user/post', formReader.none(), newPost)
 // get einen einzelnen Post
 app.get('/api/:user/posts/:id')
 // bearbeite einen einzelnen Post
@@ -53,7 +59,7 @@ app.put('/api/:user/posts/:id')
 // get alle Posts von einem User
 app.get('/api/:user/posts')
 // get alle Posts von allen Usern
-app.get('/api/posts')
+app.get('/api/posts', getAllPosts)
 
 
 // dann werfen wir den Server mal an

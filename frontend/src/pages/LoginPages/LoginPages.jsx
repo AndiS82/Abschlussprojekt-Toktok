@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './LoginPages.css';
 import LoginLogo from '../../img/LoginLogo.png';
 
-const LoginPages = ({ setUser }) => {
+const LoginPages = ({ setUser, setUserData }) => {
 
     const [createOrLogin, setCreateOrLogin] = useState(false);
     const [isActive, setIsActive] = useState(false);
@@ -32,6 +32,21 @@ const LoginPages = ({ setUser }) => {
             body: JSON.stringify(form)
         })
 
+        // MOVE TO HOMEPAGE
+        // const getUser = async () => {
+        //     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
+        //         {
+        //             credentials: 'include'
+        //         })
+        //     if (response.ok) {
+        //         const data = await response.json()
+        //         setUserData(data)
+        //     }
+        //     else {
+        //         console.log('failed to get user')
+        //     }
+        // }
+
         if (response.ok) {
             if (isActive === false) {
                 nav('/home')
@@ -46,7 +61,6 @@ const LoginPages = ({ setUser }) => {
             console.log('fetch failed')
         }
     }
-
 
     return (
         <div>
