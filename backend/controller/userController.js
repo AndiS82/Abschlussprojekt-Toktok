@@ -1,7 +1,13 @@
+import { ObjectId } from "mongodb";
 import { getDb } from "../util/db.js";
 import { createToken, verifyToken } from "../util/token.js";
 
 const COL = 'users'
+const cookieConfig = {
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true
+}
 
 export const login = (req, res) => {
     console.log("userController.js console log", req.body)
@@ -20,6 +26,7 @@ export const login = (req, res) => {
                 console.log('req', req.body.password)
                 if (user.password === req.body.password) {
                     const token = createToken(user._id)
+                    res.cookie('token', token, cookieConfig)
                     res.json({ token }).end()
                 }
                 else {
@@ -59,16 +66,13 @@ export const getAllUsers = async (req, res) => {
 }
 
 export const getOneUser = async (req, res) => {
-    console.log('get one user')
     const token = req.cookies.token
     const db = await getDb()
     try {
         const verify = verifyToken(token)
-        const dbUser = await db.collection(COL).find({ _id: new ObjectId(verify.userid) })
-        console.log(dbUser)
+        const dbUser = await db.collection(COL).findOne({ _id: new ObjectId(verify.userid) })
         res.status(200).json(dbUser)
     } catch (error) {
-        console.log(error.message)
         res.status(401).end()
     }
 }

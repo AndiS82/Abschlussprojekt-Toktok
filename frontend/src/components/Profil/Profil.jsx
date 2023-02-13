@@ -3,18 +3,19 @@ import PostImage from '../PostImage/PostImage';
 import ProfilMini from '../ProfilMini/ProfilMini';
 import './Profil.css'
 
-const Profil = () => {
+const Profil = ({ singlePost }) => {
+    console.log(singlePost)
     return (
         <div>
-            <ProfilMini />
+            <ProfilMini singlePost={singlePost} />
+            <PostImage singlePost={singlePost} />
+            <LikesCommentsButtons />
+            {/* <ProfilMini />
             <PostImage />
             <LikesCommentsButtons />
             <ProfilMini />
             <PostImage />
-            <LikesCommentsButtons />
-            <ProfilMini />
-            <PostImage />
-            <LikesCommentsButtons />
+            <LikesCommentsButtons /> */}
         </div>
     );
 }

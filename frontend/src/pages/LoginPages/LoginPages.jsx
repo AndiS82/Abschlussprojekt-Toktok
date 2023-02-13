@@ -39,21 +39,6 @@ const LoginPages = ({ setUser, setUserData }) => {
             body: JSON.stringify(form)
         })
 
-        // MOVE TO HOMEPAGE
-        // const getUser = async () => {
-        //     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
-        //         {
-        //             credentials: 'include'
-        //         })
-        //     if (response.ok) {
-        //         const data = await response.json()
-        //         setUserData(data)
-        //     }
-        //     else {
-        //         console.log('failed to get user')
-        //     }
-        // }
-
         if (response.ok) {
             if (isActive === false) {
                 nav('/home')

@@ -1,9 +1,9 @@
 import './PostImage.css'
 
-const PostImage = () => {
+const PostImage = ({ singlePost }) => {
     return (
         <div className='postImgStyle'>
-            <img src='https://source.unsplash.com/random/?face' alt="User Picture Placeholder" />
+            <img src={singlePost?.image} alt="post" />
         </div>
     );
 }
