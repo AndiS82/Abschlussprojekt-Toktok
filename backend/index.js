@@ -5,6 +5,8 @@ import morgan from 'morgan'
 import { getAllUsers, login, register } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
+import { newPost } from './controller/postController.js'
+import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
 const PORT = process.env.PORT
@@ -34,10 +36,11 @@ app.post('/api/register', encryptFunktion, register)
 app.get('/api/users', getAllUsers)
 
 //Routen zum Token verifizieren
+app.get('/api/token', verifyToken)
 
 // POST im Einzeln 
 // Erstelle einen neuen Post
-app.post('/api/:user/post')
+app.post('/api/:user/post', newPost)
 // get einen einzelnen Post
 app.get('/api/:user/posts/:id')
 // bearbeite einen einzelnen Post
