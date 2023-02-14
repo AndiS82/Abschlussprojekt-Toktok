@@ -4,6 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import MiniLogo from '../../img/LogoMini.png';
 import Profil from '../../components/Profil/Profil';
 import { useEffect, useState } from 'react';
+import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
 
 const HomePage = ({ setUserData, userData }) => {
     const [feed, setFeed] = useState(null)
@@ -66,7 +67,9 @@ const HomePage = ({ setUserData, userData }) => {
             {feed?.map((singlePost, key) => {
                 return <Profil key={key} singlePost={singlePost} />
             })}
-
+            <div>
+                <NavbarBottom />
+            </div>
         </div>
     );
 };
