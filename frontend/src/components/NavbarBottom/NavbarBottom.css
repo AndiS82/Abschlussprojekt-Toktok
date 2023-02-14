@@ -1,0 +1,20 @@
+.navbarBottom {
+    margin: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbarIcon {
+    font-size: 3rem;
+    color: rgba(158, 158, 158, 1);
+}
+
+.navbarIcon:hover {
+
+    cursor: pointer;
+    color: #212121
+}
+
+.active>svg {
+    fill: rgba(255, 77, 103, 1)
+}
