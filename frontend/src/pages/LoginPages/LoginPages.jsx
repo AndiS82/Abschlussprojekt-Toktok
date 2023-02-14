@@ -8,7 +8,7 @@ import { HiLockClosed } from "react-icons/hi"
 
 const LoginPages = ({ setUser, setUserData }) => {
 
-    const [createOrLogin, setCreateOrLogin] = useState(false);
+    // const [createOrLogin, setCreateOrLogin] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const [pwShown, setPwShown] = useState(false)
     const nav = useNavigate()
@@ -17,7 +17,7 @@ const LoginPages = ({ setUser, setUserData }) => {
 
     const handleClick = () => {
         setIsActive(prev => !prev);
-        setCreateOrLogin(prev => !prev);
+        // setCreateOrLogin(prev => !prev);
     }
 
     const togglePw = () => {
@@ -56,7 +56,7 @@ const LoginPages = ({ setUser, setUserData }) => {
 
     return (
         <div className='loginMainStyle'>
-            <h1 className='loginTitle'>{createOrLogin ? "Login to your" : "Create your"} <br />Account</h1>
+            <h1 className='loginTitle'>{isActive ? "Create your" : "Login to your"} <br />Account</h1>
             <img className='loginLogo' src={LoginLogo} alt="Login Logo"></img>
             <form className='loginForm'>
                 <div className='loginDiv' >
