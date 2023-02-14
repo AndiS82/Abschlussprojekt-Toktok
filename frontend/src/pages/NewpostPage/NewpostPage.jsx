@@ -1,6 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
+import { MdPhotoCamera } from "react-icons/md"
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -66,11 +67,16 @@ const NewpostPage = () => {
         <div>
             <h1>new post</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
-                <> <input type="file" ref={imageRef} onChange={showImage}></input>
+                <>
+                    {/* von Sofia dazugeschrieben: label-Tag , id im input */}
+                    <label for="fotoUpload" className='uploadButton' >
+                        <MdPhotoCamera />Upload
+                    </label>
+                    <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
                             <img src={image} />
-                            <button onClick={() => setSelectImage(false)}>Add Content</button>
+                            <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
                         </>}
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false

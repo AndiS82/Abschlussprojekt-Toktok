@@ -1,12 +1,13 @@
 .loginMainStyle {
     margin: 0 20px;
+    /* position: relative; */
 }
 
 .loginTitle {
     width: 60%;
     padding: 8px;
     font-size: 3rem;
-    margin: 20px 0;
+    margin: 15% 0;
 }
 
 .loginLogo {
@@ -14,16 +15,16 @@
     margin-left: auto;
     margin-right: auto;
     width: 30%;
-    padding: 20% 0;
+    padding: 15% 0;
 }
 
 .loginForm {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* width: 80%; */
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin: 15% auto;
 }
 
 .loginDiv {
@@ -88,10 +89,11 @@
     display: flex;
     /* align-items: center; */
     justify-content: center;
-    /* position: absolute; */
+    position: absolute;
     bottom: 30px;
     width: 90%;
-
+    gap: 10px;
+    margin-bottom: 10%;
 }
 
 .loginFooter p {
