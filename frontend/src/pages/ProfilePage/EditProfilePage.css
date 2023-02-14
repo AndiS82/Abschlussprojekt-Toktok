@@ -1,0 +1,9 @@
+.editSection {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+.editSection input {
+    margin: 10px 0;
+}
