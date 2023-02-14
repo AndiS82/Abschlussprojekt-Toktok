@@ -2,6 +2,8 @@ import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
+import Gallery from '../../components/Gallery/Gallery.jsx';
+
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -102,7 +104,7 @@ const NewpostPage = () => {
                 </section>
             }
             {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
-
+            <Gallery user={user} />
         </div>
     );
 }
