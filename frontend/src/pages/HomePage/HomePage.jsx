@@ -60,7 +60,6 @@ const HomePage = ({ setUserData, userData }) => {
             {feed?.map((singlePost, key) => {
                 return <Profil key={key} singlePost={singlePost} />
             })}
-
         </div>
     );
 };
