@@ -1,7 +1,7 @@
 .loginMainStyle {
     height: 100vh;
     margin: 0 20px;
-    /* position: relative; */
+    height: 100vh;
 }
 
 .loginTitle {
@@ -20,8 +20,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    /* margin-left: auto;
-    margin-right: auto; */
     margin: 15% auto;
 }
 
@@ -57,16 +55,12 @@
 
 .loginIcon {
     color: rgba(158, 158, 158, 1);
-    /* padding: 14px; */
     font-size: 2.2rem;
     margin: 0 14px;
 }
 
 .showPWIcon {
     color: rgba(158, 158, 158, 1);
-    /* color: blue; */
-    /* padding: 14px; */
-    /* align-self: flex-end; */
     cursor: pointer;
     font-size: 2.2rem;
     margin: 0 14px;
