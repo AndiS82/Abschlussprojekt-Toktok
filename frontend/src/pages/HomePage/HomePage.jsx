@@ -41,9 +41,6 @@ const HomePage = ({ setUserData, userData }) => {
             }
         }
         getFeed()
-        setTimeout(() => {
-            console.log('feed', feed)
-        }, 10000)
     }, [])
 
     return (

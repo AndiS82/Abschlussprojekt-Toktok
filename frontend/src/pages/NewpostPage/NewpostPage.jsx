@@ -42,11 +42,18 @@ const NewpostPage = () => {
             post.image = data.secure_url
             post.public_id = data.public_id
 
+            // ADD USER DATA FROM USECONTEXT TO POST
+            post._id = user._id
+            post.username = user.username
+            post.occupation = user.occupation
+            post.image = user.image
+
             console.log(post)
 
             // POST ABSCHICKEN INS BACKEND
-            const postResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user}/post`, {
+            const postResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user._id}/post`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -64,14 +71,14 @@ const NewpostPage = () => {
 
     return (
         <div>
-            <h1>new post {user?._id}</h1>
+            <h1>new post {user?.username}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
                     <article className='test'>
-                    <label htmlFor="fotoUpload" className='uploadButton' >
+                        <label htmlFor="fotoUpload" className='uploadButton' >
 
-                        <MdPhotoCamera />Upload
-                    </label>
+                            <MdPhotoCamera />Upload
+                        </label>
                     </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
@@ -86,7 +93,7 @@ const NewpostPage = () => {
                     <div>
                         <img src={user?.image} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
-<img src={image} alt="selected" />
+                        <img src={image} alt="selected" />
                     </div>
                     <div>
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
