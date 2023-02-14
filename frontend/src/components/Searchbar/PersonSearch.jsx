@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { GoSearch, GoTrashcan } from "react-icons/go";
 import './PersonSearch.css'
 
 const userFetch = process.env.REACT_APP_BACKEND_URL_USERS;
@@ -15,25 +16,33 @@ const PersonSearch = () => {
             setSearchData(userData)
         }
         getData()
-        console.log(searchData)
     }, [])
 
     const enteredInput = (event) => {
         const searchWord = event.target.value;
-        console.log(event.target.value)
         setWordEntered(searchWord);
-        console.log(searchData)
         const filteredSearch = searchData.filter((user) => {
             return user.user.toLowerCase().includes(searchWord.toLowerCase());
         }, [event])
         setFilteredData(filteredSearch)
-        console.log(filteredSearch)
     }
-    console.log(filteredData)
-    console.log(wordEntered)
+
+    const clearButton = () => {
+        setFilteredData([])
+        setWordEntered("")
+    }
+
     return (
         <div>
-            <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+            <form className='form'>
+                <div className='formInput'>
+                    <span className='searchBar'>
+                        {wordEntered === "" && <GoSearch className='icon' />}
+                        {wordEntered !== "" && <button className='resetButton' onClick={clearButton}><GoTrashcan className='icon' /></button>}
+                    </span>
+                    <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+                </div>
+            </form>
             {wordEntered === "" &&
                 <div id='searchResultsDiv'>
                     <div>
@@ -51,7 +60,7 @@ const PersonSearch = () => {
                 </div>
             }
 
-            {wordEntered.includes(filteredData) &&
+            {wordEntered.includes(filteredData) && wordEntered !== "" &&
                 <div>
                     <p>No results</p>
                 </div>
