@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { UserContext } from './contexts/UserContext';
@@ -15,6 +15,13 @@ import UnderConstructionPage from './pages/UnderConstructionPage/UnderConstructi
 function App() {
   const [user, setUser] = useState(false)
   const [userData, setUserData] = useState(null)
+
+  useEffect(() => {
+    setTimeout(() => {
+      console.log(userData)
+    }, 10000)
+  }, [])
+
   return (
     <div>
       <UserContext.Provider value={userData}>

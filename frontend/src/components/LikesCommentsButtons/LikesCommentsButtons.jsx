@@ -2,13 +2,13 @@ import './LikesCommentsButtons.css'
 import { FaRegHeart } from "react-icons/fa";
 import { BsChatDots } from "react-icons/bs";
 
-const LikesCommentsButtons = () => {
+const LikesCommentsButtons = ({ singlePost }) => {
     return (
         <div className='LCB'>
             <FaRegHeart className='homeHeartIconBottom' />
-            <p>44.389</p>
+            <p>{new Intl.NumberFormat().format(singlePost?.likes)}</p>
             <BsChatDots className='homeCommentButtonBottom' />
-            <p>26.376</p>
+            <p>{new Intl.NumberFormat().format(singlePost?.comments)}</p>
         </div>
     );
 }
