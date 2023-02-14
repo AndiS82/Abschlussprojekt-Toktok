@@ -8,11 +8,8 @@ const NewpostPage = () => {
     const [newImage, setNewImage] = useState(false)
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
-    const user = useContext(UserContext)
 
-    setTimeout(() => {
-        console.log(user)
-    }, 10000)
+    const user = useContext(UserContext)
 
     const imageRef = useRef()
     const contentRef = useRef()
@@ -45,11 +42,18 @@ const NewpostPage = () => {
             post.image = data.secure_url
             post.public_id = data.public_id
 
+            // ADD USER DATA FROM USECONTEXT TO POST
+            post._id = user._id
+            post.username = user.username
+            post.occupation = user.occupation
+            post.image = user.image
+
             console.log(post)
 
             // POST ABSCHICKEN INS BACKEND
-            const postResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user}/post`, {
+            const postResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user._id}/post`, {
                 method: 'POST',
+                credentials: 'include',
                 headers: {
                     'content-type': 'application/json'
                 },
@@ -67,24 +71,27 @@ const NewpostPage = () => {
 
     return (
         <div>
-            <h1>new post</h1>
+            <h1>new post {user?.username}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
-                    {/* von Sofia dazugeschrieben: label-Tag , id im input */}
-                    <label for="fotoUpload" className='uploadButton' >
-                        <MdPhotoCamera />Upload
-                    </label>
+                    <article className='test'>
+                        <label htmlFor="fotoUpload" className='uploadButton' >
+
+                            <MdPhotoCamera />Upload
+                        </label>
+                    </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
                             <img src={image} alt="selected" />
                             <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
                         </>}
+
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
-                        {/* user profile image */}
+                        <img src={user?.image} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
                         <img src={image} alt="selected" />
                     </div>
@@ -92,9 +99,9 @@ const NewpostPage = () => {
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
                         <button onClick={publish}>Publish</button>
                     </div>
-
                 </section>
             }
+            {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
 
         </div>
     );

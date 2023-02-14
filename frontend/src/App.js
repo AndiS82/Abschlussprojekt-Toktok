@@ -16,12 +16,6 @@ function App() {
   const [user, setUser] = useState(false)
   const [userData, setUserData] = useState(null)
 
-  useEffect(() => {
-    setTimeout(() => {
-      console.log(userData)
-    }, 10000)
-  }, [])
-
   return (
     <div>
       <UserContext.Provider value={userData}>
