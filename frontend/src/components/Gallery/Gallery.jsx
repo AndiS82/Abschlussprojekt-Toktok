@@ -24,13 +24,13 @@ const Gallery = ({ user }) => {
         fetchFotos()
     }, []
     )
-    console.log("posts Z 27 ", posts)
+    // console.log("posts Z 27 ", posts)
+
     return (
-        <div>
-            <h1>Gallerie</h1>
+        <div className="galleryGrid">
             {posts?.map((post, key) => {
                 return (
-                    <img src={post?.image.url} alt="Gallerybild" key={key}></img>
+                    <img className="newpostImg" src={post?.image.url} alt="Gallerybild" key={key}></img>
                 )
             })}
         </div>

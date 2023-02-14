@@ -14,11 +14,15 @@
     display: none
 }
 
+.articleUploadButton {
+    margin: 5% 0;
+}
+
 /* 
 h1 {
     margin: 50px;
 } */
 
-.test {
+/* .test {
     margin: 50px;
-}
+} */

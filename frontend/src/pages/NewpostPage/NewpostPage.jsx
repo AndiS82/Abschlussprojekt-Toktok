@@ -2,7 +2,10 @@ import { useContext, useRef, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
+import { IoIosArrowDown } from "react-icons/io";
 import Gallery from '../../components/Gallery/Gallery.jsx';
+import { NavLink } from 'react-router-dom';
+import { RxCrossCircled } from "react-icons/rx";
 
 
 const NewpostPage = () => {
@@ -73,12 +76,12 @@ const NewpostPage = () => {
 
     return (
         <div>
+            <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
             <h1>new post {user?.username}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
-                    <article className='test'>
+                    <article className='articleUploadButton'>
                         <label htmlFor="fotoUpload" className='uploadButton' >
-
                             <MdPhotoCamera />Upload
                         </label>
                     </article>
@@ -104,6 +107,7 @@ const NewpostPage = () => {
                 </section>
             }
             {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
+            <h1>Gallerie <IoIosArrowDown /></h1>
             <Gallery user={user} />
         </div>
     );
