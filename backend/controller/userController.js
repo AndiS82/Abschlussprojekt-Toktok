@@ -76,3 +76,21 @@ export const getOneUser = async (req, res) => {
         res.status(401).end()
     }
 }
+
+export const updateUser = async (req, res) => {
+    console.log('update user called')
+    const token = req.cookies.token
+    console.log('token', token)
+    const db = await getDb()
+    if (req.body.old_id) {
+        await deleteImage(req.body.old_id)
+    }
+    try {
+        const verify = verifyToken(token)
+        console.log('verify', verify)
+        const dbUser = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $set: { name: req.body.name, username: req.body.username, occupation: req.body.occupation, dob: req.body.dob, email: req.body.email, tel: req.body.tel, sex: req.body.sex, website: req.body.website, aboutMe: req.body.aboutme, image: { url: req.body.image, public_id: req.body.public_id } } })
+        res.status(200).json(dbUser)
+    } catch (error) {
+        res.status(401).end()
+    }
+}

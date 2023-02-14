@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import multer from 'multer'
-import { getAllUsers, getOneUser, login, register } from './controller/userController.js'
+import { getAllUsers, getOneUser, login, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
 import { getAllPosts, getUserPosts, newPost } from './controller/postController.js'
@@ -43,6 +43,9 @@ app.get('/api/users', getAllUsers)
 
 // Find einen User
 app.get('/api/user', getOneUser)
+
+// Update einen User
+app.put('/api/user', formReader.none(), updateUser)
 
 //Routen zum Token verifizieren
 app.get('/api/token', verifyToken)
