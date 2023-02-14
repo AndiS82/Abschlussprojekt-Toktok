@@ -1,0 +1,36 @@
+input {
+    width: 50%;
+    border: 2px solid;
+    font-size: 2rem;
+    padding: 5px 10px 5px 50px;
+}
+
+p {
+    font-size: 2rem;
+}
+
+.resetButton {
+    background: transparent;
+    border: none;
+}
+
+.resetButton:hover {
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 2rem;
+}
+
+.formInput {
+    margin: 10px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchBar {
+    position: absolute;
+    left: 27%;
+}
