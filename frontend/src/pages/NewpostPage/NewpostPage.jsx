@@ -70,29 +70,29 @@ const NewpostPage = () => {
             <h1>new post</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
-                    {/* von Sofia dazugeschrieben: label-Tag , id im input */}
-                    <label for="fotoUpload" className='uploadButton' >
+                    <article className='test'><label htmlFor="fotoUpload" className='uploadButton' >
                         <MdPhotoCamera />Upload
-                    </label>
+                    </label></article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
                             <img src={image} alt="selected" />
                             <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
                         </>}
+
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
                         {/* user profile image */}
-                        <textarea ref={contentRef} placeholder='Write a caption'></textarea>
                         <img src={image} alt="selected" />
+                        <textarea ref={contentRef} placeholder='Write a caption'></textarea>
+
                     </div>
                     <div>
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
                         <button onClick={publish}>Publish</button>
                     </div>
-
                 </section>
             }
 

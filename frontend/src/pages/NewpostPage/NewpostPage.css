@@ -6,8 +6,19 @@
     color: white;
     cursor: pointer;
     font-size: 1.6rem;
+    /* margin-top: 100px; */
+    /* vertical-align: top; */
 }
 
 #fotoUpload {
     display: none
+}
+
+/* 
+h1 {
+    margin: 50px;
+} */
+
+.test {
+    margin: 50px;
 }
