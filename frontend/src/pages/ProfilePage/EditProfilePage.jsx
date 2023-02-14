@@ -1,9 +1,12 @@
-import { useRef, useState } from 'react';
-import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
+import { useContext, useRef, useState } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import './EditProfilePage.css';
 
 const EditProfilePage = () => {
-    const nameRef = useRef()
+    const user = useContext(UserContext)
+    console.log(user)
+
+    const nameRef = useRef(user?.name)
     const usernameRef = useRef()
     const occupationRef = useRef()
     const dobRef = useRef()
@@ -18,6 +21,7 @@ const EditProfilePage = () => {
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
     const [showFileInput, setShowFileInput] = useState(false)
+    const [edit, setEdit] = useState(true)
     console.log(showFileInput)
 
     const showImage = () => {
@@ -82,13 +86,13 @@ const EditProfilePage = () => {
             <section>
                 <img src={image} alt="profile" />
                 <button onClick={() => setShowFileInput(prev => !prev)}>ICON</button>
-
             </section>
             <section className='editSection'>
                 {showFileInput &&
                     <input type="file" ref={imageRef} />
                 }
-                <input ref={nameRef} type="text" placeholder='Your Name' />
+                {/* <input ref={nameRef} type="text" placeholder='Your Name' /> */}
+                <p ref={nameRef} contentEditable={edit}>{user?.name}</p>
                 <input ref={usernameRef} type="text" placeholder='Username' />
                 <input ref={occupationRef} type="text" placeholder='Occupation' />
                 <input ref={dobRef} type="date" placeholder='Date of Birth' />
