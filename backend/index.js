@@ -6,7 +6,7 @@ import multer from 'multer'
 import { getAllUsers, getOneUser, login, register } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { getAllPosts, newPost } from './controller/postController.js'
+import { getAllPosts, getUserPosts, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
@@ -57,7 +57,7 @@ app.put('/api/:user/posts/:id')
 
 // POSTS - Sammlung 
 // get alle Posts von einem User
-app.get('/api/:user/posts')
+app.get('/api/:user/posts', getUserPosts)
 // get alle Posts von allen Usern
 app.get('/api/posts', getAllPosts)
 
