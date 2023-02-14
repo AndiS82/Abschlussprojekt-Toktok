@@ -25,37 +25,38 @@ const PersonSearch = () => {
         console.log(searchData)
         const filteredSearch = searchData.filter((user) => {
             return user.user.toLowerCase().includes(searchWord.toLowerCase());
-        }, [])
+        }, [event])
         setFilteredData(filteredSearch)
         console.log(filteredSearch)
     }
     console.log(filteredData)
     console.log(wordEntered)
-
-    if (wordEntered === "") {
-        return (
-            <div id='searchResultsDiv'>
-                <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
-                <div>
-                    {searchData.map((user, index) => {
-                        return <p key={index}>{user.user}</p>
-                    })}</div>
-            </div>
-        )
-    } else {
-        return (
-            <div>
-                <div>
-                    <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+    return (
+        <div>
+            <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+            {wordEntered === "" &&
+                <div id='searchResultsDiv'>
+                    <div>
+                        {searchData.map((user, index) => {
+                            return <p key={index}>{user.user}</p>
+                        })}</div>
                 </div>
-                <div>
+            }
+
+            {filteredData && wordEntered !== "" &&
+                < div id='searchResultsDiv'>
                     {filteredData.map((user, index) => {
                         return <p key={index}>{user.user}</p>
                     })}
                 </div>
-            </div>
-        )
-    };
-}
+            }
+
+            {wordEntered.includes(filteredData) &&
+                <div>
+                    <p>No results</p>
+                </div>
+            }
+        </div >)
+};
 
 export default PersonSearch;
