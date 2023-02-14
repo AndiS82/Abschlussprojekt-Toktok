@@ -10,7 +10,9 @@ const NewpostPage = () => {
     const [imageFile, setImageFile] = useState(null)
     const user = useContext(UserContext)
 
-    console.log(user)
+    setTimeout(() => {
+        console.log(user)
+    }, 10000)
 
     const imageRef = useRef()
     const contentRef = useRef()
@@ -75,7 +77,7 @@ const NewpostPage = () => {
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
-                            <img src={image} />
+                            <img src={image} alt="selected" />
                             <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
                         </>}
                 </>}

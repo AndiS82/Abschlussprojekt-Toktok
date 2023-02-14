@@ -17,12 +17,16 @@ const HomePage = ({ setUserData, userData }) => {
             if (response.ok) {
                 const data = await response.json()
                 await setUserData(data)
-                console.log('userData', userData)
+
             }
             else {
                 console.log('failed to get user')
             }
         }
+        setTimeout(() => {
+            console.log('userData', userData)
+        }, 10000)
+
         getUser()
     }, [])
 
@@ -35,13 +39,15 @@ const HomePage = ({ setUserData, userData }) => {
             if (response.ok) {
                 const data = await response.json()
                 await setFeed(data)
-                console.log('feed', feed)
             }
             else {
                 console.log('feed not loaded')
             }
         }
         getFeed()
+        setTimeout(() => {
+            console.log('feed', feed)
+        }, 10000)
     }, [])
 
     return (
