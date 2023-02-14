@@ -5,27 +5,31 @@ import { verifyToken } from "../util/token.js"
 const COL = 'posts'
 
 export const newPost = async (req, res) => {
-    console.log(`newPost called`)
     const token = req.cookies.token
     try {
         const db = await getDb()
-        const verify = await verifyToken(token)
+        const verify = verifyToken(token)
         const dbUser = await db.collection('users').find({ _id: new ObjectId(verify.userid) })
+        if (!dbUser) return res.status(400).end()
         const post = {
-            user: dbUser,
+            user: {
+                _id: req.body._id,
+                username: req.body.username,
+                occupation: req.body.occupation,
+                image: req.body.image
+            },
             image: {
                 url: req.body.image,
                 public_id: req.body.public_id
             },
             content: req.body.content,
-            tags: req.body.tags, // STRING, bitte #s mitspeichern
+            tags: req.body.tags, // Funktionalität kommt erst später
             createdAt: new Timestamp(),
             updatedAt: new Timestamp() // wird mit jedem folgenden Update wieder mit new Timestamp() geupdated
         }
         const result = await db.collection(COL).insertOne(post)
         res.status(200).json(result)
     } catch (error) {
-        console.log(error.message)
         res.status(400).end()
     }
 }
@@ -44,12 +48,12 @@ export const getAllPosts = async (req, res) => {
 export const getUserPosts = async (req, res) => {
     console.log('get user posts')
     const params = req.params
-    console.log(params)
     const userid = params.user
     try {
         const db = await getDb()
-        // const posts = await db.collection(COL).find({ user._id === userid }).toArray()
+        const posts = await db.collection(COL).find({ 'user._id': new ObjectId(userid) }).toArray()
+        res.status(200).json(posts)
     } catch (error) {
-
+        res.status(400).end(error.message)
     }
 }
