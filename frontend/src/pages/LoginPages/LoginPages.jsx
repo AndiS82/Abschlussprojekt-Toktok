@@ -56,7 +56,7 @@ const LoginPages = ({ setUser, setUserData }) => {
 
     return (
         <div className='loginMainStyle'>
-            <h1 className='loginTitle'>{createOrLogin ? "Login to " : "Create "}your Account</h1>
+            <h1 className='loginTitle'>{createOrLogin ? "Login to your" : "Create your"} <br />Account</h1>
             <img className='loginLogo' src={LoginLogo} alt="Login Logo"></img>
             <form className='loginForm'>
                 <div className='loginDiv' >
