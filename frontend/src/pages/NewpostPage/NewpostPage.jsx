@@ -67,29 +67,31 @@ const NewpostPage = () => {
             <h1>new post {user?._id}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
-                    {/* von Sofia dazugeschrieben: label-Tag , id im input */}
+                    <article className='test'>
                     <label htmlFor="fotoUpload" className='uploadButton' >
+
                         <MdPhotoCamera />Upload
                     </label>
+                    </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
                             <img src={image} alt="selected" />
                             <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
                         </>}
+
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
                         <img src={user?.image} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
-                        <img src={image} alt="selected" />
+<img src={image} alt="selected" />
                     </div>
                     <div>
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
                         <button onClick={publish}>Publish</button>
                     </div>
-
                 </section>
             }
             {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
