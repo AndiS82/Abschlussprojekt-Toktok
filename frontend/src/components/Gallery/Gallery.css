@@ -1,0 +1,10 @@
+.galleryGrid {
+    width: 100%;
+}
+
+.newpostImg {
+    /* height: 350px; */
+    border-radius: 20%;
+    /* object-fit: cover; */
+    width: 50%;
+}
