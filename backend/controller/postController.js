@@ -40,3 +40,16 @@ export const getAllPosts = async (req, res) => {
         res.status(400).end(error.message)
     }
 }
+
+export const getUserPosts = async (req, res) => {
+    console.log('get user posts')
+    const params = req.params
+    console.log(params)
+    const userid = params.user
+    try {
+        const db = await getDb()
+        // const posts = await db.collection(COL).find({ user._id === userid }).toArray()
+    } catch (error) {
+
+    }
+}

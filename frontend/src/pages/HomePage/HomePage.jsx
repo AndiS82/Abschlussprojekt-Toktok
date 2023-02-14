@@ -16,17 +16,13 @@ const HomePage = ({ setUserData, userData }) => {
                 })
             if (response.ok) {
                 const data = await response.json()
-                await setUserData(data)
-
+                setUserData(data)
+                console.log(data)
             }
             else {
                 console.log('failed to get user')
             }
         }
-        setTimeout(() => {
-            console.log('userData', userData)
-        }, 10000)
-
         getUser()
     }, [])
 
@@ -62,6 +58,7 @@ const HomePage = ({ setUserData, userData }) => {
                         <FaRegHeart className="homeIcon" />
                     </Link>
                 </nav>
+                <Link to="/newpost">NEWPOST TEMP LINK</Link>
             </div>
             {feed?.map((singlePost, key) => {
                 return <Profil key={key} singlePost={singlePost} />

@@ -8,11 +8,8 @@ const NewpostPage = () => {
     const [newImage, setNewImage] = useState(false)
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
-    const user = useContext(UserContext)
 
-    setTimeout(() => {
-        console.log(user)
-    }, 10000)
+    const user = useContext(UserContext)
 
     const imageRef = useRef()
     const contentRef = useRef()
@@ -67,12 +64,15 @@ const NewpostPage = () => {
 
     return (
         <div>
-            <h1>new post</h1>
+            <h1>new post {user?._id}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
-                    <article className='test'><label htmlFor="fotoUpload" className='uploadButton' >
+                    <article className='test'>
+                    <label htmlFor="fotoUpload" className='uploadButton' >
+
                         <MdPhotoCamera />Upload
-                    </label></article>
+                    </label>
+                    </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
@@ -84,10 +84,9 @@ const NewpostPage = () => {
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
-                        {/* user profile image */}
-                        <img src={image} alt="selected" />
+                        <img src={user?.image} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
-
+<img src={image} alt="selected" />
                     </div>
                     <div>
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
@@ -95,6 +94,7 @@ const NewpostPage = () => {
                     </div>
                 </section>
             }
+            {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
 
         </div>
     );
