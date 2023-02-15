@@ -4,9 +4,21 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: UrbanistLight;
+    src: url("../../fonts/Urbanist-Light.ttf");
+}
+
+@font-face {
+    font-family: UrbanistMedium;
+    src: url("../../fonts/Urbanist-Medium.ttf");
+}
+
+
 /* .personSearch {} */
 
 input {
+    font-family: UrbanistLight;
     width: 50%;
     border: 2px solid;
     font-size: 2rem;
@@ -66,18 +78,21 @@ input {
 }
 
 .searchUser {
+    font-family: UrbanistLight;
     font-size: 2rem;
     color: rgba(33, 33, 33, 1);
     margin: 1.5% 2%;
 }
 
 .searchOccupation {
+    font-family: UrbanistLight;
     font-size: 2rem;
     color: rgba(158, 158, 158, 1);
     margin: 1.5% 2%;
 }
 
 .followButton {
+    font-family: UrbanistLight;
     padding: 1%;
     border: 2px solid rgba(255, 77, 103, 1);
     border-radius: 15px;
@@ -90,7 +105,55 @@ input {
     height: 85vh;
 }
 
-@media only screen and (max-width: 576px) {
+/* ======= MEDIA QUERIES =======*/
+
+@media only screen and (max-width: 280px) {
+    .searchImage {
+        object-fit: cover;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+    }
+
+    .searchUser {
+        font-family: UrbanistLight;
+        font-size: 1rem;
+        color: rgba(33, 33, 33, 1);
+        margin: 1.5% 3%;
+    }
+
+    .searchOccupation {
+        font-family: UrbanistLight;
+        font-size: 1rem;
+        color: rgba(158, 158, 158, 1);
+        margin: 1.5% 3%;
+    }
+}
+
+@media only screen and (max-width: 360px) and (min-width:281px) {
+    .searchImage {
+        object-fit: cover;
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+    }
+
+    .searchUser {
+        font-family: UrbanistLight;
+        font-size: 1rem;
+        color: rgba(33, 33, 33, 1);
+        margin: 1.5% 3%;
+    }
+
+    .searchOccupation {
+        font-family: UrbanistLight;
+        font-size: 1rem;
+        color: rgba(158, 158, 158, 1);
+        margin: 1.5% 3%;
+    }
+}
+
+@media only screen and (max-width: 576px) and (min-width:361px) {
     .searchImage {
         object-fit: cover;
         height: 75px;
