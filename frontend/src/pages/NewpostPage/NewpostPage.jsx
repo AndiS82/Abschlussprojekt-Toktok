@@ -111,7 +111,7 @@ const NewpostPage = () => {
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
                     </div>
                     <div>
-                        <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
+                        <button onClick={() => setSelectImage(true)}>Back</button>
                         <button onClick={publish}>Publish</button>
                     </div>
                 </section>
