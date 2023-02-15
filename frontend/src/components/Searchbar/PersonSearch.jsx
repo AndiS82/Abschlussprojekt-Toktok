@@ -22,18 +22,22 @@ const PersonSearch = () => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
         const filteredSearch = searchData.filter((user) => {
-            return user.user.toLowerCase().includes(searchWord.toLowerCase());
+            console.log(user)
+            return user.user?.toLowerCase().includes(searchWord.toLowerCase())
+                || user.username?.toLowerCase().includes(searchWord.toLowerCase())
+                || user.name?.toLowerCase().includes(searchWord.toLowerCase())
         }, [event])
         setFilteredData(filteredSearch)
+
     }
 
     const clearButton = () => {
         setFilteredData([])
         setWordEntered("")
     }
-
+    console.log(searchData)
     return (
-        <div>
+        <div className='personSearch'>
             <form className='form'>
                 <div className='formInput'>
                     <span className='searchBar'>
@@ -47,7 +51,18 @@ const PersonSearch = () => {
                 <div id='searchResultsDiv'>
                     <div>
                         {searchData.map((user, index) => {
-                            return <p key={index}>{user.user}</p>
+                            return (
+                                <div className='searchUserContainer' key={index}>
+                                    <div className='searchPicContainer'>
+                                        <img className='searchImage' src={user?.image?.url}></img>
+                                    </div>
+                                    <div className='userInfo'>
+                                        <p className='searchUser' key={index}>{user.user}</p>
+                                        <p className='searchOccupation'>{user.occupation}</p>
+                                    </div>
+                                    <button type="button" className='followButton'>Follow</button>
+                                </div>
+                            )
                         })}</div>
                 </div>
             }
@@ -55,7 +70,17 @@ const PersonSearch = () => {
             {filteredData && wordEntered !== "" &&
                 < div id='searchResultsDiv'>
                     {filteredData.map((user, index) => {
-                        return <p key={index}>{user.user}</p>
+                        return (
+                            <div className='searchUserContainer' key={index}>
+                                <div className='searchPicContainer'>
+                                    <img className='searchImage' src={user?.image?.url}></img>
+                                </div>
+                                <div className='userInfo'>
+                                    <p className='searchUser' key={index}>{user.user}</p>
+                                    <p className='searchOccupation'>{user.occupation}</p>
+                                </div>
+                                <button type="button" className='followButton'>Follow</button>
+                            </div>)
                     })}
                 </div>
             }

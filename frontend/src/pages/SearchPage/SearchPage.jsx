@@ -4,7 +4,7 @@ import './SearchPage.css'
 
 const SearchPage = () => {
     return (
-        <div>
+        <div className='searchPage'>
             <div>
                 <PersonSearch />
             </div>

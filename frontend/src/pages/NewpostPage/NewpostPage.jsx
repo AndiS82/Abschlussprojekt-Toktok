@@ -4,8 +4,7 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import Gallery from '../../components/Gallery/Gallery.jsx';
-import { NavLink } from 'react-router-dom';
-import { RxCrossCircled } from "react-icons/rx";
+import BackButton from '../../components/BackButton/BackButton';
 
 
 const NewpostPage = () => {
@@ -76,7 +75,7 @@ const NewpostPage = () => {
 
     return (
         <div>
-            <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
+            <BackButton />
             <h1>new post {user?.username}</h1>
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>

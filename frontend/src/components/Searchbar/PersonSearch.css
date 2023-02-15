@@ -1,3 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* .personSearch {} */
+
 input {
     width: 50%;
     border: 2px solid;
@@ -10,6 +18,8 @@ p {
 }
 
 .resetButton {
+    margin: 0;
+    padding: 0;
     background: transparent;
     border: none;
 }
@@ -32,5 +42,48 @@ p {
 
 .searchBar {
     position: absolute;
-    left: 27%;
+    left: 26%;
+    top: 10px;
+}
+
+.searchUserContainer {
+    width: 95%;
+    margin-left: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.searchPicContainer {
+    width: 20%;
+}
+
+.searchImage {
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
+
+.userInfo {
+    width: 100%;
+}
+
+.searchUser {
+    color: rgba(33, 33, 33, 1);
+    margin: 1.5% 0.5%;
+}
+
+.searchOccupation {
+    color: rgba(158, 158, 158, 1);
+    margin: 1.5% 0.5%;
+}
+
+.followButton {
+    padding: 1%;
+    border: 2px solid rgba(255, 77, 103, 1);
+    border-radius: 15px;
+    color: rgba(255, 77, 103, 1);
+    margin-right: 0.5%;
+    font-size: 2rem;
 }

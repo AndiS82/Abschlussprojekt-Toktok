@@ -1,0 +1,14 @@
+button {
+    margin: 10px;
+    background: transparent;
+    border: none;
+}
+
+.icon {
+    font-size: 3rem;
+}
+
+.icon:hover {
+    cursor: pointer;
+    color: rgba(255, 77, 103, 1);
+}
