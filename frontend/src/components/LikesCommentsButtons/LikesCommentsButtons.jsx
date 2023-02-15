@@ -7,11 +7,11 @@ const LikesCommentsButtons = ({ singlePost }) => {
     return (
         <div className='LCB'>
             <FaRegHeart className='homeHeartIconBottom' />
-            <p>{new Intl.NumberFormat().format(singlePost?.likes)}</p>
+            <p>{singlePost?.likes ? new Intl.NumberFormat().format(singlePost.likes) : 0}</p>
             <Link to='.././comments/:postID'>
                 <BsChatDots className='homeCommentButtonBottom' />
             </Link>
-            <p>{new Intl.NumberFormat().format(singlePost?.comments)}</p>
+            <p>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost.comments) : 0}</p>
         </div>
     );
 }
