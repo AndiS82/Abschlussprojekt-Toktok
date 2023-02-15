@@ -86,7 +86,7 @@ const PersonSearch = () => {
             }
 
             {wordEntered.includes(filteredData) && wordEntered !== "" &&
-                <div>
+                <div className='noResults'>
                     <p>No results</p>
                 </div>
             }

@@ -87,3 +87,7 @@ p {
     margin-right: 0.5%;
     font-size: 2rem;
 }
+
+.noResults {
+    height: 85vh;
+}
