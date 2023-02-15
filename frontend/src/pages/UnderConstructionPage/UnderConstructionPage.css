@@ -6,12 +6,12 @@
     height: 82vh;
 }
 
-h1 {
+.underConstruction h1 {
     margin: 2% 0;
     font-size: 4rem;
 }
 
-img {
+.underConstruction img {
     width: 50%;
     margin: 2% 0;
 }
