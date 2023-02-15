@@ -4,9 +4,8 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import Gallery from '../../components/Gallery/Gallery.jsx';
-import { NavLink } from 'react-router-dom';
-import { RxCrossCircled } from "react-icons/rx";
-import { HiSquares2X2 } from "react-icons/hi2";
+
+import BackButton from '../../components/BackButton/BackButton';
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -78,7 +77,7 @@ const NewpostPage = () => {
     return (
         <div className='newPostMainStyle'>
             <section className='newPostHeader'>
-                <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
+                <BackButton />
                 <h1>New Post</h1>
                 {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
             </section>

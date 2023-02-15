@@ -1,0 +1,17 @@
+.underConstruction {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 82vh;
+}
+
+h1 {
+    margin: 2% 0;
+    font-size: 4rem;
+}
+
+img {
+    width: 50%;
+    margin: 2% 0;
+}
