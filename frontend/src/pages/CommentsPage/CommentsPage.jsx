@@ -7,13 +7,14 @@ import PostCaption from '../../components/PostCaption/PostCaption';
 import LikeReplyTime from '../../components/LikeReplyTime/LikeReplyTime';
 import Comments from '../../components/Comments/Comments';
 import PostComment from '../../components/PostComment/PostComment';
+import BackButton from '../../components/BackButton/BackButton';
 
 const CommentsPage = ({ singlePost }) => {
     return (
         <div className='commentsMainStyle'>
             <nav className='commentsNav'>
                 <div>
-                    <p>←</p>
+                    <BackButton />
                     <h1>Comments</h1>
                 </div>
                 <Link to="/UnderConstruction">
