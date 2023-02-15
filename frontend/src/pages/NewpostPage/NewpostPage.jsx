@@ -23,6 +23,7 @@ const NewpostPage = () => {
         setImage(URL.createObjectURL(imageRef.current.files[0]))
         setNewImage(true)
         setImageFile(imageRef.current.files[0])
+        setSelectImage(false)
     }
 
     const publish = async () => {
@@ -90,39 +91,25 @@ const NewpostPage = () => {
                         </label>
                     </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
-                    {newImage &&
-                        <>
-                            <img className='imgSelected' src={image} alt="selected" />
-                            <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Caption</button>
-                        </>}
-
+                    <div className='galleryHeader'>
+                        <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
+                        <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
+                    </div>
+                    <Gallery className="galleryTag" user={user} />
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
-                        <section className='newPostHeader'>
-                            <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
-                            <h1>New Post</h1>
-                            {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
-                        </section>
-                        <img src={user?.image} alt={user?.username} />
-
-                        <img className='imgSelected' src={image} alt="selected" />
+                        <img src={user?.image?.url} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
+                        <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div>
-                        <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
+                        <button onClick={() => setSelectImage(true)}>Back</button>
                         <button onClick={publish}>Publish</button>
                     </div>
                 </section>
             }
-            {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
-            <div className='galleryHeader'>
-                <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
-                <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
-            </div>
-
-            <Gallery className="galleryTag" user={user} />
         </div>
     );
 }
