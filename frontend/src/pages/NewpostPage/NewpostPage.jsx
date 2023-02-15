@@ -3,6 +3,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
+import { HiSquares2X2 } from "react-icons/hi2";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 
 import BackButton from '../../components/BackButton/BackButton';
