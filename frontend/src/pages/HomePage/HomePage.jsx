@@ -57,7 +57,6 @@ const HomePage = ({ setUserData, userData }) => {
                             <FaRegHeart className="homeIcon" />
                         </Link>
                     </nav>
-                    <Link to="/newpost">NEWPOST TEMP LINK</Link>
                 </div>
                 {feed?.map((singlePost, key) => {
                     return <Profil key={key} singlePost={singlePost} />

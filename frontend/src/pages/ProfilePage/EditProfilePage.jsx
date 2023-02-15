@@ -1,12 +1,16 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../contexts/UserContext';
 import './EditProfilePage.css';
+import defaultImage from '../../img/ProfileImgPlaceholder.png'
+import editIcon from '../../img/Edit_Square.png'
 
 const EditProfilePage = () => {
     const user = useContext(UserContext)
-    console.log(user)
 
-    const nameRef = useRef(user?.name)
+    const nav = useNavigate()
+
+    const nameRef = useRef()
     const usernameRef = useRef()
     const occupationRef = useRef()
     const dobRef = useRef()
@@ -17,20 +21,31 @@ const EditProfilePage = () => {
     const sexRef = useRef()
     const imageRef = useRef()
 
-    const [updatedUser, setUpdatedUser] = useState(null)
-    const [image, setImage] = useState(null)
+    const [updatedUser, setUpdatedUser] = useState()
+    const [image, setImage] = useState({ defaultImage })
     const [imageFile, setImageFile] = useState(null)
     const [showFileInput, setShowFileInput] = useState(false)
     const [edit, setEdit] = useState(true)
     console.log(showFileInput)
 
+    useEffect(() => {
+        setImage(user?.image?.url)
+    }, [])
+
     const showImage = () => {
-        setImage(URL.createObjectURL(imageRef.current.files[0]))
-        setImageFile(imageRef.current.files[0])
-        submit()
+        console.log('show Image')
+        if (imageRef?.current?.files[0] !== null) {
+            console.log('setting a new image')
+            setImage(URL.createObjectURL(imageRef.current.files[0]))
+            setImageFile(imageRef.current.files[0])
+        }
+        else {
+            console.log('no new image')
+        }
     }
 
     const submit = async () => {
+        console.log('submit')
         console.log(imageFile)
         const file = imageFile
         const imageForm = new FormData()
@@ -38,7 +53,7 @@ const EditProfilePage = () => {
         imageForm.append('upload_preset', process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET)
 
         const form = {
-            name: nameRef.current.value,
+            name: nameRef.current.value ? nameRef.current.value : user.name,
             username: usernameRef.current.value,
             occupation: occupationRef.current.value,
             dob: dobRef.current.value,
@@ -83,32 +98,35 @@ const EditProfilePage = () => {
 
     return (
         <div>
-            <section>
-                <img src={image} alt="profile" />
-                <button onClick={() => setShowFileInput(prev => !prev)}>ICON</button>
+            <p onClick={() => nav(-1)}>PLACEHOLDER - CLICK TO GO BACK</p>
+            <section className='profileImg-edit-section'>
+                <div className='profileImg-div'>
+                    <img className='origProfileImg' src={image} alt="profile" />
+                </div>
+                <button onClick={() => setShowFileInput(prev => !prev)}><img src={editIcon} alt="edit" /></button>
             </section>
             <section className='editSection'>
                 {showFileInput &&
-                    <input type="file" ref={imageRef} />
+                    <input type="file" onChange={showImage} ref={imageRef} />
                 }
-                {/* <input ref={nameRef} type="text" placeholder='Your Name' /> */}
-                <p ref={nameRef} contentEditable={edit}>{user?.name}</p>
-                <input ref={usernameRef} type="text" placeholder='Username' />
-                <input ref={occupationRef} type="text" placeholder='Occupation' />
-                <input ref={dobRef} type="date" placeholder='Date of Birth' />
-                <input ref={emailRef} type="email" placeholder='Email Address' />
-                <input ref={telRef} type="tel" placeholder='Telephone Number' />
-                <select ref={sexRef} defaultValue={"default"}>
+                <p ref={nameRef} contentEditable={edit} >{user?.name ? user.name : "Name"}</p>
+                <p ref={usernameRef} contentEditable={edit}>{user?.username ? user.username : "Username"}</p>
+                <p ref={occupationRef} contentEditable={edit}>{user?.occupation ? user.occupation : "Occupation"}</p>
+                <p ref={dobRef} contentEditable={edit}>{user?.dob ? user.dob : "DD.MM.YYYY"}</p>
+                <p ref={emailRef} contentEditable={edit}>{user?.email ? user.email : "Email Address"}</p>
+                <p ref={telRef} contentEditable={edit}>{user?.tel ? user.tel : "Telephone Number"}</p>
+                <select ref={sexRef} >
+                    {/* BUG: zeigt nicht immer richtig den vorher ausgewählten Geschlecht, der im User Datensatz zu finden ist */}
                     <option value="default" disabled>-select-</option>
-                    <option value="male" >Male</option>
-                    <option value="female" >Female</option>
-                    <option value="other" >Other</option>
+                    <option value="male" selected={user?.sex === "male"}>Male</option>
+                    <option value="female" selected={user?.sex === "female"}>Female</option>
+                    <option value="other" selected={user?.sex === "other"}>Other</option>
                 </select>
-                <input ref={websiteRef} type="url" placeholder='Your Website' />
-                <textarea ref={aboutRef} placeholder='About Me' />
-                <button onClick={showImage}>Save Updates</button>
+                <p ref={websiteRef} contentEditable={edit}>{user?.website ? user.website : "Website"}</p>
+                <p ref={aboutRef} contentEditable={edit}>{user?.aboutMe ? user.aboutMe : "About Me"}</p>
+                <button onClick={submit}>Save Updates</button>
             </section>
-        </div>
+        </div >
     );
 }
 
