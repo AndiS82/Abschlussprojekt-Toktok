@@ -29,7 +29,14 @@ const EditProfilePage = () => {
     console.log(showFileInput)
 
     useEffect(() => {
-        setImage(user?.image?.url)
+        console.log(user)
+        if (user) {
+            setImage(user?.image?.url)
+        }
+        else {
+            setImage(defaultImage)
+        }
+
     }, [])
 
     const showImage = () => {
