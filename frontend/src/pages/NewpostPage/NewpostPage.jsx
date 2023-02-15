@@ -4,8 +4,8 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
+import { CiLocationOn } from "react-icons/ci";
 import Gallery from '../../components/Gallery/Gallery.jsx';
-
 import BackButton from '../../components/BackButton/BackButton';
 
 const NewpostPage = () => {
@@ -99,14 +99,50 @@ const NewpostPage = () => {
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
-                    <div>
-                        <img src={user?.image?.url} alt={user?.username} />
+                    <div className='captionInputBar'>
+
+                        <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
-                    <div>
-                        <button onClick={() => setSelectImage(true)}>Back</button>
-                        <button onClick={publish}>Publish</button>
+                    <div className='wrapperLocation'>
+                        <CiLocationOn className='locationIcon' />
+                        <h2>Add Location</h2>
+                    </div>
+                    <div className='wrapperSmToggles'>
+                        <section className='sMToggle'>
+                            <h2>Also post to</h2>
+                        </section>
+                        <section className='sMToggle'>
+                            <h2>Facebook</h2>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round">
+
+                                </span>
+                            </label>
+                        </section>
+                        <section className='sMToggle'>
+                            <h2>Twitter</h2>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round">
+                                </span>
+                            </label>
+                        </section>
+                        <section className='sMToggle'>
+                            <h2>Tumblr</h2>
+                            <label class="switch">
+                                <input type="checkbox" />
+                                <span class="slider round">
+                                </span>
+                            </label>
+                        </section>
+
+                    </div>
+                    <div className='newPostNavButtonWrapper'>
+                        <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
+                        <button className='backAndPublishButton' onClick={publish}>Publish</button>
                     </div>
                 </section>
             }
