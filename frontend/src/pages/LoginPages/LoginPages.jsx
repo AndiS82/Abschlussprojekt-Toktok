@@ -8,7 +8,6 @@ import { HiLockClosed } from "react-icons/hi"
 
 const LoginPages = ({ setUser, setUserData }) => {
 
-    // const [createOrLogin, setCreateOrLogin] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const [pwShown, setPwShown] = useState(false)
     const nav = useNavigate()
@@ -17,7 +16,6 @@ const LoginPages = ({ setUser, setUserData }) => {
 
     const handleClick = () => {
         setIsActive(prev => !prev);
-        // setCreateOrLogin(prev => !prev);
     }
 
     const togglePw = () => {

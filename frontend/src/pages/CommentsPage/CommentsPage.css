@@ -1,0 +1,24 @@
+.commentsMainStyle {
+    margin: 0 20px;
+}
+
+.commentsNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.commentsNav div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.commentsNav div h1 {
+    font-size: 2.4rem;
+}
+
+.LCB-edit {
+    margin-left: -12px;
+}
