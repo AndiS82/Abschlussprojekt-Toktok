@@ -94,3 +94,15 @@ export const updateUser = async (req, res) => {
         res.status(401).end()
     }
 }
+
+export const updateUserPostsCount = async (token) => {
+    console.log('update # posts')
+    const db = await getDb()
+    try {
+        const verify = verifyToken(token)
+        const dbUserPosts = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $inc: { numberOfPosts: 1 } })
+        console.log(dbUserPosts)
+    } catch (error) {
+        console.log(error.message)
+    }
+}
