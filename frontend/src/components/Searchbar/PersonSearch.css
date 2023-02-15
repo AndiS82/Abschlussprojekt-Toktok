@@ -90,7 +90,51 @@ input {
     height: 85vh;
 }
 
-@media only screen and (max-width: 576px) {
+/* ======= MEDIA QUERIES =======*/
+
+@media only screen and (max-width: 280px) {
+    .searchImage {
+        object-fit: cover;
+        height: 45px;
+        width: 45px;
+        border-radius: 50%;
+    }
+
+    .searchUser {
+        font-size: 1rem;
+        color: rgba(33, 33, 33, 1);
+        margin: 1.5% 3%;
+    }
+
+    .searchOccupation {
+        font-size: 1rem;
+        color: rgba(158, 158, 158, 1);
+        margin: 1.5% 3%;
+    }
+}
+
+@media only screen and (max-width: 360px) and (min-width:281px) {
+    .searchImage {
+        object-fit: cover;
+        height: 55px;
+        width: 55px;
+        border-radius: 50%;
+    }
+
+    .searchUser {
+        font-size: 1rem;
+        color: rgba(33, 33, 33, 1);
+        margin: 1.5% 3%;
+    }
+
+    .searchOccupation {
+        font-size: 1rem;
+        color: rgba(158, 158, 158, 1);
+        margin: 1.5% 3%;
+    }
+}
+
+@media only screen and (max-width: 576px) and (min-width:361px) {
     .searchImage {
         object-fit: cover;
         height: 75px;
