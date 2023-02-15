@@ -13,10 +13,6 @@ input {
     padding: 5px 10px 5px 50px;
 }
 
-p {
-    font-size: 2rem;
-}
-
 .resetButton {
     margin: 0;
     padding: 0;
@@ -70,13 +66,15 @@ p {
 }
 
 .searchUser {
+    font-size: 2rem;
     color: rgba(33, 33, 33, 1);
-    margin: 1.5% 0.5%;
+    margin: 1.5% 2%;
 }
 
 .searchOccupation {
+    font-size: 2rem;
     color: rgba(158, 158, 158, 1);
-    margin: 1.5% 0.5%;
+    margin: 1.5% 2%;
 }
 
 .followButton {
