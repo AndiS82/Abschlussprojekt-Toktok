@@ -1,6 +1,7 @@
 import { ObjectId, Timestamp } from "mongodb"
 import { getDb } from "../util/db.js"
 import { verifyToken } from "../util/token.js"
+import { updateUserPostsCount } from "./userController.js"
 
 const COL = 'posts'
 
@@ -28,6 +29,7 @@ export const newPost = async (req, res) => {
             updatedAt: new Timestamp() // wird mit jedem folgenden Update wieder mit new Timestamp() geupdated
         }
         const result = await db.collection(COL).insertOne(post)
+        updateUserPostsCount(token)
         res.status(200).json(result)
     } catch (error) {
         res.status(400).end()
