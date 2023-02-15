@@ -4,8 +4,8 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import Gallery from '../../components/Gallery/Gallery.jsx';
-import BackButton from '../../components/BackButton/BackButton';
 
+import BackButton from '../../components/BackButton/BackButton';
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -22,6 +22,7 @@ const NewpostPage = () => {
         setImage(URL.createObjectURL(imageRef.current.files[0]))
         setNewImage(true)
         setImageFile(imageRef.current.files[0])
+        setSelectImage(false)
     }
 
     const publish = async () => {
@@ -74,40 +75,40 @@ const NewpostPage = () => {
     }
 
     return (
-        <div>
-            <BackButton />
-            <h1>new post {user?.username}</h1>
+        <div className='newPostMainStyle'>
+            <section className='newPostHeader'>
+                <BackButton />
+                <h1>New Post</h1>
+                {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
+            </section>
+
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
                     <article className='articleUploadButton'>
                         <label htmlFor="fotoUpload" className='uploadButton' >
-                            <MdPhotoCamera />Upload
+                            <MdPhotoCamera className='uploadButtonIcon' />Upload
                         </label>
                     </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
-                    {newImage &&
-                        <>
-                            <img src={image} alt="selected" />
-                            <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
-                        </>}
-
+                    <div className='galleryHeader'>
+                        <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
+                        <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
+                    </div>
+                    <Gallery className="galleryTag" user={user} />
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
-                        <img src={user?.image} alt={user?.username} />
+                        <img src={user?.image?.url} alt={user?.username} />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
-                        <img src={image} alt="selected" />
+                        <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div>
-                        <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
+                        <button onClick={() => setSelectImage(true)}>Back</button>
                         <button onClick={publish}>Publish</button>
                     </div>
                 </section>
             }
-            {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
-            <h1>Gallerie <IoIosArrowDown /></h1>
-            <Gallery user={user} />
         </div>
     );
 }
