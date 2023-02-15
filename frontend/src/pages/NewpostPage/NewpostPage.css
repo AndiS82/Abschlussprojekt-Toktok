@@ -1,27 +1,117 @@
+.newPostMainStyle {
+    margin: 25px;
+}
+
+.newPostHeader {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 5px 0;
+    gap: 10px;
+}
+
+.newPostBack {
+    font-size: 2.3rem;
+    height: 100%
+}
+
+.newPostHeader h1 {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.articleUploadButton {
+    background-color: rgba(158, 158, 158, 1);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
 .uploadButton {
-    background-color: rgba(233, 128, 144, 1);
+    background-color: rgba(255, 77, 103, 1);
     padding: 5px 10px;
     border: none;
     border-radius: 10px;
     color: white;
     cursor: pointer;
     font-size: 1.6rem;
-    /* margin-top: 100px; */
-    /* vertical-align: top; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    width: 60%;
+}
+
+.uploadButtonIcon {
+    font-size: 1.8rem;
+    height: 100%;
 }
 
 #fotoUpload {
     display: none
 }
 
-.articleUploadButton {
-    margin: 5% 0;
+/* Das ist das Bild das man hochlädt: */
+.imgSelected {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
 }
 
-/* 
-h1 {
-    margin: 50px;
-} */
+
+.galleryHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    margin: 20px 0 15px 0;
+}
+
+.galleryDrop {}
+
+.galleryDrop h1 {
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.galleryDropIcon {
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+
+/* 4Würfel + Kamera: */
+.galleryIconsRight {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+}
+
+/*die 2 Icons rechts(!) im Gallery Header:*/
+.galleryIcons {
+    justify-self: center;
+    margin: auto;
+    font-size: 2.3rem;
+    height: 100%
+}
+
+.galleryTag {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* .test {
     margin: 50px;

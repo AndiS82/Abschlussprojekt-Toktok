@@ -6,7 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import { NavLink } from 'react-router-dom';
 import { RxCrossCircled } from "react-icons/rx";
-
+import { HiSquares2X2 } from "react-icons/hi2";
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -75,30 +75,40 @@ const NewpostPage = () => {
     }
 
     return (
-        <div>
-            <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
-            <h1>new post {user?.username}</h1>
+        <div className='newPostMainStyle'>
+            <section className='newPostHeader'>
+                <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
+                <h1>New Post</h1>
+                {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
+            </section>
+
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
                 <>
                     <article className='articleUploadButton'>
                         <label htmlFor="fotoUpload" className='uploadButton' >
-                            <MdPhotoCamera />Upload
+                            <MdPhotoCamera className='uploadButtonIcon' />Upload
                         </label>
                     </article>
                     <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                     {newImage &&
                         <>
-                            <img src={image} alt="selected" />
-                            <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Content</button>
+                            <img className='imgSelected' src={image} alt="selected" />
+                            <button className='uploadButton' onClick={() => setSelectImage(false)}>Add Caption</button>
                         </>}
 
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div>
+                        <section className='newPostHeader'>
+                            <NavLink to="/Home"><RxCrossCircled className='newPostBack' /> </NavLink>
+                            <h1>New Post</h1>
+                            {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
+                        </section>
                         <img src={user?.image} alt={user?.username} />
+
+                        <img className='imgSelected' src={image} alt="selected" />
                         <textarea ref={contentRef} placeholder='Write a caption'></textarea>
-                        <img src={image} alt="selected" />
                     </div>
                     <div>
                         <button onClick={() => setSelectImage(true)}>Back to Image Selection</button>
@@ -107,8 +117,12 @@ const NewpostPage = () => {
                 </section>
             }
             {/* Fetch Posts, die zum eingeloggten User gehören. Dann durch die posts mappen und nur die Bilder zeigen */}
-            <h1>Gallerie <IoIosArrowDown /></h1>
-            <Gallery user={user} />
+            <div className='galleryHeader'>
+                <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
+                <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
+            </div>
+
+            <Gallery className="galleryTag" user={user} />
         </div>
     );
 }
