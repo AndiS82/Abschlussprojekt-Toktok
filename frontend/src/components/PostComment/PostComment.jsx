@@ -1,8 +1,9 @@
-const PostComment = ({ singlePost }) => {
+import './PostComment.css'
+
+const PostComment = () => {
     return (
         <div className="postComment">
-            <h1>POST COMMENT COMPONENT</h1>
-            <img src={singlePost?.user?.image} alt={singlePost?.user?.username} />
+            <p>POST COMMENT COMPONENT</p>
             <input type="text" placeholder="Your comment"></input>
             <button type="submit">Post</button>
         </div>

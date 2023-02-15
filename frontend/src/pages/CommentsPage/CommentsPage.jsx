@@ -17,7 +17,7 @@ const CommentsPage = ({ singlePost }) => {
                     <h1>Comments</h1>
                 </div>
                 <Link to="/UnderConstruction">
-                    <img className='test' src={arrowTriangle} alt="arrowTriangle" />
+                    <img className='arrowTriangle' src={arrowTriangle} alt="arrowTriangle" />
                 </Link>
             </nav>
             <ProfilMini singlePost={singlePost} />
