@@ -1,7 +1,9 @@
 .navbarBottom {
+    background-color: #F5F5F5;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    margin: 2% 0;
+    padding: 2% 0;
     display: flex;
     justify-content: space-evenly;
 }

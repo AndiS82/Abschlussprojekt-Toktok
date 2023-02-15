@@ -45,25 +45,25 @@ const HomePage = ({ setUserData, userData }) => {
     }, [])
 
     return (
-        <div className='homeMainStyle'>
-            <div>
-                <nav className="homeNavbar">
-                    <div>
-                        <img src={MiniLogo} alt="MiniLogo" />
-                        <h1>TokTok</h1>
-                    </div>
-                    <Link to="/UnderConstruction">
-                        <FaRegHeart className="homeIcon" />
-                    </Link>
-                </nav>
-                <Link to="/newpost">NEWPOST TEMP LINK</Link>
+        <div>
+            <div className='homeMainStyle'>
+                <div>
+                    <nav className="homeNavbar">
+                        <div>
+                            <img src={MiniLogo} alt="MiniLogo" />
+                            <h1>TokTok</h1>
+                        </div>
+                        <Link to="/UnderConstruction">
+                            <FaRegHeart className="homeIcon" />
+                        </Link>
+                    </nav>
+                    <Link to="/newpost">NEWPOST TEMP LINK</Link>
+                </div>
+                {feed?.map((singlePost, key) => {
+                    return <Profil key={key} singlePost={singlePost} />
+                })}
             </div>
-            {feed?.map((singlePost, key) => {
-                return <Profil key={key} singlePost={singlePost} />
-            })}
-            <div>
-                <NavbarBottom />
-            </div>
+            <NavbarBottom />
         </div>
     );
 };

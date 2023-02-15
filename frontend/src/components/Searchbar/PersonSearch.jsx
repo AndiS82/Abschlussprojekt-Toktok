@@ -54,7 +54,7 @@ const PersonSearch = () => {
                             return (
                                 <div className='searchUserContainer' key={index}>
                                     <div className='searchPicContainer'>
-                                        <img className='searchImage' src={user?.image?.url}></img>
+                                        <img className='searchImage' src={user?.image?.url} alt={user.user}></img>
                                     </div>
                                     <div className='userInfo'>
                                         <p className='searchUser' key={index}>{user.user}</p>
@@ -73,7 +73,7 @@ const PersonSearch = () => {
                         return (
                             <div className='searchUserContainer' key={index}>
                                 <div className='searchPicContainer'>
-                                    <img className='searchImage' src={user?.image?.url}></img>
+                                    <img className='searchImage' src={user?.image?.url} alt={user.user}></img>
                                 </div>
                                 <div className='userInfo'>
                                     <p className='searchUser' key={index}>{user.user}</p>
