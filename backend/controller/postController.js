@@ -36,6 +36,11 @@ export const newPost = async (req, res) => {
     }
 }
 
+export const newComment = async (req, res) => {
+    // mit dem neuen Kommentar erstellen updaten wir den Post, zu dem der Kommentar gehört
+    console.log('new comment')
+}
+
 export const getAllPosts = async (req, res) => {
     console.log('get all posts')
     try {
@@ -58,4 +63,18 @@ export const getUserPosts = async (req, res) => {
     } catch (error) {
         res.status(400).end(error.message)
     }
+}
+
+export const getSinglePost = async (req, res) => {
+    console.log('get single post')
+    const params = req.params
+    const postid = params.id
+    try {
+        const db = await getDb()
+        const post = await db.collection(COL).findOne({ _id: new ObjectId(postid) })
+        res.status(200).json(post)
+    } catch (error) {
+        res.status(400).end(error.message)
+    }
+
 }

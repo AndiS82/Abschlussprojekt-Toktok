@@ -28,9 +28,11 @@
     padding: 50px;
 }
 
-.editSection p,
+.editSection input,
 .editSection select {
     border: none;
+    width: 100%;
+    font-size: 14px;
     background-color: #FAFAFA;
     padding: 18px 20px;
     border-radius: 12px;
