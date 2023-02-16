@@ -6,9 +6,6 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
 const ProfilMini = ({ singlePost }) => {
-    // NOTIZ ZUR CONDITIONAL RENDERING UNTEN:
-    // singlePost wurde am HomePage deklariert und trifft die Verwendung dieser Component auf der ProfilePage nicht zu. Von daher, rendern wir mit singlePost daten wenn singlePost überhaupt existiert. Wenn nicht, benutzen wir die daten vom UserContext (dh: auf der ProfilePage wird alles dargestellt mit dem User Daten des eingeloggten Users aus der Datenbank)
-    // Wir dürfen nur die Userdaten vom UseContext benutzen, wenn SinglePost nicht existiert. Das vermeidet, dass wir damit die Darstellung des Homepages stören.
 
     const user = useContext(UserContext)
 

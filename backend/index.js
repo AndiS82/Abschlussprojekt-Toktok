@@ -6,7 +6,7 @@ import multer from 'multer'
 import { getAllUsers, getOneUser, login, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { getAllPosts, getUserPosts, newPost } from './controller/postController.js'
+import { getAllPosts, getSinglePost, getUserPosts, newComment, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
@@ -54,7 +54,7 @@ app.get('/api/token', verifyToken)
 // Erstelle einen neuen Post
 app.post('/api/:user/post', formReader.none(), newPost)
 // get einen einzelnen Post
-app.get('/api/:user/posts/:id')
+app.get('/api/posts/:id', getSinglePost)
 // bearbeite einen einzelnen Post
 app.put('/api/:user/posts/:id')
 
@@ -63,6 +63,9 @@ app.put('/api/:user/posts/:id')
 app.get('/api/:user/posts', getUserPosts)
 // get alle Posts von allen Usern
 app.get('/api/posts', getAllPosts)
+
+// KOMMENTARE
+app.put('/api/:user/post', newComment)
 
 
 // dann werfen wir den Server mal an

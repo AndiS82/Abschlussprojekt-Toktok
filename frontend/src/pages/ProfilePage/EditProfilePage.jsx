@@ -117,12 +117,12 @@ const EditProfilePage = () => {
                 {showFileInput &&
                     <input type="file" onChange={showImage} ref={imageRef} />
                 }
-                <p ref={nameRef} contentEditable={edit} >{user?.name ? user.name : "Name"}</p>
-                <p ref={usernameRef} contentEditable={edit}>{user?.username ? user.username : "Username"}</p>
-                <p ref={occupationRef} contentEditable={edit}>{user?.occupation ? user.occupation : "Occupation"}</p>
-                <p ref={dobRef} contentEditable={edit}>{user?.dob ? user.dob : "DD.MM.YYYY"}</p>
-                <p ref={emailRef} contentEditable={edit}>{user?.email ? user.email : "Email Address"}</p>
-                <p ref={telRef} contentEditable={edit}>{user?.tel ? user.tel : "Telephone Number"}</p>
+                <input ref={nameRef} contentEditable={edit} placeholder="Name" value={user?.name} />
+                <input ref={usernameRef} contentEditable={edit} placeholder="Username" value={user?.username} />
+                <input ref={occupationRef} contentEditable={edit} placeholder="Occupation" value={user?.occupation} />
+                <input ref={dobRef} contentEditable={edit}>{user?.dob ? user.dob : "DD.MM.YYYY"}</p>
+                <input ref={emailRef} contentEditable={edit}>{user?.email ? user.email : "Email Address"}</p>
+                <input ref={telRef} contentEditable={edit}>{user?.tel ? user.tel : "Telephone Number"}</p>
                 <select ref={sexRef} >
                     {/* BUG: zeigt nicht immer richtig den vorher ausgewählten Geschlecht, der im User Datensatz zu finden ist */}
                     <option value="default" disabled>-select-</option>
