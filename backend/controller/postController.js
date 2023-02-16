@@ -37,9 +37,39 @@ export const newPost = async (req, res) => {
 }
 
 export const newComment = async (req, res) => {
-    // mit dem neuen Kommentar erstellen updaten wir den Post, zu dem der Kommentar gehört
     console.log('new comment')
+    const token = req.cookies.token
+    console.log(req.body)
+    try {
+        const db = await getDb()
+        const verify = verifyToken(token)
+        const dbUser = await db.collection('users').find({ _id: new ObjectId(verify.userid) })
+        console.log(`dbUser`)
+        if (!dbUser) return res.status(401).end('user not verified')
+        console.log(req.body.postID)
+        const comment = {
+            user: {
+                _id: req.body._id,
+                username: req.body.username,
+                occupation: req.body.occupation,
+                image: req.body.image
+            },
+            content: req.body.content,
+            likes: req.body.likes, // Funktionalität kommt erst später
+            createdAt: new Timestamp(),
+        }
+
+        const result = await db.collection(COL).updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment } })
+        res.status(200).json(result)
+    } catch (error) {
+        res.status(400).end(error.message)
+    }
 }
+
+// Function, um einen Kommentar löschen zu können
+// Function, um einen Post löschen zu können
+// Function, um die Likes eines Posts dynamisch ändern zu können
+// Function, um die Likes eines Comments dynamisch ändern zu können
 
 export const getAllPosts = async (req, res) => {
     console.log('get all posts')
@@ -76,5 +106,4 @@ export const getSinglePost = async (req, res) => {
     } catch (error) {
         res.status(400).end(error.message)
     }
-
 }
