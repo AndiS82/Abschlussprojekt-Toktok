@@ -42,8 +42,9 @@ const HomePage = ({ setUserData, userData }) => {
             }
         }
         getFeed()
-    }, [])
 
+    }, [])
+    console.log(feed)
     return (
         <div>
             <div className='homeMainStyle'>
