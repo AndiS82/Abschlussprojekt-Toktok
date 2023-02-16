@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './EditProfilePage.css';
 import defaultImage from '../../img/ProfileImgPlaceholder.png'
 import editIcon from '../../img/Edit_Square.png'
+import BackButton from '../../components/BackButton/BackButton';
 
 const EditProfilePage = () => {
     const user = useContext(UserContext)
@@ -105,7 +106,7 @@ const EditProfilePage = () => {
 
     return (
         <div>
-            <p onClick={() => nav(-1)}>PLACEHOLDER - CLICK TO GO BACK</p>
+            <BackButton />
             <section className='profileImg-edit-section'>
                 <div className='profileImg-div'>
                     <img className='origProfileImg' src={image} alt="profile" />
