@@ -77,34 +77,18 @@ const NewpostPage = () => {
 
     const OnInput = (event) => {
         const textarea = event.target
-        console.log("scrollHeight:", textarea.scrollHeight)
-        console.log("minHeight:", textarea.style.minHeight)
-        console.log("height:", textarea.style.height)
-        if (textarea.scrollHeight > parseInt(textarea.style.minHeight)) {
-            console.log("*** updating height")
-            textarea.style.height = textarea.scrollHeight + "px"
-        } else {
-            console.log("*** resetting height to minHeigt")
-            textarea.style.height = textarea.style.minHeight
-        }
+        const offSet = textarea.offsetHeight - textarea.clientHeight
+        textarea.style.height = "auto"
+        console.log("Offsetheight:", textarea.offsetHeight)
+        textarea.style.height = textarea.scrollHeight + offSet + "px"
     }
 
-    // const tx = document.getElementsByTagName("textarea");
-    // for (let i = 0; i < tx.length; i++) {
-    //     tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
-    //     tx[i].addEventListener("input", OnInput, false);
-    // }
-    // function OnInput() {
-    //     this.style.height = 0;
-    //     this.style.height = (this.scrollHeight) + "px";
-    // }
 
     return (
         <div className='newPostMainStyle'>
             <section className='newPostHeader'>
                 <BackButton />
                 <h1>New Post</h1>
-                {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
             </section>
 
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
