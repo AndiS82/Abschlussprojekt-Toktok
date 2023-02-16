@@ -1,4 +1,18 @@
 .postComment {
     display: flex;
     margin: 40px 0;
+    justify-content: space-evenly;
+}
+
+.postComment input {
+    font-size: 1.4rem;
+    border: transparent;
+    border-radius: 20px;
+    background-color: rgba(211, 211, 211, 0.189);
+}
+
+.postComment button {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: rgba(255, 0, 0, 0.613);
 }

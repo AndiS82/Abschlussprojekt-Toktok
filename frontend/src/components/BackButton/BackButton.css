@@ -1,11 +1,10 @@
 button {
-    margin: 10px;
     background: transparent;
     border: none;
 }
 
 .icon {
-    font-size: 3rem;
+    margin-top: 3.5px;
 }
 
 .icon:hover {
