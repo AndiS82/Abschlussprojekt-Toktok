@@ -9,12 +9,14 @@ import Comments from '../../components/Comments/Comments';
 import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
+import PostImage from '../../components/PostImage/PostImage';
 
 const CommentsPage = () => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
     const [postData, setPostData] = useState([])
+    const [reRender, setReRender] = useState(false)
     const params = useParams()
-    console.log('user', postData?.user)
+    console.log('postData', postData)
 
     useEffect(() => {
         const getData = async () => {
@@ -29,7 +31,7 @@ const CommentsPage = () => {
             else (console.log("comment not fetched"))
         }
         getData()
-    }, [])
+    }, [reRender])
 
 
     return (
@@ -43,20 +45,22 @@ const CommentsPage = () => {
                     <img className='arrowTriangle' src={arrowTriangle} alt="arrowTriangle" />
                 </Link>
             </nav>
-            <ProfilMini singlePost={postData?.user} />
+            <ProfilMini singlePost={postData} />
+            <PostImage singlePost={postData} />
             <PostCaption />
-            {postData?.comments?.allComments?.map((post, key) => {
+            <div className='LCB-edit' >
+                <LikesCommentsButtons singlePost={postData} />
+            </div>
+            {postData?.comments?.map((post, key) => {
                 return (
                     <section key={key}>
                         <ProfilMini post={post} />
-
+                        <p>{post.content}</p>
                         <p>6 hours ago</p>
-                        <div className='LCB-edit' >
-                            <LikesCommentsButtons post={post} />
-                        </div>
+                        <LikeReplyTime post={post} />
                     </section>)
             })}
-            <PostComment />
+            <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
         </div>
     );
 }
