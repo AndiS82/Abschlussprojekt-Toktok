@@ -9,7 +9,7 @@ const ProfilMini = ({ singlePost, post }) => {
 
     const user = useContext(UserContext)
 
-    console.log(singlePost)
+    // console.log(singlePost)
     return (
         <div>
             <nav className="miniProfil">

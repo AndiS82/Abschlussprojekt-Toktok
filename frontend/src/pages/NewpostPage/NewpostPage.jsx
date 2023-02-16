@@ -75,6 +75,30 @@ const NewpostPage = () => {
         }
     }
 
+    const OnInput = (event) => {
+        const textarea = event.target
+        console.log("scrollHeight:", textarea.scrollHeight)
+        console.log("minHeight:", textarea.style.minHeight)
+        console.log("height:", textarea.style.height)
+        if (textarea.scrollHeight > parseInt(textarea.style.minHeight)) {
+            console.log("*** updating height")
+            textarea.style.height = textarea.scrollHeight + "px"
+        } else {
+            console.log("*** resetting height to minHeigt")
+            textarea.style.height = textarea.style.minHeight
+        }
+    }
+
+    // const tx = document.getElementsByTagName("textarea");
+    // for (let i = 0; i < tx.length; i++) {
+    //     tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+    //     tx[i].addEventListener("input", OnInput, false);
+    // }
+    // function OnInput() {
+    //     this.style.height = 0;
+    //     this.style.height = (this.scrollHeight) + "px";
+    // }
+
     return (
         <div className='newPostMainStyle'>
             <section className='newPostHeader'>
@@ -100,9 +124,8 @@ const NewpostPage = () => {
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div className='captionInputBar'>
-
                         <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
-                        <textarea ref={contentRef} placeholder='Write a caption'></textarea>
+                        <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
@@ -115,26 +138,26 @@ const NewpostPage = () => {
                         </section>
                         <section className='sMToggle'>
                             <h2>Facebook</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
 
                                 </span>
                             </label>
                         </section>
                         <section className='sMToggle'>
                             <h2>Twitter</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
                                 </span>
                             </label>
                         </section>
                         <section className='sMToggle'>
                             <h2>Tumblr</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
                                 </span>
                             </label>
                         </section>

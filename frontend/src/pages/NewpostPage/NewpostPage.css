@@ -113,7 +113,8 @@
 /* Übercontainer für die Captioneingabe mit profilbild, EIngabefeld und Uploadbild */
 .captionInputBar {
     width: 100%;
-    height: 80px;
+    /* height: 80px; */
+    /* height: auto; */
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -122,24 +123,49 @@
 /* Rundes Profilbild an der linken Seite: */
 .profilePicRound {
     width: 80px;
-    height: auto;
+    height: 80px;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.captionInputBar textarea {
+.textarea {
     /* width: ; */
-    background-color: rgb(219, 219, 219);
-    border-style: none;
+    background-color: rgb(232, 232, 232);
+    /* border-style: none; */
+    border: 2px solid transparent;
+    outline: none;
     border-radius: 10px;
     overflow: auto;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    line-height: 1.3;
+    /* font-family: ; */
+    transition: all 0.2s;
+    cursor: pointer;
+    overflow: hidden;
+    min-height: 80px;
+    /* min-height: min-content;
+    max-height: max-content; */
+    /* height: auto;
+    resize: vertical; */
 }
 
-/* Das ist das Bild das man hochlädt: */
+/* Eher für die Desktop-Version relevant */
+/* .textarea:hover {
+    background-color: rgb(193, 191, 191);
+} */
+
+.textarea:focus {
+    cursor: text;
+    /* background-color: rgb(193, 191, 191); */
+    border-color: rgb(193, 191, 191);
+}
+
+/* Das ist das Bild, das man hochlädt: */
 .imgSelected {
     width: 80px;
-    height: auto;
+    height: 80px;
     aspect-ratio: 1/1;
     border-radius: 20px;
     object-fit: cover;
