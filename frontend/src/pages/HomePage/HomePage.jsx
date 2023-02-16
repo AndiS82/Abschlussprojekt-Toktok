@@ -4,7 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import MiniLogo from '../../img/LogoMini.png';
 import Profil from '../../components/Profil/Profil';
 import { useEffect, useState } from 'react';
-import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
+import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 
 const HomePage = ({ setUserData, userData }) => {
     const [feed, setFeed] = useState(null)

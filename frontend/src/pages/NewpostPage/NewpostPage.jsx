@@ -75,12 +75,20 @@ const NewpostPage = () => {
         }
     }
 
+    const OnInput = (event) => {
+        const textarea = event.target
+        const offSet = textarea.offsetHeight - textarea.clientHeight
+        textarea.style.height = "auto"
+        console.log("Offsetheight:", textarea.offsetHeight)
+        textarea.style.height = textarea.scrollHeight + offSet + "px"
+    }
+
+
     return (
         <div className='newPostMainStyle'>
             <section className='newPostHeader'>
                 <BackButton />
                 <h1>New Post</h1>
-                {/* Wir hatten hier den Usernamen eingefügt. Das ist in der Vorlage aber nicht so, daher hinterlege ich den Tag hier für's ggf. recycling an anderer Stelle in diesem Dokument {user?.username}  SV */}
             </section>
 
             {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
@@ -100,9 +108,8 @@ const NewpostPage = () => {
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
                     <div className='captionInputBar'>
-
                         <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
-                        <textarea ref={contentRef} placeholder='Write a caption'></textarea>
+                        <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
@@ -115,26 +122,26 @@ const NewpostPage = () => {
                         </section>
                         <section className='sMToggle'>
                             <h2>Facebook</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
 
                                 </span>
                             </label>
                         </section>
                         <section className='sMToggle'>
                             <h2>Twitter</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
                                 </span>
                             </label>
                         </section>
                         <section className='sMToggle'>
                             <h2>Tumblr</h2>
-                            <label class="switch">
+                            <label className="switch">
                                 <input type="checkbox" />
-                                <span class="slider round">
+                                <span className="slider round">
                                 </span>
                             </label>
                         </section>
