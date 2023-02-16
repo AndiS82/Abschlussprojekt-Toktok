@@ -8,7 +8,7 @@ const LikesCommentsButtons = ({ singlePost }) => {
         <div className='LCB'>
             <FaRegHeart className='homeHeartIconBottom' />
             <p>{singlePost?.likes ? new Intl.NumberFormat().format(singlePost.likes) : 0}</p>
-            <Link to='.././comments/:postID'>
+            <Link to={`/comments/${singlePost?._id}`}>
                 <BsChatDots className='homeCommentButtonBottom' />
             </Link>
             <p>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost.comments) : 0}</p>
