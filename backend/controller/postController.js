@@ -17,7 +17,7 @@ export const newPost = async (req, res) => {
                 _id: req.body._id,
                 username: req.body.username,
                 occupation: req.body.occupation,
-                image: req.body.image
+                image: req.body.userimage
             },
             image: {
                 url: req.body.image,
@@ -88,7 +88,7 @@ export const getUserPosts = async (req, res) => {
     const userid = params.user
     try {
         const db = await getDb()
-        const posts = await db.collection(COL).find({ 'user._id': new ObjectId(userid) }).toArray()
+        const posts = await db.collection(COL).find({ user: { id: userid } }).toArray()
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).end(error.message)

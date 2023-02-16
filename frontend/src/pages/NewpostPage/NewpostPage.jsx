@@ -4,9 +4,11 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
-import { CiLocationOn } from "react-icons/ci";
+// import { CiLocationOn } from "react-icons/ci";
+import { FiSettings } from "react-icons/fi";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
+import { redirect } from "react-router-dom";
 
 const NewpostPage = () => {
     const [selectImage, setSelectImage] = useState(true)
@@ -42,7 +44,7 @@ const NewpostPage = () => {
                 body: form
             })
             const data = await imageResponse.json()
-            console.log(data)
+            console.log("data: ", data)
 
             // ADD IMAGE TO POST
             post.image = data.secure_url
@@ -52,7 +54,7 @@ const NewpostPage = () => {
             post._id = user._id
             post.username = user.username
             post.occupation = user.occupation
-            post.image = user.image
+            post.userimage = user.image
 
             console.log(post)
 
@@ -68,6 +70,7 @@ const NewpostPage = () => {
 
             if (postResponse.ok) {
                 console.log('success posting')
+                return redirect("/Home")
             }
 
         } catch (error) {
@@ -113,7 +116,7 @@ const NewpostPage = () => {
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
-                        <CiLocationOn className='locationIcon' />
+                        {/* <CiLocationOn className='locationIcon' /> */}
                         <h2>Add Location</h2>
                     </div>
                     <div className='wrapperSmToggles'>
@@ -145,7 +148,10 @@ const NewpostPage = () => {
                                 </span>
                             </label>
                         </section>
-
+                    </div>
+                    <div className='wrapperSettings'>
+                        <FiSettings className='locationIcon' />
+                        <h2>Advanced Settings</h2>
                     </div>
                     <div className='newPostNavButtonWrapper'>
                         <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
