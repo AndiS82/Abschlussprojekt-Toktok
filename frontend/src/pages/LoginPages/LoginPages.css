@@ -64,8 +64,16 @@
     cursor: pointer;
     font-size: 2.2rem;
     margin: 0 14px;
+    /* display: none; */
 }
 
+.hidePWIcon {
+    color: rgba(158, 158, 158, 1);
+    cursor: pointer;
+    font-size: 2.2rem;
+    margin: 0 14px;
+    /* display: none; */
+}
 
 .pinkButton {
     background-color: rgba(233, 128, 144, 1);

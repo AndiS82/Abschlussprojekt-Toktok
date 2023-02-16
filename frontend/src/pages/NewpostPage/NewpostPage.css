@@ -2,6 +2,11 @@
     margin: 25px;
 }
 
+.divider {
+    width: 100%;
+    height: 6px;
+}
+
 .newPostHeader {
     display: flex;
     justify-content: left;
@@ -175,14 +180,29 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    margin: 5px 0;
     gap: 10px;
-    margin: 20px 0 15px 0;
+    margin: 25px 0 20px 0;
+    border-bottom: 2px solid rgb(193, 191, 191);
+    border-top: 2px solid rgb(193, 191, 191);
+    padding: 20px 0 20px 0;
+    ;
 }
 
 .wrapperLocation h2 {
     font-size: 1.6rem;
-    /* color: blue; */
+}
+
+.wrapperSettings {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin: 5px 0;
+    gap: 10px;
+    margin: 20px 0 20px 0;
+}
+
+.wrapperSettings h2 {
+    font-size: 1.6rem;
 }
 
 .locationIcon {
@@ -193,6 +213,8 @@
 .wrapperSmToggles {
     /* display: flex; */
     margin: 6px 0 4px 0;
+    border-bottom: 2px solid rgb(193, 191, 191);
+    ;
 }
 
 .wrapperSmToggles h2 {
