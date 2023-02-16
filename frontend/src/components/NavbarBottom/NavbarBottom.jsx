@@ -6,6 +6,7 @@ const NavbarBottom = () => {
 
     return (
         <nav className='navbarBottom' >
+            {/* <h1>TEST</h1> */}
             <NavLink to="/Home"><GoIcons.GoHome className='navbarIcon' /> </NavLink>
             <NavLink to="/Search"><GoIcons.GoSearch className='navbarIcon' /></NavLink>
             <NavLink to="/Newpost"><GoIcons.GoDiffAdded className='navbarIcon' /></NavLink>
