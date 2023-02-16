@@ -37,7 +37,7 @@ const CommentsPage = () => {
     return (
         <div className='commentsMainStyle'>
             <nav className='commentsNav'>
-                <div>
+                <div className='backBtnH1'>
                     <BackButton />
                     <h1>Comments</h1>
                 </div>
@@ -46,7 +46,6 @@ const CommentsPage = () => {
                 </Link>
             </nav>
             <ProfilMini singlePost={postData} />
-            <PostImage singlePost={postData} />
             <PostCaption />
             <div className='LCB-edit' >
                 <LikesCommentsButtons singlePost={postData} />
@@ -55,8 +54,7 @@ const CommentsPage = () => {
                 return (
                     <section key={key}>
                         <ProfilMini post={post} />
-                        <p>{post.content}</p>
-                        <p>6 hours ago</p>
+                        <p className='postedContent'>{post.content}</p>
                         <LikeReplyTime post={post} />
                     </section>)
             })}

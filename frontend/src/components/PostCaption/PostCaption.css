@@ -1,3 +1,7 @@
 .postCap {
-    margin: 20px 0;
+    margin: 10px 0 25px 0;
+}
+
+.postCap p {
+    font-size: 1.4rem;
 }
