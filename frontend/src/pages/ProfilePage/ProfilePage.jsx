@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import BackButton from '../../components/BackButton/BackButton';
 import Gallery from '../../components/Gallery/Gallery';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
 // import Profil from '../../components/Profil/Profil';
@@ -14,9 +15,7 @@ const ProfilePage = () => {
 
     return (
         <div>
-            <p onClick={() => nav(-1)}>PLACEHOLDER - CLICK TO GO BACK</p>
-
-            <Link to="/EditProfile">TEMP LINK EDIT PROFILE</Link>
+            <BackButton />
             <ProfilMini />
             <Gallery user={user} />
             <NavbarBottom />

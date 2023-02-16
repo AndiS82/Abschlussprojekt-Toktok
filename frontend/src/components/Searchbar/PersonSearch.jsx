@@ -87,10 +87,11 @@ const PersonSearch = () => {
 
             {wordEntered.includes(filteredData) && wordEntered !== "" &&
                 <div className='noResults'>
-                    <p>No results</p>
+                    <p className='searchUser'>No results</p>
                 </div>
             }
-        </div >)
+        </div >
+    )
 };
 
 export default PersonSearch;
