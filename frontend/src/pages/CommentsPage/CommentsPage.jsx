@@ -8,8 +8,29 @@ import LikeReplyTime from '../../components/LikeReplyTime/LikeReplyTime';
 import Comments from '../../components/Comments/Comments';
 import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
+import { useEffect, useState } from 'react';
 
 const CommentsPage = ({ singlePost }) => {
+    const postsFetch = process.env.REACT_APP_BACKEND_URL_POSTS;
+    const [postData, setPostData] = useState([])
+
+
+    useEffect(() => {
+        const getData = async () => {
+            const posts = await fetch(postsFetch, {
+                credentials: "include";
+            })
+            if (posts.ok) {
+                const fetchedPosts = await posts.json()
+                setPostData(fetchedPosts)
+                console.log(fetchedPosts)
+            }
+            else (console.log("comment not fetched"))
+        }
+        getData()
+    }, [])
+
+
     return (
         <div className='commentsMainStyle'>
             <nav className='commentsNav'>
