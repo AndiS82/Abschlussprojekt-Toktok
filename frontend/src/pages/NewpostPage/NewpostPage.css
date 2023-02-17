@@ -185,11 +185,25 @@
     border-bottom: 2px solid rgb(193, 191, 191);
     border-top: 2px solid rgb(193, 191, 191);
     padding: 20px 0 20px 0;
-    ;
 }
 
 .wrapperLocation h2 {
     font-size: 1.6rem;
+}
+
+.locationButton {
+    background-color: transparent;
+    border-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.locationIcon {
+    font-size: 2.3rem;
 }
 
 .wrapperSettings {
@@ -205,9 +219,6 @@
     font-size: 1.6rem;
 }
 
-.locationIcon {
-    font-size: 2.3rem;
-}
 
 /* -----Social Media Toggle Dummys----- */
 .wrapperSmToggles {
