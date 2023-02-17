@@ -27,7 +27,6 @@ const EditProfilePage = () => {
     const [imageFile, setImageFile] = useState(null)
     const [showFileInput, setShowFileInput] = useState(false)
     const [edit, setEdit] = useState(true)
-    console.log(showFileInput)
 
     useEffect(() => {
         console.log(user)
@@ -43,9 +42,7 @@ const EditProfilePage = () => {
     const [imageUpdated, setImageUpdated] = useState(false)
 
     const showImage = () => {
-        console.log('show Image')
         if (imageRef?.current?.files[0] !== null) {
-            console.log('setting a new image')
             setImage(URL.createObjectURL(imageRef.current.files[0]))
             setImageFile(imageRef.current.files[0])
             setImageUpdated(true)
@@ -82,16 +79,12 @@ const EditProfilePage = () => {
                 const data = await imageResponse.json()
                 console.log(data)
 
+                // form.old_id = form.public_id
                 form.image = data.secure_url
                 form.public_id = data.public_id
             }
         }
-        console.log("nameRef" + nameRef)
-        console.log(form)
-        console.log(process.env.REACT_APP_CLOUDINARY_URL)
 
-        // if (imageResponse.ok) {
-        console.log(form)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`, {
             method: 'PUT',
             credentials: 'include',
@@ -100,7 +93,7 @@ const EditProfilePage = () => {
             },
             body: JSON.stringify(form)
         })
-        console.log(response)
+
         if (response.ok) {
             const data = await response.json()
             setUpdatedUser(data)
@@ -110,9 +103,7 @@ const EditProfilePage = () => {
             console.log('failure to edit')
         }
     }
-    // else {
-    //     console.log('image response not ok', form)
-    // }
+
     console.log(nameRef)
     return (
         <div>
