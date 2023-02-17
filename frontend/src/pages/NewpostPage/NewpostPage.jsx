@@ -112,7 +112,7 @@ const NewpostPage = () => {
 
     useEffect(() => {
         const getLocationData = async () => {
-            const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat.toString()}&lon=${long.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+            const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat?.toString()}&lon=${long?.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             const locationData = await location.json()
             setAddLocation(locationData)
             console.log("locationData:", locationData)
