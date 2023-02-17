@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom'
 import './LoginPages.css';
 import LoginLogo from '../../img/LoginLogo.png';
-import { AiOutlineEyeInvisible } from "react-icons/ai";
+import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { MdEmail } from "react-icons/md"
 import { HiLockClosed } from "react-icons/hi"
 
@@ -65,9 +65,12 @@ const LoginPages = ({ setUser, setUserData }) => {
                 <div className='loginDiv' >
                     <div>
                         <HiLockClosed className="loginIcon" />
-                        <input ref={passwordRef} type={pwShown ? "text" : "password"} placeholder='Password' />
+                        <input ref={passwordRef} type={pwShown ? "text" : "password"} placeholder='Password' className='pWInput' />
                     </div>
-                    <AiOutlineEyeInvisible onClick={togglePw} className='showPWIcon' />
+                    <AiOutlineEyeInvisible onClick={togglePw} className='showPWIcon'
+                        style={{ display: (pwShown ? "block" : "none") }}
+                    />
+                    <AiOutlineEye onClick={togglePw} className='hidePWIcon' style={{ display: (pwShown ? "none" : "block") }} />
                 </div>
                 <button className='pinkButton' onClick={userData} type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
             </form>

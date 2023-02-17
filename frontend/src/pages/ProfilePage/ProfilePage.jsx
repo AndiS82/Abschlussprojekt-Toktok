@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import BackButton from '../../components/BackButton/BackButton';
 import Gallery from '../../components/Gallery/Gallery';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
-import ProfilMini from '../../components/ProfilMini/ProfilMini';
+import ProfilMini from '../../components/ProfilMini/ProfilMini.jsx';
 import { UserContext } from '../../contexts/UserContext';
 import './ProfilePage.css'
 

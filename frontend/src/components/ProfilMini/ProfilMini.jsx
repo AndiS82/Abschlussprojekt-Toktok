@@ -2,15 +2,23 @@ import './ProfilMini.css';
 import { Link } from "react-router-dom";
 import { TbDotsCircleHorizontal } from "react-icons/tb";
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
 const ProfilMini = ({ singlePost, post }) => {
-
+    const [addPostGallery, setAddPostGallery] = useState(false)
     const user = useContext(UserContext)
+    console.log("singlePost: ", singlePost)
+    console.log("post", post)
+    console.log("user", user)
+    // useEffect(() => {
+    //     console.log("user: ", user)
+    //     if (!singlePost && !post) {
+    //         setAddPostGallery(true)
+    //     }
+    // }, [])
 
-    console.log('profilmini singlePost', singlePost)
-    console.log('post', post)
+    // const addPostGallery = 
     return (
         <div>
             <nav className="miniProfil">
@@ -35,7 +43,7 @@ const ProfilMini = ({ singlePost, post }) => {
                     }
 
                     {/* weiteren use case, Emily fix me */}
-                    {/* {!singlePost &&
+                    {(!singlePost && !post) &&
                         <div>
                             <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
                             <div className='description'>
@@ -43,7 +51,7 @@ const ProfilMini = ({ singlePost, post }) => {
                                 {!singlePost && <p>{user?.occupation ? user?.occupation : 'occupation'}</p>}
                             </div>
                         </div>
-                    } */}
+                    }
                 </div>
                 <Link to="/UnderConstruction">
                     <TbDotsCircleHorizontal className="miniProfilIcon" />

@@ -1,5 +1,5 @@
 .commentsMainStyle {
-    margin: 0 20px;
+    margin: 0 20px 50px 20px;
 }
 
 .commentsNav {
@@ -19,10 +19,19 @@
     font-size: 2.4rem;
 }
 
+.backBtnH1 {
+    align-items: baseline;
+}
+
 .LCB-edit {
     margin-left: -12px;
 }
 
 .arrowTriangle {
     width: 25px;
+    margin-top: 2.5px;
+}
+
+.postedContent {
+    font-size: 1.4rem;
 }

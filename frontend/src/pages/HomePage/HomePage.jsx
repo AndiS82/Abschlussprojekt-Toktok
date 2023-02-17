@@ -4,7 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import MiniLogo from '../../img/LogoMini.png';
 import Profil from '../../components/Profil/Profil';
 import { useEffect, useState } from 'react';
-import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
+import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 
 const HomePage = ({ setUserData, userData }) => {
     const [feed, setFeed] = useState(null)
@@ -18,10 +18,10 @@ const HomePage = ({ setUserData, userData }) => {
             if (response.ok) {
                 const data = await response.json()
                 setUserData(data)
-                console.log(data)
+                // console.log(data)
             }
             else {
-                console.log('failed to get user')
+                // console.log('failed to get user')
             }
         }
         getUser()
@@ -42,7 +42,6 @@ const HomePage = ({ setUserData, userData }) => {
             }
         }
         getFeed()
-
     }, [])
     console.log(feed)
     return (
@@ -67,6 +66,5 @@ const HomePage = ({ setUserData, userData }) => {
         </div>
     );
 };
-
 
 export default HomePage;
