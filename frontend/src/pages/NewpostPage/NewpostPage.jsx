@@ -57,11 +57,6 @@ const NewpostPage = () => {
             post.username = user.username
             post.occupation = user.occupation
             post.userimage = user.image
-
-            if (addLocation) {
-                setCity(addLocation[0].name)
-                setCountry(addLocation[0].country)
-            }
             post.city = city
             post.country = country
 
@@ -95,8 +90,9 @@ const NewpostPage = () => {
         textarea.style.height = textarea.scrollHeight + offSet + "px"
     }
 
-    const [lat, setLat] = useState("");
-    const [long, setLong] = useState("");
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    const [showLocation, setShowLocation] = useState(false)
 
     const getMyLocation = () => {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -104,6 +100,9 @@ const NewpostPage = () => {
             setLat(position.coords.latitude)
             console.log("Longitude: " + position.coords.longitude)
             setLong(position.coords.longitude)
+            setCity(addLocation[0].name)
+            setCountry(addLocation[0].country)
+            setShowLocation(true)
         })
     }
 
@@ -121,7 +120,7 @@ const NewpostPage = () => {
         // console.log("addLocation:", addLocation)
         // console.log("name: ", addLocation[0].name)
         getLocationData()
-    }, [])
+    }, [city, country])
 
     return (
         <div className='newPostMainStyle'>
@@ -155,7 +154,7 @@ const NewpostPage = () => {
                         <button className='locationButton' onClick={getMyLocation}>
                             <CiLocationOn className='locationIcon' />
                             <h2>Add Location</h2>
-                            <h2>Location: {addLocation[0]?.name} {addLocation[0]?.country}</h2>
+                            {showLocation && <h2>Location: {city} {country}</h2>}
                         </button>
                     </div>
                     <div className='wrapperSmToggles'>
