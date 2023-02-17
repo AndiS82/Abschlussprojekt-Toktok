@@ -121,8 +121,6 @@ const NewpostPage = () => {
         getLocationData()
     }, [])
 
-
-
     return (
         <div className='newPostMainStyle'>
             <section className='newPostHeader'>
@@ -155,6 +153,7 @@ const NewpostPage = () => {
                         <button onClick={getMyLocation}>
                             <CiLocationOn className='locationIcon' />
                             <h2>Add Location</h2>
+                            <h2>Location: {addLocation[0]?.name} {addLocation[0]?.country}</h2>
                         </button>
                     </div>
                     <div className='wrapperSmToggles'>
