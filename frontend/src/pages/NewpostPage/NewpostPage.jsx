@@ -152,7 +152,7 @@ const NewpostPage = () => {
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
-                        <button onClick={getMyLocation}>
+                        <button className='locationButton' onClick={getMyLocation}>
                             <CiLocationOn className='locationIcon' />
                             <h2>Add Location</h2>
                         </button>
