@@ -29,3 +29,125 @@
         transform: rotate(359deg);
     }
 }
+
+/*=======MEDIA QUERIES=======*/
+
+@media only screen and (max-width: 375px)and (min-width:281px) {
+    .landLogo {
+        display: flex;
+        width: 55%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 12%;
+        position: absolute;
+        bottom: 20%;
+        left: 44.5%;
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@media only screen and (max-width: 1024px)and (min-width:768px) {
+    .landLogo {
+        display: flex;
+        width: 40%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 10%;
+        position: absolute;
+        bottom: 20%;
+        left: 45%;
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@media only screen and (max-width: 1194px)and (min-width:769px) {
+    .landLogo {
+        display: flex;
+        width: 10%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 8%;
+        position: absolute;
+        bottom: 20%;
+        left: 45%;
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@media only screen and (max-width: 1440px)and (min-width:1024px) {
+    .landLogo {
+        display: flex;
+        width: 35%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 8%;
+        position: absolute;
+        bottom: 10%;
+        left: 45.5%;
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@media only screen and (max-width: 2560px)and (min-width:1440px) {
+    .landLogo {
+        display: flex;
+        width: 25%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 3.5%;
+        position: absolute;
+        bottom: 10%;
+        left: 48%;
+        animation: rotation 2s infinite linear;
+    }
+}
+
+@media only screen and (max-width: 3440px)and (min-width:1440px) {
+    .landLogo {
+        display: flex;
+        width: 18%;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .warteUhr {
+        display: flex;
+        width: 2.5%;
+        position: absolute;
+        bottom: 10%;
+        left: 48.5%;
+        animation: rotation 2s infinite linear;
+    }
+}
