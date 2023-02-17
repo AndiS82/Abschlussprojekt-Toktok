@@ -88,7 +88,7 @@ export const getUserPosts = async (req, res) => {
     const userid = params.user
     try {
         const db = await getDb()
-        const posts = await db.collection(COL).find({ user: { id: userid } }).toArray()
+        const posts = await db.collection(COL).find({ 'user._id': new ObjectId(userid) }).toArray()
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).end(error.message)

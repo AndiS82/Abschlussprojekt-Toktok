@@ -47,7 +47,7 @@ const NewpostPage = () => {
             console.log("data: ", data)
 
             // ADD IMAGE TO POST
-            post.image = data.secure_url
+            post.image = data.secure_url //
             post.public_id = data.public_id
 
             // ADD USER DATA FROM USECONTEXT TO POST
