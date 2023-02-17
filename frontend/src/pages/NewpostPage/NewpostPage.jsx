@@ -100,8 +100,6 @@ const NewpostPage = () => {
             setLat(position.coords.latitude)
             console.log("Longitude: " + position.coords.longitude)
             setLong(position.coords.longitude)
-            setCity(addLocation[0].name)
-            setCountry(addLocation[0].country)
             setShowLocation(true)
         })
     }
@@ -116,11 +114,13 @@ const NewpostPage = () => {
             const locationData = await location.json()
             setAddLocation(locationData)
             console.log("locationData:", locationData)
+            setCity(locationData[0].name)
+            setCountry(locationData[0].country)
         }
         // console.log("addLocation:", addLocation)
         // console.log("name: ", addLocation[0].name)
         getLocationData()
-    }, [city, country])
+    }, [lat, long])
 
     return (
         <div className='newPostMainStyle'>
