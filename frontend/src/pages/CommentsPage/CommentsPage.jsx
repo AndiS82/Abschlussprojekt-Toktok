@@ -5,11 +5,9 @@ import ProfilMini from '../../components/ProfilMini/ProfilMini';
 import LikesCommentsButtons from '../../components/LikesCommentsButtons/LikesCommentsButtons';
 import PostCaption from '../../components/PostCaption/PostCaption';
 import LikeReplyTime from '../../components/LikeReplyTime/LikeReplyTime';
-import Comments from '../../components/Comments/Comments';
 import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
-import PostImage from '../../components/PostImage/PostImage';
 
 const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
@@ -51,7 +49,6 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
         }
         getUser()
     }, [])
-
 
     return (
         <div className='commentsMainStyle'>

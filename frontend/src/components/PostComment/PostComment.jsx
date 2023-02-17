@@ -4,8 +4,8 @@ import placeholderImg from "../../img/ProfileImgPlaceholder.png"
 
 const PostComment = ({ user, postID, setReRender, singlePost }) => {
     const contentRef = useRef()
-    console.log('user', user)
-    console.log('postID', postID)
+    console.log('userPostComment', user)
+    // console.log('postID', postID)
 
     const postComment = async () => {
         console.log('post comment')
@@ -42,7 +42,7 @@ const PostComment = ({ user, postID, setReRender, singlePost }) => {
     return (
         <div className='postCommentBorder'>
             <div className="postComment">
-                <img src={singlePost?.user?.image ? singlePost?.user?.image : placeholderImg} alt={singlePost?.user?.username} />
+                <img className='miniProfilDetail' src={user?.image ? user?.image : placeholderImg} alt={user?.username} />
                 <input ref={contentRef} type="text" placeholder="Your comment... "></input>
                 <button type="submit" onClick={postComment}>Post</button>
             </div>

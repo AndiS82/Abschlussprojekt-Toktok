@@ -8,7 +8,7 @@ import BackButton from '../../components/BackButton/BackButton';
 
 const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const user = useContext(UserContext)
-    console.log(user)
+    // console.log(user)
     const nav = useNavigate()
 
     const [nameRef, setNameRef] = useState(user?.name)
@@ -29,7 +29,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const [edit, setEdit] = useState(true)
 
     useEffect(() => {
-        console.log(user)
+        // console.log(user)
         if (user) {
             setImage(user?.image?.url)
         }
@@ -95,8 +95,8 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
             aboutme: about,
             public_id: user?.image?.public_id
         }
-        console.log('submit')
-        console.log(imageFile)
+        // console.log('submit')
+        // console.log(imageFile)
         if (imageUpdated) {
             const file = imageFile
             const imageForm = new FormData()
@@ -108,7 +108,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
             })
             if (imageResponse.ok) {
                 const data = await imageResponse.json()
-                console.log(data)
+                // console.log(data)
 
                 form.old_id = form.public_id
                 form.image = data.secure_url
@@ -128,7 +128,6 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
         if (response.ok) {
             const data = await response.json()
             setUpdatedUser(data)
-            console.log(data)
             nav("/Home")
         }
         else {
