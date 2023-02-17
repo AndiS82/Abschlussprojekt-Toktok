@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+import { deleteImage } from "../services/cloudinary.js";
 import { getDb } from "../util/db.js";
 import { createToken, verifyToken } from "../util/token.js";
 
@@ -80,7 +81,7 @@ export const getOneUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     console.log('update user called')
     const token = req.cookies.token
-    console.log('token', token)
+    console.log('body', req.body)
     const db = await getDb()
     if (req.body.old_id) {
         await deleteImage(req.body.old_id)
@@ -102,18 +103,19 @@ export const updateUser = async (req, res) => {
                     aboutMe: req.body.aboutme
                 }
             })
+        console.log('dbuser', dbUser)
         if (req.body.image) {
             try {
                 const imageUpdate = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $set: { image: { url: req.body.image, public_id: req.body.public_id } } })
-                res.status(200).end(imageUpdate)
+                console.log('imageUpdate', imageUpdate)
             }
             catch (error) {
                 res.status(400).end(error.message)
             }
         }
-        res.status(200).json(dbUser, imageUpdate)
+        res.status(200).json(dbUser)
     } catch (error) {
-        res.status(401).end()
+        res.status(401).end(error.message)
     }
 }
 

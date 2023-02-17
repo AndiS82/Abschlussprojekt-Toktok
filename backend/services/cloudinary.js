@@ -9,6 +9,6 @@ cloudinary.config({
 
 export const deleteImage = async (publicId) => {
     const cloudinaryResult = await cloudinary.uploader.destroy(publicId)
-    console.log(cloudinaryResult)
+    console.log('cloudinaryresult', cloudinaryResult)
     return cloudinaryResult
 }

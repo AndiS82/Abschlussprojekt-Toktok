@@ -18,7 +18,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const [email, setEmail] = useState(user?.email)
     const [tel, setTel] = useState(user?.tel)
     const [website, setWebsite] = useState(user?.website)
-    const [about, setAbout] = useState(user?.about)
+    const [about, setAbout] = useState(user?.aboutMe)
     const [sex, setSex] = useState(user?.sex)
     const imageRef = useRef()
 
@@ -57,7 +57,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                 setEmail(data?.email)
                 setTel(data?.tel)
                 setWebsite(data?.website)
-                setAbout(data?.about)
+                setAbout(data?.aboutMe)
                 setSex(data?.sex)
                 setImage(data?.image?.url)
                 // console.log(data)
@@ -92,7 +92,8 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
             tel: tel,
             sex: sex,
             website: website,
-            aboutme: about
+            aboutme: about,
+            public_id: user?.image?.public_id
         }
         console.log('submit')
         console.log(imageFile)
@@ -109,7 +110,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                 const data = await imageResponse.json()
                 console.log(data)
 
-                // form.old_id = form.public_id
+                form.old_id = form.public_id
                 form.image = data.secure_url
                 form.public_id = data.public_id
             }
@@ -157,9 +158,8 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                         <input contentEditable={edit} placeholder="Date of Birth" value={user?.dob} onChange={((e) => setDob(e.target.value))} />
                         <input contentEditable={edit} placeholder="Email Address" value={user?.email} onChange={((e) => setEmail(e.target.value))} />
                         <input contentEditable={edit} placeholder="Telephone" value={user?.tel} onChange={((e) => setTel(e.target.value))} />
-                        <select  >
-                            {/* BUG: zeigt nicht immer richtig den vorher ausgewählten Geschlecht, der im User Datensatz zu finden ist */}
-                            <option value="default" disabled>-select-</option>
+                        <select onChange={(e) => setSex(e.target.value)}>
+                            <option value="default" disabled >-select-</option>
                             <option value="male" selected={sex === "male"}>Male</option>
                             <option value="female" selected={sex === "female"}>Female</option>
                             <option value="other" selected={sex === "other"}>Other</option>
