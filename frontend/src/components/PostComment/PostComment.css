@@ -31,4 +31,6 @@
     font-weight: 900;
     color: rgba(255, 0, 0, 0.613);
     margin: 0 20px;
+    background-color: transparent;
+    border: transparent;
 }
