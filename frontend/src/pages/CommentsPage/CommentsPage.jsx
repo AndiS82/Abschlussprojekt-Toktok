@@ -47,8 +47,10 @@ const CommentsPage = () => {
             </nav>
             <ProfilMini singlePost={postData} />
             <PostCaption />
-            <div className='LCB-edit' >
-                <LikesCommentsButtons singlePost={postData} />
+            <div className='LCB-Border'>
+                <div className='LCB-edit' >
+                    <LikesCommentsButtons singlePost={postData} />
+                </div>
             </div>
             {postData?.comments?.map((post, key) => {
                 return (

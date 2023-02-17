@@ -24,7 +24,7 @@ const ProfilMini = ({ singlePost, post }) => {
             <nav className="miniProfil">
                 <div>
                     {singlePost &&
-                        <div>
+                        <div className='miniProfilDetail'>
                             <img src={singlePost?.user?.image ? singlePost?.user?.image : placeholderImg} alt={singlePost?.user?.username} />
                             <div className='description'>
                                 <h1>{singlePost?.user?.username}</h1>

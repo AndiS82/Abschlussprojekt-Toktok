@@ -1,18 +1,34 @@
+.postCommentBorder {
+    border-top: 1px solid #0000002c;
+    border-radius: 30px;
+    margin: 40px -20px;
+}
+
 .postComment {
     display: flex;
-    margin: 40px 0;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    height: 50px;
+    margin-top: 25px;
+
 }
 
 .postComment input {
     font-size: 1.4rem;
     border: transparent;
-    border-radius: 20px;
+    border-radius: 10px;
     background-color: rgba(211, 211, 211, 0.189);
+    width: 75%;
+    padding-left: 20px;
+    outline: none;
+}
+
+.postComment img {
+    margin: 0 20px;
 }
 
 .postComment button {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 900;
     color: rgba(255, 0, 0, 0.613);
+    margin: 0 20px;
 }

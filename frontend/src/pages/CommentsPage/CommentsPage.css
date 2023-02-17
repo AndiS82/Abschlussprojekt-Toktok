@@ -23,6 +23,11 @@
     align-items: baseline;
 }
 
+.LCB-Border {
+    border-bottom: 1px solid #0000002c;
+    padding-bottom: 10px;
+}
+
 .LCB-edit {
     margin-left: -12px;
 }
