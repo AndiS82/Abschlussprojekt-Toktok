@@ -44,7 +44,7 @@ const PersonSearch = () => {
                         {wordEntered === "" && <GoSearch className='icon' />}
                         {wordEntered !== "" && <button className='resetButton' onClick={clearButton}><GoTrashcan className='icon' /></button>}
                     </span>
-                    <input type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+                    <input className='searchInput' type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
                 </div>
             </form>
             {wordEntered === "" &&

@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
@@ -86,6 +86,32 @@ const NewpostPage = () => {
         textarea.style.height = textarea.scrollHeight + offSet + "px"
     }
 
+    const [lat, setLat] = useState("");
+    const [long, setLong] = useState("");
+
+    const getMyLocation = () => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log("Latitude: " + position.coords.latitude)
+            setLat(position.coords.latitude)
+            console.log("Longitude: " + position.coords.longitude)
+            setLong(position.coords.longitude)
+        })
+    }
+
+    console.log(lat, long)
+
+    const [addLocation, setAddLocation] = useState()
+
+    useEffect(() => {
+        const getLocationData = async () => {
+            const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat.toString()}&lon=${long.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
+            const locationData = await location.json()
+            setAddLocation(locationData)
+        }
+        getLocationData()
+    }, [])
+
+    console.log(addLocation)
 
     return (
         <div className='newPostMainStyle'>
@@ -116,8 +142,10 @@ const NewpostPage = () => {
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
-                        <CiLocationOn className='locationIcon' />
-                        <h2>Add Location</h2>
+                        <button onClick={getMyLocation}>
+                            <CiLocationOn className='locationIcon' />
+                            <h2>Add Location</h2>
+                        </button>
                     </div>
                     <div className='wrapperSmToggles'>
                         <section className='sMToggle'>

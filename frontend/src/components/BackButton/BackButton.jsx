@@ -6,7 +6,7 @@ const BackButton = () => {
     const navigate = useNavigate()
     return (
         <>
-            <button onClick={() => navigate(-1)}><GoChevronLeft className='icon' /></button>
+            <button className='backButton' onClick={() => navigate(-1)}><GoChevronLeft className='icon' /></button>
         </>
     );
 }
