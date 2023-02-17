@@ -1,7 +1,8 @@
 import { useRef } from 'react';
 import './PostComment.css'
+import placeholderImg from "../../img/ProfileImgPlaceholder.png"
 
-const PostComment = ({ user, postID, setReRender }) => {
+const PostComment = ({ user, postID, setReRender, singlePost }) => {
     const contentRef = useRef()
     console.log('user', user)
     console.log('postID', postID)
@@ -39,11 +40,13 @@ const PostComment = ({ user, postID, setReRender }) => {
 
     }
     return (
-        <div className="postComment">
-            <input ref={contentRef} type="text" placeholder="Your comment"></input>
-            <button type="submit" onClick={postComment}>Post</button>
+        <div className='postCommentBorder'>
+            <div className="postComment">
+                <img src={singlePost?.user?.image ? singlePost?.user?.image : placeholderImg} alt={singlePost?.user?.username} />
+                <input ref={contentRef} type="text" placeholder="Your comment... "></input>
+                <button type="submit" onClick={postComment}>Post</button>
+            </div>
         </div>
-
     );
 }
 

@@ -17,7 +17,7 @@
 
 /* .personSearch {} */
 
-input {
+.searchInput {
     font-family: UrbanistLight;
     width: 50%;
     border: 2px solid;
