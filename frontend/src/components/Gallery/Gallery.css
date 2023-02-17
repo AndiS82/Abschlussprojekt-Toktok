@@ -1,18 +1,23 @@
 .galleryGrid {
-    width: 100%;
+    /* width: 100%; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    /* grid-template-rows: repeat(3, 1fr); */
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    margin: 10px 0
+    /* width: 340px;
+    display: flex;
+    flex-wrap: wrap; */
+    margin: 10px 0;
 }
 
 .div1 {
-    grid-area: 1 / 1 / 2 / 2;
+    /* grid-area: 1 / 1 / 2 / 2; */
     display: flex;
     align-content: center;
     cursor: pointer;
+    object-fit: cover;
+    /* width: 100px; */
 }
 
 .div2 {

@@ -28,69 +28,15 @@ const Gallery = ({ user }) => {
 
     return (
         <div className="galleryGrid">
-            <article className='div1'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div2'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div3'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div4'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div5'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div6'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div7'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div8'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
-            <article className='div9'>
-                {posts?.map((post, key) => {
-                    return (
-                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" key={key}></img>
-                    )
-                })}
-            </article>
+
+            {posts?.map((post, key) => {
+                return (
+                    <article className='div1' key={key}>
+                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" ></img>
+                    </article>
+                )
+            })}
+
         </div>
     );
 }
