@@ -23,6 +23,10 @@ export const newPost = async (req, res) => {
                 url: req.body.image,
                 public_id: req.body.public_id
             },
+            location: {
+                city: req.body.city,
+                country: req.body.country
+            },
             content: req.body.content,
             tags: req.body.tags, // Funktionalität kommt erst später
             createdAt: new Timestamp(),

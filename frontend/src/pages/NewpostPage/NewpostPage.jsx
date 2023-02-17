@@ -15,6 +15,8 @@ const NewpostPage = () => {
     const [newImage, setNewImage] = useState(false)
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
+    const [city, setCity] = useState(null)
+    const [country, setCountry] = useState(null)
 
     const user = useContext(UserContext)
 
@@ -57,11 +59,11 @@ const NewpostPage = () => {
             post.userimage = user.image
 
             if (addLocation) {
-                post.location = {
-                    city: addLocation[0].name,
-                    country: addLocation[0].country
-                }
+                setCity(addLocation[0].name)
+                setCountry(addLocation[0].country)
             }
+            post.city = city
+            post.country = country
 
             console.log(post)
 
