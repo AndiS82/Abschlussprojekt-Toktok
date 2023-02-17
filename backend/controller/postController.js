@@ -29,14 +29,21 @@ export const newPost = async (req, res) => {
             },
             content: req.body.content,
             tags: req.body.tags, // Funktionalität kommt erst später
-            createdAt: new Timestamp(),
+            createdAt: user._id.getTimestamp(), // HIER ist das problem, user existiert noch nicht. mach das nach dem ersten insertOne
             updatedAt: new Timestamp() // wird mit jedem folgenden Update wieder mit new Timestamp() geupdated
         }
         const result = await db.collection(COL).insertOne(post)
-        updateUserPostsCount(token)
+        try {
+            updateUserPostsCount(token)
+            console.log('user post count geupdated')
+        }
+        catch (error) {
+            console.log('user post count nicht geupdated')
+        }
         res.status(200).json(result)
     } catch (error) {
-        res.status(400).end()
+        console.log(error.message)
+        res.status(400).end(error.message)
     }
 }
 

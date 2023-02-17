@@ -1,12 +1,20 @@
 import './LikesCommentsButtons.css'
-import { FaRegHeart } from "react-icons/fa";
 import { BsChatDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import pinkHeart from "../../img/pinkheart.png"
+import emptyHeart from "../../img/emptyheart.png"
 
 const LikesCommentsButtons = ({ singlePost, post }) => {
+    const [like, setLike] = useState(false)
+
+    const likeHandler = () => {
+        setLike(prev => !prev)
+    }
+
     return (
         <div className='LCB'>
-            <FaRegHeart className='homeHeartIconBottom' />
+            <div onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             {post &&
                 <>
                     <p>{post?.likes ? new Intl.NumberFormat().format(post.likes) : 0}</p>
