@@ -14,7 +14,7 @@ export const newPost = async (req, res) => {
         if (!dbUser) return res.status(400).end()
         const post = {
             user: {
-                _id: req.body._id,
+                _id: new ObjectId(req.body._id),
                 username: req.body.username,
                 occupation: req.body.occupation,
                 image: req.body.userimage
@@ -49,7 +49,7 @@ export const newComment = async (req, res) => {
         console.log(req.body.postID)
         const comment = {
             user: {
-                _id: req.body._id,
+                _id: new ObjectId(req.body._id),
                 username: req.body.username,
                 occupation: req.body.occupation,
                 image: req.body.image
