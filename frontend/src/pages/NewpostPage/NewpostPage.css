@@ -1,3 +1,13 @@
+@font-face {
+    font-family: UrbanistLight;
+    src: url("../../fonts/Urbanist-Light.ttf");
+}
+
+@font-face {
+    font-family: UrbanistMedium;
+    src: url("../../fonts/Urbanist-Medium.ttf");
+}
+
 .newPostMainStyle {
     margin: 25px;
 }
@@ -87,7 +97,7 @@
     cursor: pointer;
 }
 
-/* 4Würfel + Kamera: */
+/* 4Würfel + Kamera Icons: */
 .galleryIconsRight {
     display: flex;
     justify-content: center;
@@ -96,7 +106,7 @@
     cursor: pointer;
 }
 
-/*die 2 Icons rechts(!) im Gallery Header:*/
+/*Je ein Wrapper um das Kamera- & 4-Würfel-Icon im Gallery Header:*/
 .galleryIcons {
     justify-self: center;
     margin: auto;
@@ -104,22 +114,18 @@
     height: 100%
 }
 
-.galleryTag {
+.galleryComponent {
     margin-left: auto;
     margin-right: auto;
 }
 
-/* .test {
-    margin: 50px;
-} */
 
-/* ----Seitenansicht mit Caption-Option----------------------------- */
 
-/* Übercontainer für die Captioneingabe mit profilbild, EIngabefeld und Uploadbild */
+/* ----Hier startet das Styling fpr die Seitenansicht mit Caption-Option----------------------------- */
+
+/* Übercontainer für die Captioneingabe mit profilbild, Eingabefeld und Uploadbild */
 .captionInputBar {
     width: 100%;
-    /* height: 80px; */
-    /* height: auto; */
     display: flex;
     justify-content: space-between;
     gap: 10px;
@@ -135,9 +141,7 @@
 }
 
 .textarea {
-    /* width: ; */
     background-color: rgb(232, 232, 232);
-    /* border-style: none; */
     border: 2px solid transparent;
     outline: none;
     border-radius: 10px;
@@ -145,15 +149,11 @@
     font-size: 1.5rem;
     padding: 0.5rem;
     line-height: 1.3;
-    /* font-family: ; */
     transition: all 0.2s;
     cursor: pointer;
     overflow: hidden;
     min-height: 80px;
-    /* min-height: min-content;
-    max-height: max-content; */
-    /* height: auto;
-    resize: vertical; */
+    font-family: UrbanistLight;
 }
 
 /* Eher für die Desktop-Version relevant */
@@ -211,7 +211,6 @@
 
 /* -----Social Media Toggle Dummys----- */
 .wrapperSmToggles {
-    /* display: flex; */
     margin: 6px 0 4px 0;
     border-bottom: 2px solid rgb(193, 191, 191);
     ;
@@ -219,7 +218,6 @@
 
 .wrapperSmToggles h2 {
     font-size: 1.6rem;
-    /* margin: 5px 0; */
     height: 40px;
 
 }
@@ -228,8 +226,6 @@
     display: flex;
     justify-content: space-between;
     height: 40px;
-    /* align-items: center; */
-    /* text-align: center; */
 }
 
 .sMToggle h2 {
@@ -296,7 +292,6 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-
 
 /* ----Ende Styling Toggle ---- */
 .newPostNavButtonWrapper {

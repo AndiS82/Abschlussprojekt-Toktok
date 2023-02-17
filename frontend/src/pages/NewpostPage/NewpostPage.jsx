@@ -4,7 +4,7 @@ import './NewpostPage.css'
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
-// import { CiLocationOn } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
 import { FiSettings } from "react-icons/fi";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
@@ -106,7 +106,7 @@ const NewpostPage = () => {
                         <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
                         <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
                     </div>
-                    <Gallery className="galleryTag" user={user} />
+                    <Gallery className="galleryComponent" user={user} />
                 </>}
             {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                 <section>
@@ -116,7 +116,7 @@ const NewpostPage = () => {
                         <img className='imgSelected' src={image} alt="selected" />
                     </div>
                     <div className='wrapperLocation'>
-                        {/* <CiLocationOn className='locationIcon' /> */}
+                        <CiLocationOn className='locationIcon' />
                         <h2>Add Location</h2>
                     </div>
                     <div className='wrapperSmToggles'>
