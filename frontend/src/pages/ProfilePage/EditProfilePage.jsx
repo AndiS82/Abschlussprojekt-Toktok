@@ -6,9 +6,9 @@ import defaultImage from '../../img/ProfileImgPlaceholder.png'
 import editIcon from '../../img/Edit_Square.png'
 import BackButton from '../../components/BackButton/BackButton';
 
-const EditProfilePage = () => {
+const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const user = useContext(UserContext)
-
+    console.log(user)
     const nav = useNavigate()
 
     const [nameRef, setNameRef] = useState(user?.name)
@@ -37,6 +37,36 @@ const EditProfilePage = () => {
             setImage(defaultImage)
         }
 
+    }, [])
+
+    useEffect(() => {
+        const getUser = async () => {
+            setUserLoaded(false)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
+                {
+                    credentials: 'include'
+                })
+            if (response.ok) {
+                const data = await response.json()
+                setUserData(data)
+                setUserLoaded(true)
+                setNameRef(data?.name)
+                setUsername(data?.username)
+                setOccupation(data?.occupation)
+                setDob(data?.dob)
+                setEmail(data?.email)
+                setTel(data?.tel)
+                setWebsite(data?.website)
+                setAbout(data?.about)
+                setSex(data?.sex)
+                setImage(data?.image?.url)
+                // console.log(data)
+            }
+            else {
+                // console.log('failed to get user')
+            }
+        }
+        getUser()
     }, [])
 
     const [imageUpdated, setImageUpdated] = useState(false)
@@ -98,6 +128,7 @@ const EditProfilePage = () => {
             const data = await response.json()
             setUpdatedUser(data)
             console.log(data)
+            nav("/Home")
         }
         else {
             console.log('failure to edit')
@@ -107,34 +138,38 @@ const EditProfilePage = () => {
     console.log(nameRef)
     return (
         <div>
-            <BackButton />
-            <section className='profileImg-edit-section'>
-                <div className='profileImg-div'>
-                    <img className='origProfileImg' src={image} alt="profile" />
-                </div>
-                <button onClick={() => setShowFileInput(prev => !prev)}><img src={editIcon} alt="edit" /></button>
-            </section>
-            <section className='editSection'>
-                {showFileInput &&
-                    <input type="file" onChange={showImage} ref={imageRef} />
-                }
-                <input contentEditable={edit} placeholder="Name" value={nameRef} onChange={((e) => setNameRef(e.target.value))} />
-                <input contentEditable={edit} placeholder="Username" value={username} onChange={((e) => setUsername(e.target.value))} />
-                <input contentEditable={edit} placeholder="Occupation" value={occupation} onChange={((e) => setOccupation(e.target.value))} />
-                <input contentEditable={edit} placeholder="Date of Birth" value={dob} onChange={((e) => setDob(e.target.value))} />
-                <input contentEditable={edit} placeholder="Email Address" value={email} onChange={((e) => setEmail(e.target.value))} />
-                <input contentEditable={edit} placeholder="Telephone" value={tel} onChange={((e) => setTel(e.target.value))} />
-                <select  >
-                    {/* BUG: zeigt nicht immer richtig den vorher ausgewählten Geschlecht, der im User Datensatz zu finden ist */}
-                    <option value="default" disabled>-select-</option>
-                    <option value="male" selected={sex === "male"}>Male</option>
-                    <option value="female" selected={sex === "female"}>Female</option>
-                    <option value="other" selected={sex === "other"}>Other</option>
-                </select>
-                <p contentEditable={edit}>{user?.website ? user.website : "Website"}</p>
-                <p contentEditable={edit}>{user?.aboutMe ? user.aboutMe : "About Me"}</p>
-                <button onClick={submit}>Save Updates</button>
-            </section>
+            {userLoaded &&
+                <>
+                    <BackButton />
+                    <section className='profileImg-edit-section'>
+                        <div className='profileImg-div'>
+                            <img className='origProfileImg' src={image} alt="profile" />
+                        </div>
+                        <button onClick={() => setShowFileInput(prev => !prev)}><img src={editIcon} alt="edit" /></button>
+                    </section>
+                    <section className='editSection'>
+                        {showFileInput &&
+                            <input type="file" onChange={showImage} ref={imageRef} />
+                        }
+                        <input contentEditable={edit} placeholder="Name" value={user?.name} onChange={((e) => setNameRef(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Username" value={user?.username} onChange={((e) => setUsername(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Occupation" value={user?.occupation} onChange={((e) => setOccupation(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Date of Birth" value={user?.dob} onChange={((e) => setDob(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Email Address" value={user?.email} onChange={((e) => setEmail(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Telephone" value={user?.tel} onChange={((e) => setTel(e.target.value))} />
+                        <select  >
+                            {/* BUG: zeigt nicht immer richtig den vorher ausgewählten Geschlecht, der im User Datensatz zu finden ist */}
+                            <option value="default" disabled>-select-</option>
+                            <option value="male" selected={sex === "male"}>Male</option>
+                            <option value="female" selected={sex === "female"}>Female</option>
+                            <option value="other" selected={sex === "other"}>Other</option>
+                        </select>
+                        <input contentEditable={edit} placeholder="Website" value={user?.website} onChange={((e) => setWebsite(e.target.value))} />
+                        <input contentEditable={edit} placeholder="About Me" value={user?.aboutMe} onChange={((e) => setAbout(e.target.value))} />
+                        <button onClick={submit}>Save Updates</button>
+                    </section>
+                </>}
+            {!userLoaded && <p>Loading ...</p>}
         </div >
     );
 }

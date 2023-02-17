@@ -14,7 +14,8 @@ import UnderConstructionPage from './pages/UnderConstructionPage/UnderConstructi
 
 function App() {
   const [user, setUser] = useState(false)
-  const [userData, setUserData] = useState(null)
+  const [userData, setUserData] = useState()
+  const [userLoaded, setUserLoaded] = useState(false)
 
   return (
     <div>
@@ -23,13 +24,13 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />} />
             <Route path='/Login' element={<LoginPages setUser={setUser} />} />
-            <Route path='/Home' element={<HomePage user={user} setUserData={setUserData} userData={userData} />} />
-            <Route path='/Comments/:postID' element={<CommentsPage />} />
-            <Route path='/Newpost' element={<NewpostPage />} />
-            <Route path='/Search' element={<SearchPage />} />
-            <Route path='/UnderConstruction' element={<UnderConstructionPage />} />
-            <Route path='/Profile' element={<ProfilePage />} />
-            <Route path='/EditProfile' element={<EditProfilePage />} />
+            <Route path='/Home' element={<HomePage user={user} setUserData={setUserData} userData={userData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Comments/:postID' element={<CommentsPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Newpost' element={<NewpostPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Search' element={<SearchPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/UnderConstruction' element={<UnderConstructionPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Profile' element={<ProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/EditProfile' element={<EditProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
           </Routes>
         </Router>
       </UserContext.Provider>

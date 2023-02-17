@@ -6,11 +6,12 @@ import Profil from '../../components/Profil/Profil';
 import { useEffect, useState } from 'react';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 
-const HomePage = ({ setUserData, userData }) => {
+const HomePage = ({ setUserData, userData, userLoaded, setUserLoaded }) => {
     const [feed, setFeed] = useState(null)
 
     useEffect(() => {
         const getUser = async () => {
+            setUserLoaded(false)
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
                 {
                     credentials: 'include'
@@ -18,6 +19,7 @@ const HomePage = ({ setUserData, userData }) => {
             if (response.ok) {
                 const data = await response.json()
                 setUserData(data)
+                setUserLoaded(true)
                 // console.log(data)
             }
             else {
@@ -46,23 +48,27 @@ const HomePage = ({ setUserData, userData }) => {
     console.log(feed)
     return (
         <div>
-            <div className='homeMainStyle'>
-                <div>
-                    <nav className="homeNavbar">
+            {userLoaded &&
+                <>
+                    <div className='homeMainStyle'>
                         <div>
-                            <img src={MiniLogo} alt="MiniLogo" />
-                            <h1>TokTok</h1>
+                            <nav className="homeNavbar">
+                                <div>
+                                    <img src={MiniLogo} alt="MiniLogo" />
+                                    <h1>TokTok</h1>
+                                </div>
+                                <Link to="/UnderConstruction">
+                                    <FaRegHeart className="homeIcon" />
+                                </Link>
+                            </nav>
                         </div>
-                        <Link to="/UnderConstruction">
-                            <FaRegHeart className="homeIcon" />
-                        </Link>
-                    </nav>
-                </div>
-                {feed?.map((singlePost, key) => {
-                    return <Profil key={key} singlePost={singlePost} />
-                })}
-            </div>
-            <NavbarBottom />
+                        {feed?.map((singlePost, key) => {
+                            return <Profil key={key} singlePost={singlePost} />
+                        })}
+                    </div>
+                    <NavbarBottom />
+                </>}
+            {!userLoaded && <p>Loading ...</p>}
         </div>
     );
 };

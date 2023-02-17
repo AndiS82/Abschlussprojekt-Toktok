@@ -1,8 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 import './Gallery.css'
 
-const Gallery = ({ user }) => {
+const Gallery = () => {
     const [posts, setPosts] = useState(null)
+
+    const user = useContext(UserContext)
 
     useEffect(() => {
 

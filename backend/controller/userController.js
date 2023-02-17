@@ -88,8 +88,30 @@ export const updateUser = async (req, res) => {
     try {
         const verify = verifyToken(token)
         console.log('verify', verify)
-        const dbUser = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $set: { name: req.body.name, username: req.body.username, occupation: req.body.occupation, dob: req.body.dob, email: req.body.email, tel: req.body.tel, sex: req.body.sex, website: req.body.website, aboutMe: req.body.aboutme, image: { url: req.body.image, public_id: req.body.public_id } } })
-        res.status(200).json(dbUser)
+        const dbUser = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) },
+            {
+                $set: {
+                    name: req.body.name,
+                    username: req.body.username,
+                    occupation: req.body.occupation,
+                    dob: req.body.dob,
+                    email: req.body.email,
+                    tel: req.body.tel,
+                    sex: req.body.sex,
+                    website: req.body.website,
+                    aboutMe: req.body.aboutme
+                }
+            })
+        if (req.body.image) {
+            try {
+                const imageUpdate = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $set: { image: { url: req.body.image, public_id: req.body.public_id } } })
+                res.status(200).end(imageUpdate)
+            }
+            catch (error) {
+                res.status(400).end(error.message)
+            }
+        }
+        res.status(200).json(dbUser, imageUpdate)
     } catch (error) {
         res.status(401).end()
     }
