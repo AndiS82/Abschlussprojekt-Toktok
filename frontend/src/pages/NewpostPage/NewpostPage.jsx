@@ -56,6 +56,13 @@ const NewpostPage = () => {
             post.occupation = user.occupation
             post.userimage = user.image
 
+            if (addLocation) {
+                post.location = {
+                    city: addLocation[0].name,
+                    country: addLocation[0].country
+                }
+            }
+
             console.log(post)
 
             // POST ABSCHICKEN INS BACKEND
@@ -107,11 +114,14 @@ const NewpostPage = () => {
             const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat.toString()}&lon=${long.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             const locationData = await location.json()
             setAddLocation(locationData)
+            console.log("locationData:", locationData)
         }
+        // console.log("addLocation:", addLocation)
+        // console.log("name: ", addLocation[0].name)
         getLocationData()
     }, [])
 
-    console.log(addLocation)
+
 
     return (
         <div className='newPostMainStyle'>
