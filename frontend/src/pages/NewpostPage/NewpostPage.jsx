@@ -107,11 +107,13 @@ const NewpostPage = () => {
             const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat.toString()}&lon=${long.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             const locationData = await location.json()
             setAddLocation(locationData)
+            console.log(locationData)
         }
+        console.log(addLocation)
         getLocationData()
     }, [])
 
-    console.log(addLocation)
+    console.log(addLocation[0].name)
 
     return (
         <div className='newPostMainStyle'>
@@ -145,6 +147,7 @@ const NewpostPage = () => {
                         <button onClick={getMyLocation}>
                             <CiLocationOn className='locationIcon' />
                             <h2>Add Location</h2>
+                            <h2>Location: {addLocation[0]?.name} {addLocation[0]?.country}</h2>
                         </button>
                     </div>
                     <div className='wrapperSmToggles'>
