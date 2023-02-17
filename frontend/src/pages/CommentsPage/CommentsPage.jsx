@@ -11,7 +11,7 @@ import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
 import PostImage from '../../components/PostImage/PostImage';
 
-const CommentsPage = () => {
+const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
     const [postData, setPostData] = useState([])
     const [reRender, setReRender] = useState(false)
@@ -32,35 +32,58 @@ const CommentsPage = () => {
         }
         getData()
     }, [reRender])
+    useEffect(() => {
+        const getUser = async () => {
+            setUserLoaded(false)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
+                {
+                    credentials: 'include'
+                })
+            if (response.ok) {
+                const data = await response.json()
+                setUserData(data)
+                setUserLoaded(true)
+                // console.log(data)
+            }
+            else {
+                // console.log('failed to get user')
+            }
+        }
+        getUser()
+    }, [])
 
 
     return (
         <div className='commentsMainStyle'>
-            <nav className='commentsNav'>
-                <div className='backBtnH1'>
-                    <BackButton />
-                    <h1>Comments</h1>
-                </div>
-                <Link to="/UnderConstruction">
-                    <img className='arrowTriangle' src={arrowTriangle} alt="arrowTriangle" />
-                </Link>
-            </nav>
-            <ProfilMini singlePost={postData} />
-            <PostCaption />
-            <div className='LCB-Border'>
-                <div className='LCB-edit' >
-                    <LikesCommentsButtons singlePost={postData} />
-                </div>
-            </div>
-            {postData?.comments?.map((post, key) => {
-                return (
-                    <section key={key}>
-                        <ProfilMini post={post} />
-                        <p className='postedContent'>{post.content}</p>
-                        <LikeReplyTime post={post} />
-                    </section>)
-            })}
-            <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
+            {userLoaded &&
+                <>
+                    <nav className='commentsNav'>
+                        <div className='backBtnH1'>
+                            <BackButton />
+                            <h1>Comments</h1>
+                        </div>
+                        <Link to="/UnderConstruction">
+                            <img className='arrowTriangle' src={arrowTriangle} alt="arrowTriangle" />
+                        </Link>
+                    </nav>
+                    <ProfilMini singlePost={postData} />
+                    <PostCaption />
+                    <div className='LCB-Border'>
+                        <div className='LCB-edit' >
+                            <LikesCommentsButtons singlePost={postData} />
+                        </div>
+                    </div>
+                    {postData?.comments?.map((post, key) => {
+                        return (
+                            <section key={key}>
+                                <ProfilMini post={post} />
+                                <p className='postedContent'>{post.content}</p>
+                                <LikeReplyTime post={post} />
+                            </section>)
+                    })}
+                    <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
+                </>}
+            {!userLoaded && <p>Loading ...</p>}
         </div>
     );
 }

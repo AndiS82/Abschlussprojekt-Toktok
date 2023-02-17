@@ -8,20 +8,44 @@ import { CiLocationOn } from "react-icons/ci";
 import { FiSettings } from "react-icons/fi";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const NewpostPage = () => {
+const NewpostPage = ({ setUserData }) => {
     const [selectImage, setSelectImage] = useState(true)
     const [newImage, setNewImage] = useState(false)
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
     const [city, setCity] = useState(null)
     const [country, setCountry] = useState(null)
+    const [userLoaded, setUserLoaded] = useState(true)
 
     const user = useContext(UserContext)
 
+    const nav = useNavigate()
+
     const imageRef = useRef()
     const contentRef = useRef()
+
+
+    useEffect(() => {
+        const getUser = async () => {
+            setUserLoaded(false)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user`,
+                {
+                    credentials: 'include'
+                })
+            if (response.ok) {
+                const data = await response.json()
+                setUserData(data)
+                setUserLoaded(true)
+                // console.log(data)
+            }
+            else {
+                // console.log('failed to get user')
+            }
+        }
+        getUser()
+    }, [])
 
     const showImage = () => {
         setImage(URL.createObjectURL(imageRef.current.files[0]))
@@ -74,7 +98,7 @@ const NewpostPage = () => {
 
             if (postResponse.ok) {
                 console.log('success posting')
-                return redirect("/Home")
+                return nav("/Home")
             }
 
         } catch (error) {
@@ -124,79 +148,82 @@ const NewpostPage = () => {
 
     return (
         <div className='newPostMainStyle'>
-            <section className='newPostHeader'>
-                <BackButton />
-                <h1>New Post</h1>
-            </section>
-
-            {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
-                <>
-                    <article className='articleUploadButton'>
-                        <label htmlFor="fotoUpload" className='uploadButton' >
-                            <MdPhotoCamera className='uploadButtonIcon' />Upload
-                        </label>
-                    </article>
-                    <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
-                    <div className='galleryHeader'>
-                        <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
-                        <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
-                    </div>
-                    <Gallery className="galleryComponent" user={user} />
-                </>}
-            {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
-                <section>
-                    <div className='captionInputBar'>
-                        <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
-                        <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
-                        <img className='imgSelected' src={image} alt="selected" />
-                    </div>
-                    <div className='wrapperLocation'>
-                        <button className='locationButton' onClick={getMyLocation}>
-                            <CiLocationOn className='locationIcon' />
-                            <h2>Add Location</h2>
-                            {showLocation && <h2>Location: {city} {country}</h2>}
-                        </button>
-                    </div>
-                    <div className='wrapperSmToggles'>
-                        <section className='sMToggle'>
-                            <h2>Also post to</h2>
-                        </section>
-                        <section className='sMToggle'>
-                            <h2>Facebook</h2>
-                            <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round">
-
-                                </span>
-                            </label>
-                        </section>
-                        <section className='sMToggle'>
-                            <h2>Twitter</h2>
-                            <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round">
-                                </span>
-                            </label>
-                        </section>
-                        <section className='sMToggle'>
-                            <h2>Tumblr</h2>
-                            <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round">
-                                </span>
-                            </label>
-                        </section>
-                    </div>
-                    <div className='wrapperSettings'>
-                        <FiSettings className='locationIcon' />
-                        <h2>Advanced Settings</h2>
-                    </div>
-                    <div className='newPostNavButtonWrapper'>
-                        <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
-                        <button className='backAndPublishButton' onClick={publish}>Publish</button>
-                    </div>
+            {userLoaded && <>
+                <section className='newPostHeader'>
+                    <BackButton />
+                    <h1>New Post</h1>
                 </section>
-            }
+
+                {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
+                    <>
+                        <article className='articleUploadButton'>
+                            <label htmlFor="fotoUpload" className='uploadButton' >
+                                <MdPhotoCamera className='uploadButtonIcon' />Upload
+                            </label>
+                        </article>
+                        <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
+                        <div className='galleryHeader'>
+                            <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
+                            <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
+                        </div>
+                        {userLoaded && <Gallery className="galleryComponent" />}
+                    </>}
+                {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
+                    <section>
+                        <div className='captionInputBar'>
+                            <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
+                            <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
+                            <img className='imgSelected' src={image} alt="selected" />
+                        </div>
+                        <div className='wrapperLocation'>
+                            <button className='locationButton' onClick={getMyLocation}>
+                                <CiLocationOn className='locationIcon' />
+                                <h2>Add Location</h2>
+                                {showLocation && <h2>Location: {city} {country}</h2>}
+                            </button>
+                        </div>
+                        <div className='wrapperSmToggles'>
+                            <section className='sMToggle'>
+                                <h2>Also post to</h2>
+                            </section>
+                            <section className='sMToggle'>
+                                <h2>Facebook</h2>
+                                <label className="switch">
+                                    <input type="checkbox" />
+                                    <span className="slider round">
+
+                                    </span>
+                                </label>
+                            </section>
+                            <section className='sMToggle'>
+                                <h2>Twitter</h2>
+                                <label className="switch">
+                                    <input type="checkbox" />
+                                    <span className="slider round">
+                                    </span>
+                                </label>
+                            </section>
+                            <section className='sMToggle'>
+                                <h2>Tumblr</h2>
+                                <label className="switch">
+                                    <input type="checkbox" />
+                                    <span className="slider round">
+                                    </span>
+                                </label>
+                            </section>
+                        </div>
+                        <div className='wrapperSettings'>
+                            <FiSettings className='locationIcon' />
+                            <h2>Advanced Settings</h2>
+                        </div>
+                        <div className='newPostNavButtonWrapper'>
+                            <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
+                            <button className='backAndPublishButton' onClick={publish}>Publish</button>
+                        </div>
+                    </section>
+                }
+            </>}
+            {!userLoaded && <p>Loading...</p>}
         </div>
     );
 }
