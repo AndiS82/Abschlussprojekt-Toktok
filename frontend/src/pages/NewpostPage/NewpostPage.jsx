@@ -1,16 +1,22 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import './NewpostPage.css'
-import { MdPhotoCamera } from "react-icons/md"
-import { IoIosArrowDown } from "react-icons/io";
-import { HiSquares2X2 } from "react-icons/hi2";
-import { CiLocationOn } from "react-icons/ci";
-import { FiSettings } from "react-icons/fi";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
 import { useNavigate } from "react-router-dom";
 import UnderConstructionPage from '../UnderConstructionPage/UnderConstructionPage.jsx';
 import { Link } from "react-router-dom";
+import { TbArrowBarDown } from "react-icons/tb";
+import { FaRegHeart } from "react-icons/fa";
+import { BsBookmarkStar } from "react-icons/bs";
+import { IoQrCode } from "react-icons/io5";
+import { TfiTimer } from "react-icons/tfi";
+import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
+import { MdPhotoCamera } from "react-icons/md"
+import { IoIosArrowDown } from "react-icons/io";
+import { HiSquares2X2 } from "react-icons/hi2";
+import { CiLocationOn } from "react-icons/ci";
+import { FiSettings } from "react-icons/fi";
 
 const NewpostPage = ({ setUserData }) => {
     const [selectImage, setSelectImage] = useState(true)
@@ -233,9 +239,13 @@ const NewpostPage = ({ setUserData }) => {
                             <input id="burger" type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
                             <nav className='burgerNav'>
                                 <ul>
-                                    <li><a href="#">Link #1</a></li>
-                                    <li><a href="#">Link #2</a></li>
-                                    <li><a href="#">Link #3</a></li>
+                                    <li><label for="burger" className='burgerDown' onClick={() => setShowSettings(prev => !prev)}><TbArrowBarDown className='barDownBurger' /></label></li>
+                                    <li><a href={checked ? "/UnderConstruction" : ""}><FiSettings className='advSetIcon' />Settings</a></li>
+                                    <li><a href="/UnderConstruction"><HiOutlineArchiveBoxArrowDown className='advSetIcon' />Archive</a></li>
+                                    <li><a href="/UnderConstruction"><TfiTimer className='advSetIcon' />Your Activity</a></li>
+                                    <li><a href="/UnderConstruction"><IoQrCode className='advSetIcon' />QR Code</a></li>
+                                    <li><a href="/UnderConstruction"><BsBookmarkStar className='advSetIcon' />Close Friends</a></li>
+                                    <li><a href="/UnderConstruction"><FaRegHeart className='advSetIcon' />Favourites</a></li>
                                 </ul>
                             </nav>
                         </article>

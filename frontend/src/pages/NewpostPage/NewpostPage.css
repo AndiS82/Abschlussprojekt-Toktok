@@ -332,34 +332,22 @@ input:checked+.slider:before {
     height: 100vh;
     top: 0%;
     left: 0%;
-    background-color: rgba(128, 128, 128, 0.429);
+    background-color: rgba(128, 128, 128, 0.535);
     position: fixed;
     z-index: 1;
+
 }
 
 .greyScreenInactive {
     display: none;
 }
 
-/* Z-Index braucht man wegen dem ausgauen, ebenso beim Button und beim nav*/
-
-/* .greyScreen input:not(:checked) {
-    display: none;
-} */
-
-
 .burgerClicker {
     cursor: pointer;
     width: 100%;
     display: flex;
     gap: 10px;
-    z-index: 2;
-}
-
-.burgerWrapper {
-    border: 4px solid green;
-    background-color: rgba(128, 0, 128, 0.427);
-    height: 10px;
+    align-items: center;
 }
 
 .burgerWrapper input {
@@ -378,22 +366,59 @@ input:checked+.slider:before {
     left: 0;
     width: 100%;
     overflow: hidden;
-    height: 140px;
+    height: 280px;
     z-index: 2;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: none;
 }
 
 .burgerWrapper input:checked~nav {
     background-color: white;
+    transition: 0.2s linear 0.2s;
+    /* z-index: 1; */
+    display: block;
 }
 
 .burgerWrapper input:checked~nav ul li {
     opacity: 1;
+    transition: 0.2s linear 0.2s;
+}
+
+.advSetIcon {
+    margin-right: 10px;
+}
+
+.burgerWrapper input:checked~nav ul li a {
+    /* z-index: 1; */
+    display: block;
+}
+
+.burgerWrapper input:checked~nav ul li label .barDownBurger {
+    /* z-index: 1; */
+    display: block;
+}
+
+.burgerDown {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+    justify-content: center;
+    margin-bottom: 9px;
+}
+
+.barDownBurger {
+    cursor: pointer;
+    font-size: 20px;
+    display: none;
 }
 
 .burgerNav ul {
     text-align: center;
     position: absolute;
-    top: 10%;
+    top: 2%;
     left: 10%;
     right: 20%;
 }
@@ -405,13 +430,17 @@ input:checked+.slider:before {
 
 .burgerNav ul li a {
     text-decoration: none;
-    text-transform: uppercase;
     color: black;
     font-weight: 700;
-    font-family: sans-serif;
-    display: block;
+    font-size: 1.8rem;
     padding: 5px;
-    background-color: aquamarine;
     margin: 5px;
     text-align: start;
+    font-family: UrbanistLight;
+    /* background-color: aquamarine; */
+    display: none;
+}
+
+.advSetIcon {
+    font-size: 1.7rem;
 }
