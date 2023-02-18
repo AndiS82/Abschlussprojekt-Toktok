@@ -2,22 +2,20 @@ import './ProfilMini.css';
 import { Link } from "react-router-dom";
 import { TbDotsCircleHorizontal } from "react-icons/tb";
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
-const ProfilMini = ({ singlePost, post }) => {
+const ProfilMini = () => {
+    // { singlePost, post }
     const user = useContext(UserContext)
-    // console.log("singlePost: ", singlePost)
-    // console.log("post", post)
-    // console.log("user", user)
-
+    console.log(user)
     return (
         <div>
             <nav className="miniProfil">
                 <div>
-                    {singlePost &&
+                    {/* {singlePost &&
                         <div className='miniProfilDetail'>
-                            <img src={singlePost?.user?.image ? singlePost?.user?.image : placeholderImg} alt={singlePost?.user?.username} />
+                            <img src={singlePost?.user?.image?.url ? singlePost?.user?.image?.url : placeholderImg} alt={singlePost?.user?.username} />
                             <div className='description'>
                                 <h1>{singlePost?.user?.username}</h1>
                                 <p>{singlePost?.user?.occupation}</p>
@@ -32,15 +30,15 @@ const ProfilMini = ({ singlePost, post }) => {
                                 <p>{post?.occupation ? post?.occupation : 'occupation'}</p>
                             </div>
                         </div>
-                    }
+                    } */}
 
                     {/* weiteren use case, Emily fix me */}
-                    {(!singlePost && !post) &&
+                    {user &&
                         <div>
                             <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
                             <div className='description'>
-                                {!singlePost && <h1>{user?.username ? user?.username : 'username'}</h1>}
-                                {!singlePost && <p>{user?.occupation ? user?.occupation : 'occupation'}</p>}
+                                <h1>{user?.username ? user?.username : 'username'}</h1>
+                                <p>{user?.occupation ? user?.occupation : 'occupation'}</p>
                             </div>
                         </div>
                     }

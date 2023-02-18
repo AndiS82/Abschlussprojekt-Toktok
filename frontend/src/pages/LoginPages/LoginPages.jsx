@@ -6,7 +6,7 @@ import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { MdEmail } from "react-icons/md"
 import { HiLockClosed } from "react-icons/hi"
 
-const LoginPages = ({ setUser, setUserData }) => {
+const LoginPages = ({ setUser }) => {
 
     const [isActive, setIsActive] = useState(false);
     const [pwShown, setPwShown] = useState(false)

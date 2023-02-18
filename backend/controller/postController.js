@@ -28,6 +28,7 @@ export const newPost = async (req, res) => {
                 country: req.body.country
             },
             content: req.body.content,
+            likedBy: [],
             tags: req.body.tags, // Funktionalität kommt erst später
             createdAt: new Date(),
             updatedAt: new Date()
@@ -78,8 +79,6 @@ export const newComment = async (req, res) => {
 
 // Function, um einen Kommentar löschen zu können
 // Function, um einen Post löschen zu können
-// Function, um die Likes eines Posts dynamisch ändern zu können
-// Function, um die Likes eines Comments dynamisch ändern zu können
 
 export const getAllPosts = async (req, res) => {
     console.log('get all posts')
