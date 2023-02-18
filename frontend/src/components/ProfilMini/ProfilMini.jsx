@@ -6,19 +6,11 @@ import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 
 const ProfilMini = ({ singlePost, post }) => {
-    const [addPostGallery, setAddPostGallery] = useState(false)
     const user = useContext(UserContext)
-    console.log("singlePost: ", singlePost)
-    console.log("post", post)
-    console.log("user", user)
-    // useEffect(() => {
-    //     console.log("user: ", user)
-    //     if (!singlePost && !post) {
-    //         setAddPostGallery(true)
-    //     }
-    // }, [])
+    // console.log("singlePost: ", singlePost)
+    // console.log("post", post)
+    // console.log("user", user)
 
-    // const addPostGallery = 
     return (
         <div>
             <nav className="miniProfil">
