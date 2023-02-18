@@ -6,7 +6,7 @@ import multer from 'multer'
 import { followUser, getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newComment, newPost } from './controller/postController.js'
+import { getAllPosts, getSinglePost, getUserPosts, likeSingleComment, likeSinglePost, newComment, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
@@ -72,6 +72,7 @@ app.put('/api/:user/post', newComment)
 
 //LIKES
 app.put('/api/posts/:id', formReader.none(), likeSinglePost)
+app.put('/api/comments/:id', formReader.none(), likeSingleComment)
 
 // FOLLOWS
 app.put('/api/user/:id', followUser)

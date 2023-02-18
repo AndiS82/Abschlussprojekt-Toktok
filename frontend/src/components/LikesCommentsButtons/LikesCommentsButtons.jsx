@@ -8,31 +8,27 @@ import { UserContext } from '../../contexts/UserContext';
 
 const LikesCommentsButtons = ({ singlePost, post }) => {
     const user = useContext(UserContext)
-    console.log(singlePost.likedBy)
+    const [usePost, setUsePost] = useState(false)
     const [like, setLike] = useState(false) // fürs schicken ins Backend und display änderung des herzes
     let [countLikes, setCountLikes] = useState(0) // für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
+    console.log('singlePost', singlePost)
     useEffect(() => {
-        if (singlePost) {
-            setCountLikes(Number(singlePost?.likedBy?.length))
-        } else {
-            setCountLikes(Number(post?.likedBy?.length))
+        if (usePost?.likedBy?.includes(user._id)) {
+            setLike(true)
         }
 
-        if (singlePost) {
-            if (singlePost?.likedBy.includes(user._id)) {
-                setLike(true)
-            }
-        } else {
-            if (post?.likedBy.includes(user._id)) {
-                setLike(true)
-            }
-        }
-    }, [])
-    const [usePost, setUsePost] = useState(false)
+    }, [usePost])
+
     useEffect(() => {
-        if (singlePost) setUsePost(singlePost)
-        if (post) setUsePost(post)
-    }, [])
+        if (singlePost) {
+            setUsePost(singlePost)
+            setCountLikes(Number(singlePost?.likedBy?.length))
+        }
+        if (post) {
+            setUsePost(post)
+            setCountLikes(Number(post?.likedBy?.length))
+        }
+    }, [post, singlePost])
 
     const likeHandler = async () => {
         console.log('like handler', like)
@@ -63,7 +59,7 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
             console.log('problem with likes')
         }
     }
-    console.log('lcb post', singlePost)
+    // console.log('lcb post', singlePost)
 
     return (
         <div className='LCB'>

@@ -66,8 +66,7 @@ export const newComment = async (req, res) => {
                 image: req.body.image
             },
             content: req.body.content,
-            likes: req.body.likes, // Funktionalität kommt erst später
-            createdAt: new Timestamp(),
+            createdAt: new Date(),
         }
 
         const result = await db.collection(COL).updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment } })
@@ -143,4 +142,40 @@ export const likeSinglePost = async (req, res) => {
         }
     }
     res.status(200).end()
+}
+
+export const likeSingleComment = async (req, res) => {
+    console.log('like single comment')
+    const params = req.params
+    const postid = params.id
+    try {
+        if (req.body.result === true) {
+            const commentid = req.body.commentId
+            try {
+                const db = await getDb()
+                const commentLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, {
+                    'comment._id': { commentid: { $addToSet: { likedBy: req.body.likedBy } } }
+                })
+                res.status(200).json(commentLiked)
+            } catch (error) {
+                res.status(400).end(error.message)
+            }
+        }
+        if (req.body.result === false) {
+            try {
+                const db = await getDb()
+                const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, {
+                    'comment._id': { commentid: { $pull: { likedBy: req.body.likedBy } } }
+                })
+                res.status(200).json(postLiked)
+            } catch (error) {
+                res.status(400).end(error.message)
+            }
+        }
+    }
+    catch (error) {
+        console.log(error.message)
+        res.status(400).end()
+    }
+
 }

@@ -6,8 +6,8 @@ import { UserContext } from '../../contexts/UserContext';
 const PostComment = ({ user, postID, setReRender }) => {
     const contentRef = useRef()
     const loggedIn = useContext(UserContext)
-    console.log(`loggedIn = `, loggedIn) // evtl check, wenn nicht eingeloggt nav('/')
-    console.log('userPostComment', user)
+    // console.log(`loggedIn = `, loggedIn) // evtl check, wenn nicht eingeloggt nav('/')
+    // console.log('userPostComment', user)
 
     const postComment = async () => {
         console.log('post comment')
@@ -17,7 +17,6 @@ const PostComment = ({ user, postID, setReRender }) => {
             occupation: user.occupation,
             image: user.image,
             content: contentRef.current.value,
-            likes: 0,
             postID: postID
         }
 
