@@ -68,9 +68,9 @@ const LoginPages = ({ setUser, setUserData }) => {
                         <input ref={passwordRef} type={pwShown ? "text" : "password"} placeholder='Password' className='pWInput' />
                     </div>
                     <AiOutlineEyeInvisible onClick={togglePw} className='showPWIcon'
-                        style={{ display: (pwShown ? "block" : "none") }}
+                        style={{ display: (pwShown ? "none" : "block") }}
                     />
-                    <AiOutlineEye onClick={togglePw} className='hidePWIcon' style={{ display: (pwShown ? "none" : "block") }} />
+                    <AiOutlineEye onClick={togglePw} className='hidePWIcon' style={{ display: (pwShown ? "block" : "none") }} />
                 </div>
                 <button className='pinkButton' onClick={userData} type='submit'>{isActive ? "Sign up" : "Sign in"}</button>
             </form>

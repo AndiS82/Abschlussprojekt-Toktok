@@ -1,5 +1,5 @@
 import './CommentsPage.css'
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import arrowTriangle from '../../icons/arrow_triangle.png'
 import ProfilMini from '../../components/ProfilMini/ProfilMini';
 import LikesCommentsButtons from '../../components/LikesCommentsButtons/LikesCommentsButtons';
@@ -8,11 +8,13 @@ import LikeReplyTime from '../../components/LikeReplyTime/LikeReplyTime';
 import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
+import moment from "moment"
 
 const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
     const [postData, setPostData] = useState([])
     const [reRender, setReRender] = useState(false)
+    const nav = useNavigate()
     const params = useParams()
     console.log('postData', postData)
 
@@ -44,7 +46,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()
@@ -66,6 +68,9 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     <ProfilMini singlePost={postData} />
                     <PostCaption />
                     <div className='LCB-Border'>
+                        <div className='LCB-Time'>
+                            <p>{moment(postData.createdAt).fromNow()}</p>
+                        </div>
                         <div className='LCB-edit' >
                             <LikesCommentsButtons singlePost={postData} />
                         </div>

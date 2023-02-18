@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/BackButton/BackButton';
 import Gallery from '../../components/Gallery/Gallery';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
@@ -8,7 +8,7 @@ import { UserContext } from '../../contexts/UserContext';
 import './ProfilePage.css'
 
 const ProfilePage = ({ setUserData, setUserLoaded, userLoaded }) => {
-
+    const nav = useNavigate()
     const user = useContext(UserContext)
 
     useEffect(() => {
@@ -25,23 +25,39 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()
     }, [])
 
+    const logout = async () => {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/logout`, {
+            credentials: 'include'
+        })
+        if (response.ok) {
+            nav('/')
+        } else {
+            console.log('problem logging out')
+        }
+
+    }
+
     return (
-        <div>
+        <main className='profile-container'>
             {userLoaded && <>
-                <BackButton />
+                <div className='profile-topbar'>
+                    <BackButton />
+                    <p onClick={logout}>Logout</p>
+                </div>
+
                 <ProfilMini />
                 <Link to="/editprofile">TEMP LINK TO EDIT PROFILE</Link>
                 <Gallery user={user} />
                 <NavbarBottom />
             </>}
             {!userLoaded && <p>Loading ...</p>}
-        </div>
+        </main>
     );
 }
 

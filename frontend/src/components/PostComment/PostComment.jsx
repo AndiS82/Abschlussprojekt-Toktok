@@ -1,11 +1,13 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import './PostComment.css'
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
+import { UserContext } from '../../contexts/UserContext';
 
-const PostComment = ({ user, postID, setReRender, singlePost }) => {
+const PostComment = ({ user, postID, setReRender }) => {
     const contentRef = useRef()
+    const loggedIn = useContext(UserContext)
+    console.log(`loggedIn = `, loggedIn) // evtl check, wenn nicht eingeloggt nav('/')
     console.log('userPostComment', user)
-    // console.log('postID', postID)
 
     const postComment = async () => {
         console.log('post comment')
