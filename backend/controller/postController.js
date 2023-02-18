@@ -29,8 +29,8 @@ export const newPost = async (req, res) => {
             },
             content: req.body.content,
             tags: req.body.tags, // Funktionalität kommt erst später
-            createdAt: user._id.getTimestamp(), // HIER ist das problem, user existiert noch nicht. mach das nach dem ersten insertOne
-            updatedAt: new Timestamp() // wird mit jedem folgenden Update wieder mit new Timestamp() geupdated
+            createdAt: new Date(),
+            updatedAt: new Date()
         }
         const result = await db.collection(COL).insertOne(post)
         try {
@@ -117,4 +117,30 @@ export const getSinglePost = async (req, res) => {
     } catch (error) {
         res.status(400).end(error.message)
     }
+}
+
+export const likeSinglePost = async (req, res) => {
+    console.log('like single post')
+    const params = req.params
+    const postid = params.id
+    console.log(postid, req.body)
+    if (req.body.result === true) {
+        try {
+            const db = await getDb()
+            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $inc: { likes: 1 } })
+            res.status(200).json(postLiked)
+        } catch (error) {
+            res.status(400).end(error.message)
+        }
+    }
+    if (req.body.result === false) {
+        try {
+            const db = await getDb()
+            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $inc: { likes: -1 } })
+            res.status(200).json(postLiked)
+        } catch (error) {
+            res.status(400).end(error.message)
+        }
+    }
+    res.status(200).end()
 }

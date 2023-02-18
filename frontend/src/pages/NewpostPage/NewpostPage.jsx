@@ -41,7 +41,7 @@ const NewpostPage = ({ setUserData }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()

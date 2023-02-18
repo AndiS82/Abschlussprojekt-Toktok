@@ -130,3 +130,8 @@ export const updateUserPostsCount = async (token) => {
         console.log(error.message)
     }
 }
+
+export const logoutUser = async (_, res) => {
+    res.cookie('token', '', { ...cookieConfig, maxAge: 0 })
+    res.status(204).end();
+}

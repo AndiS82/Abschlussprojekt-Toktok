@@ -1,0 +1,19 @@
+.profile-container {
+    margin: 20px;
+}
+
+.profile-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-topbar p {
+    cursor: pointer;
+    color: rgba(255, 77, 103, 1);
+    font-size: 1.6rem;
+}
+
+.profile-topbar p:hover {
+    text-decoration: underline;
+}

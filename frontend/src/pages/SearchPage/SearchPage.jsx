@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
 import PersonSearch from '../../components/Searchbar/PersonSearch';
 import './SearchPage.css'
 
 const SearchPage = ({ setUserData, setUserLoaded, userLoaded }) => {
-
+    const nav = useNavigate()
     useEffect(() => {
         const getUser = async () => {
             setUserLoaded(false)
@@ -19,7 +20,7 @@ const SearchPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()

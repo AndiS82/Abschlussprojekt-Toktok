@@ -63,7 +63,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()

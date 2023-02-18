@@ -3,10 +3,10 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import multer from 'multer'
-import { getAllUsers, getOneUser, login, register, updateUser } from './controller/userController.js'
+import { getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { getAllPosts, getSinglePost, getUserPosts, newComment, newPost } from './controller/postController.js'
+import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newComment, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
@@ -31,6 +31,9 @@ app.get('/', (req, res) => {
 //USER
 //Einloggen
 app.post('/api/login', encryptFunktion, login)
+
+// Ausloggen
+app.get('/api/logout', logoutUser)
 
 //Route zum Token verifizieren
 app.get('/api/token', verifyToken)
@@ -66,6 +69,9 @@ app.get('/api/posts', getAllPosts)
 
 // KOMMENTARE
 app.put('/api/:user/post', newComment)
+
+//LIKES
+app.put('/api/posts/:id', formReader.none(), likeSinglePost)
 
 
 // dann werfen wir den Server mal an

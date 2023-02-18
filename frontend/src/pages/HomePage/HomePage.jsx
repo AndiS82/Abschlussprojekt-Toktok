@@ -1,14 +1,14 @@
 import './HomePage.css'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import MiniLogo from '../../img/LogoMini.png';
-import Profil from '../../components/Profil/Profil';
 import { useEffect, useState } from 'react';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
+import Feed from '../../components/Feed/Feed';
 
-const HomePage = ({ setUserData, userData, userLoaded, setUserLoaded }) => {
-    const [feed, setFeed] = useState(null)
-
+const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
+    const nav = useNavigate()
+    const [rerender, setRerender] = useState(false)
     useEffect(() => {
         const getUser = async () => {
             setUserLoaded(false)
@@ -23,29 +23,12 @@ const HomePage = ({ setUserData, userData, userLoaded, setUserLoaded }) => {
                 // console.log(data)
             }
             else {
-                // console.log('failed to get user')
+                nav('/')
             }
         }
         getUser()
-    }, [])
+    }, [rerender])
 
-    useEffect(() => {
-        const getFeed = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts`,
-                {
-                    credentials: 'include'
-                })
-            if (response.ok) {
-                const data = await response.json()
-                await setFeed(data)
-            }
-            else {
-                console.log('feed not loaded')
-            }
-        }
-        getFeed()
-    }, [])
-    console.log(feed)
     return (
         <div>
             {userLoaded &&
@@ -62,9 +45,7 @@ const HomePage = ({ setUserData, userData, userLoaded, setUserLoaded }) => {
                                 </Link>
                             </nav>
                         </div>
-                        {feed?.map((singlePost, key) => {
-                            return <Profil key={key} singlePost={singlePost} />
-                        })}
+                        <Feed setRerender={setRerender} rerender={rerender} />
                     </div>
                     <NavbarBottom />
                 </>}
