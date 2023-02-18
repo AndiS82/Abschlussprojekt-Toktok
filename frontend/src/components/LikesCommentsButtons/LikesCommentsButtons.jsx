@@ -1,22 +1,42 @@
 import './LikesCommentsButtons.css'
 import { BsChatDots } from "react-icons/bs";
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import pinkHeart from "../../img/pinkheart.png"
 import emptyHeart from "../../img/emptyheart.png"
+import { UserContext } from '../../contexts/UserContext';
 
-const LikesCommentsButtons = ({ singlePost, post, rerender, setRerender }) => {
-    const [like, setLike] = useState(false)
+const LikesCommentsButtons = ({ singlePost, post }) => {
+    const user = useContext(UserContext)
+    console.log(singlePost.likedBy)
+    const [like, setLike] = useState(false) // fürs schicken ins Backend und display änderung des herzes
+    let [countLikes, setCountLikes] = useState(0) // für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
+    useEffect(() => {
+        if (singlePost) {
+            setCountLikes(Number(singlePost?.likedBy?.length))
+        } else {
+            setCountLikes(Number(post?.likedBy?.length))
+        }
+    }, [])
     const [usePost, setUsePost] = useState(false)
     useEffect(() => {
         if (singlePost) setUsePost(singlePost)
         if (post) setUsePost(post)
-    }, [rerender])
+    }, [])
 
     const likeHandler = async () => {
         console.log('like handler', like)
-        setLike(prev => !prev) // GELOGGT KOMMT VOR DEM SET
-        const body = { result: !like }
+        setLike(prev => !prev)
+        if (like === false) { // hier sieht komisch aus, liegt aber daran, dass hier den Wert von 'like' gelesen wird, bevor setCountLikes gemacht wird
+            setCountLikes(countLikes += 1)
+        } else {
+            setCountLikes(countLikes -= 1)
+        }
+
+        const body = {
+            result: !like, // zeigt korrekt, ob der User diesen Post liked oder nicht
+            likedBy: user._id
+        }
         console.log('body', body)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/posts/${usePost._id}`, {
             method: 'PUT',
@@ -28,7 +48,6 @@ const LikesCommentsButtons = ({ singlePost, post, rerender, setRerender }) => {
         })
         if (response.ok) {
             console.log('likes updated')
-            setRerender(prev => !prev)
         }
         else {
             console.log('problem with likes')
@@ -41,7 +60,7 @@ const LikesCommentsButtons = ({ singlePost, post, rerender, setRerender }) => {
             <div onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             {post &&
                 <>
-                    <p>{post?.likes ? new Intl.NumberFormat().format(post.likes) : 0}</p>
+                    <p>{countLikes}</p>
                     <Link to={`/comments/${post?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
@@ -50,7 +69,7 @@ const LikesCommentsButtons = ({ singlePost, post, rerender, setRerender }) => {
             }
             {!post &&
                 <>
-                    <p>{singlePost?.likes ? new Intl.NumberFormat().format(singlePost.likes) : 0}</p>
+                    <p>{countLikes}</p>
                     <Link to={`/comments/${singlePost?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
