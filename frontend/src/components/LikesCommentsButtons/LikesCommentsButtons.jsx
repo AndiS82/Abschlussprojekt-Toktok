@@ -17,6 +17,16 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
         } else {
             setCountLikes(Number(post?.likedBy?.length))
         }
+
+        if (singlePost) {
+            if (singlePost?.likedBy.includes(user._id)) {
+                setLike(true)
+            }
+        } else {
+            if (post?.likedBy.includes(user._id)) {
+                setLike(true)
+            }
+        }
     }, [])
     const [usePost, setUsePost] = useState(false)
     useEffect(() => {
