@@ -2,13 +2,12 @@ import './HomePage.css'
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import MiniLogo from '../../img/LogoMini.png';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 import Feed from '../../components/Feed/Feed';
 
 const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
     const nav = useNavigate()
-    const [rerender, setRerender] = useState(false)
     useEffect(() => {
         const getUser = async () => {
             setUserLoaded(false)
@@ -27,7 +26,7 @@ const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
             }
         }
         getUser()
-    }, [rerender])
+    }, [])
 
     return (
         <div>
@@ -45,7 +44,7 @@ const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
                                 </Link>
                             </nav>
                         </div>
-                        <Feed setRerender={setRerender} rerender={rerender} />
+                        <Feed userLoaded={userLoaded} />
                     </div>
                     <NavbarBottom />
                 </>}
