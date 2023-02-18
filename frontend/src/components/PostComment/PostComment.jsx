@@ -43,7 +43,7 @@ const PostComment = ({ user, postID, setReRender }) => {
     return (
         <div className='postCommentBorder'>
             <div className="postComment">
-                <img className='miniProfilDetail' src={user?.image ? user?.image : placeholderImg} alt={user?.username} />
+                <img className='miniProfilDetail' src={loggedIn?.image?.url ? loggedIn?.image?.url : placeholderImg} alt={loggedIn?.username} />
                 <input ref={contentRef} type="text" placeholder="Your comment... "></input>
                 <button type="submit" onClick={postComment}>Post</button>
             </div>

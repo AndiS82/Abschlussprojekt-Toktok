@@ -70,7 +70,7 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
                     <Link to={`/comments/${post?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
-                    <p>{post?.comments ? new Intl.NumberFormat().format(post.comments.length) : 0}</p>
+                    <p>{post?.comments ? new Intl.NumberFormat().format(post?.comments?.length) : 0}</p>
                 </>
             }
             {!post &&
@@ -79,7 +79,7 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
                     <Link to={`/comments/${singlePost?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
-                    <p>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost.comments.length) : 0}</p>
+                    <p>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost?.comments?.length) : 0}</p>
                 </>
             }
         </div>

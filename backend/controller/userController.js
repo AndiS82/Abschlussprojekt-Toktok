@@ -41,9 +41,24 @@ export const login = (req, res) => {
 
 export const register = async (req, res) => {
     const user = req.body
+    // console.log(user)
+    const completeUser = {
+        name: null,
+        username: null,
+        occupation: null,
+        dob: null,
+        email: req.body.user,
+        password: req.body.password,
+        tel: null,
+        sex: null,
+        website: null,
+        aboutMe: null,
+        following: null,
+        followedBy: null
+    }
     try {
         const db = await getDb()
-        const result = await db.collection(COL).insertOne(user)
+        const result = await db.collection(COL).insertOne(completeUser)
         console.log("register Funktion result = ", result)
         res.status(200).end()
     }

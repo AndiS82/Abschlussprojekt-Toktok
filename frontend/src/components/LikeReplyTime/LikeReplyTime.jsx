@@ -55,7 +55,7 @@ const LikeReplyTime = ({ comment, post }) => {
             <div className='LRT-heart' onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             <p>{countLikes}</p>
             <p>Reply</p>
-            <p>{moment(comment.createdAt).fromNow()}</p>
+            <p>{moment(comment?.createdAt).fromNow()}</p>
         </div>
     );
 }
