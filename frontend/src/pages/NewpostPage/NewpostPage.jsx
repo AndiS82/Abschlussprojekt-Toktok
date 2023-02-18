@@ -9,6 +9,8 @@ import { FiSettings } from "react-icons/fi";
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
 import { useNavigate } from "react-router-dom";
+import UnderConstructionPage from '../UnderConstructionPage/UnderConstructionPage.jsx';
+import { Link } from "react-router-dom";
 
 const NewpostPage = ({ setUserData }) => {
     const [selectImage, setSelectImage] = useState(true)
@@ -128,7 +130,7 @@ const NewpostPage = ({ setUserData }) => {
         })
     }
 
-    console.log(lat, long)
+    // console.log(lat, long)
 
     const [addLocation, setAddLocation] = useState()
 
@@ -146,6 +148,8 @@ const NewpostPage = ({ setUserData }) => {
         getLocationData()
     }, [lat, long])
 
+    const [showSettings, setShowSettings] = useState(true)
+    const [checked, setChecked] = useState(false)
     return (
         <div className='newPostMainStyle'>
             {userLoaded && <>
@@ -170,56 +174,71 @@ const NewpostPage = ({ setUserData }) => {
                     </>}
                 {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                     <section>
-                        <div className='captionInputBar'>
-                            <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
-                            <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
-                            <img className='imgSelected' src={image} alt="selected" />
-                        </div>
-                        <div className='wrapperLocation'>
-                            <button className='locationButton' onClick={getMyLocation}>
-                                <CiLocationOn className='locationIcon' />
-                                <h2>Add Location</h2>
-                                {showLocation && <h2>Location: {city} {country}</h2>}
-                            </button>
-                        </div>
-                        <div className='wrapperSmToggles'>
-                            <section className='sMToggle'>
-                                <h2>Also post to</h2>
-                            </section>
-                            <section className='sMToggle'>
-                                <h2>Facebook</h2>
-                                <label className="switch">
-                                    <input type="checkbox" />
-                                    <span className="slider round">
+                        <div>
+                            <div className='captionInputBar'>
+                                <img className='profilePicRound' src={user?.image?.url} alt={user?.username} />
+                                <textarea className="textarea" onInput={OnInput} ref={contentRef} placeholder='Add a caption' style={{ resize: "none", minHeight: "80px" }}></textarea>
+                                <img className='imgSelected' src={image} alt="selected" />
+                            </div>
+                            <div className='wrapperLocation'>
+                                <button className='locationButton' onClick={getMyLocation}>
+                                    <CiLocationOn className='locationIcon' />
+                                    <h2>Add Location</h2>
+                                    {showLocation && <h2>Location: {city} {country}</h2>}
+                                </button>
+                            </div>
+                            <div className='wrapperSmToggles'>
+                                <section className='sMToggle'>
+                                    <h2>Also post to</h2>
+                                </section>
+                                <section className='sMToggle'>
+                                    <h2>Facebook</h2>
+                                    <label className="switch">
+                                        <input type="checkbox" />
+                                        <span className="slider round">
 
-                                    </span>
+                                        </span>
+                                    </label>
+                                </section>
+                                <section className='sMToggle'>
+                                    <h2>Twitter</h2>
+                                    <label className="switch">
+                                        <input type="checkbox" />
+                                        <span className="slider round">
+                                        </span>
+                                    </label>
+                                </section>
+                                <section className='sMToggle'>
+                                    <h2>Tumblr</h2>
+                                    <label className="switch">
+                                        <input type="checkbox" />
+                                        <span className="slider round">
+                                        </span>
+                                    </label>
+                                </section>
+                            </div>
+                            <div className='wrapperSettings'>
+                                <label for="burger" className='burgerClicker' onClick={() => setShowSettings(prev => !prev)}>
+                                    <FiSettings className='locationIcon' />
+                                    <h2>Advanced Settings</h2>
                                 </label>
-                            </section>
-                            <section className='sMToggle'>
-                                <h2>Twitter</h2>
-                                <label className="switch">
-                                    <input type="checkbox" />
-                                    <span className="slider round">
-                                    </span>
-                                </label>
-                            </section>
-                            <section className='sMToggle'>
-                                <h2>Tumblr</h2>
-                                <label className="switch">
-                                    <input type="checkbox" />
-                                    <span className="slider round">
-                                    </span>
-                                </label>
-                            </section>
+                            </div>
+                            <div className='newPostNavButtonWrapper'>
+                                <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
+                                <button className='backAndPublishButton' onClick={publish}>Publish</button>
+                            </div>
                         </div>
-                        <div className='wrapperSettings'>
-                            <FiSettings className='locationIcon' />
-                            <h2>Advanced Settings</h2>
-                        </div>
-                        <div className='newPostNavButtonWrapper'>
-                            <button className='backAndPublishButton' onClick={() => setSelectImage(true)}>Back</button>
-                            <button className='backAndPublishButton' onClick={publish}>Publish</button>
-                        </div>
+                        <article className='burgerWrapper'>
+                            <div className={checked ? 'greyScreenActive' : 'greyScreenInactive'}></div>
+                            <input id="burger" type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
+                            <nav className='burgerNav'>
+                                <ul>
+                                    <li><a href="#">Link #1</a></li>
+                                    <li><a href="#">Link #2</a></li>
+                                    <li><a href="#">Link #3</a></li>
+                                </ul>
+                            </nav>
+                        </article>
                     </section>
                 }
             </>}
