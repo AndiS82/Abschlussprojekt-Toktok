@@ -127,7 +127,7 @@ export const likeSinglePost = async (req, res) => {
     if (req.body.result === true) {
         try {
             const db = await getDb()
-            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $inc: { likes: 1 } })
+            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $addToSet: { likedBy: req.body.likedBy } })
             res.status(200).json(postLiked)
         } catch (error) {
             res.status(400).end(error.message)
@@ -136,7 +136,7 @@ export const likeSinglePost = async (req, res) => {
     if (req.body.result === false) {
         try {
             const db = await getDb()
-            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $inc: { likes: -1 } })
+            const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, { $pull: { likedBy: req.body.likedBy } })
             res.status(200).json(postLiked)
         } catch (error) {
             res.status(400).end(error.message)
