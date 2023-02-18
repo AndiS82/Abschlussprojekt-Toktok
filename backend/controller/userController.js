@@ -135,3 +135,43 @@ export const logoutUser = async (_, res) => {
     res.cookie('token', '', { ...cookieConfig, maxAge: 0 })
     res.status(204).end();
 }
+
+export const followUser = async (req, res) => {
+    console.log('follow user')
+    const token = req.cookies.token
+    const db = await getDb()
+    try {
+        if (req.body.result === true) { // req.body.result === true, wenn followerUser auf 'follow' des followingUser geklickt hat 
+            try {
+                const verify = verifyToken(token)
+                const followerUser = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) },
+                    { $addToSet: { following: req.body.following } })
+                console.log('follower user', followerUser)
+                const followingUser = await db.collection(COL).updateOne({ _id: new ObjectId(req.body.following) }, { $addToSet: { followedBy: req.body._id } })
+                console.log('following user', followingUser)
+                res.status(200).json({ followerUser, followingUser })
+            } catch (error) {
+                console.log(error.message)
+                res.status(400).end()
+            }
+        }
+        if (req.body.result === false) { // wird false wenn followerUser unfollowed den followingUser 
+            try {
+                const verify = verifyToken(token)
+                const unfollowerUser = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) },
+                    { $pull: { following: req.body.following } })
+                console.log('unfollowerUser', unfollowerUser)
+                const unfollowingUser = await db.collection(COL).updateOne({ _id: new ObjectId(req.body.following) }, { $pull: { followedBy: req.body._id } })
+                console.log('unfollowing user', unfollowingUser)
+                res.status(200).json({ unfollowerUser, unfollowingUser })
+            } catch (error) {
+                console.log(error.message)
+                res.status(400).end()
+            }
+        }
+    }
+    catch (error) {
+        console.log(error.message)
+        res.status(401).end()
+    }
+}

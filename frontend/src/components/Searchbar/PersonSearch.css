@@ -96,16 +96,6 @@
     margin: 1.5% 2%;
 }
 
-.followButton {
-    font-family: UrbanistLight;
-    padding: 1%;
-    border: 2px solid rgba(255, 77, 103, 1);
-    border-radius: 15px;
-    color: rgba(255, 77, 103, 1);
-    margin-right: 0.5%;
-    font-size: 2rem;
-}
-
 .noResults {
     height: 85vh;
 }

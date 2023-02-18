@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GoSearch, GoTrashcan } from "react-icons/go";
+import FollowButton from '../FollowButton/FollowButton';
 import './PersonSearch.css'
 
 const userFetch = process.env.REACT_APP_BACKEND_URL_USERS;
@@ -54,13 +55,13 @@ const PersonSearch = () => {
                             return (
                                 <div className='searchUserContainer' key={index}>
                                     <div className='searchPicContainer'>
-                                        <img className='searchImage' src={user?.image?.url} alt={user.user}></img>
+                                        <img className='searchImage' src={user?.image?.url} alt={user.username}></img>
                                     </div>
                                     <div className='userInfo'>
-                                        <p className='searchUser' key={index}>{user.user}</p>
+                                        <p className='searchUser' key={index}>{user.username}</p>
                                         <p className='searchOccupation'>{user.occupation}</p>
                                     </div>
-                                    <button type="button" className='followButton'>Follow</button>
+                                    <FollowButton followedUser={user} />
                                 </div>
                             )
                         })}</div>
@@ -79,7 +80,7 @@ const PersonSearch = () => {
                                     <p className='searchUser' key={index}>{user.user}</p>
                                     <p className='searchOccupation'>{user.occupation}</p>
                                 </div>
-                                <button type="button" className='followButton'>Follow</button>
+                                <FollowButton followedUser={user} />
                             </div>)
                     })}
                 </div>
