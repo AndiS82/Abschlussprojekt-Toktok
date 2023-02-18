@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import multer from 'multer'
-import { getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
+import { followUser, getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
 import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newComment, newPost } from './controller/postController.js'
@@ -72,6 +72,9 @@ app.put('/api/:user/post', newComment)
 
 //LIKES
 app.put('/api/posts/:id', formReader.none(), likeSinglePost)
+
+// FOLLOWS
+app.put('/api/user/:id', followUser)
 
 
 // dann werfen wir den Server mal an
