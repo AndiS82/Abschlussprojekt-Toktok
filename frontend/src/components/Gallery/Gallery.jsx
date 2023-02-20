@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
-import categoryIMG from '../../img/Category.png';
 import './Gallery.css'
 
 const Gallery = () => {
