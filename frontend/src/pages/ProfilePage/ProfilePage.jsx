@@ -97,10 +97,12 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                 {showSettings &&
                     <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />}
             </>}
-            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
-                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
-            </div>}
 
+            {!userLoaded && <div className="notLoadedDiv">
+                <p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>
+            }</main >
     );
 }
 
