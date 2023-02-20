@@ -3,10 +3,10 @@ import PostImage from '../PostImage/PostImage';
 import ProfilMini from '../ProfilMini/ProfilMini';
 import './Profil.css'
 
-const Profil = ({ singlePost }) => {
+const Profil = ({ singlePost, showSettings, setShowSettings }) => {
     return (
         <div>
-            <ProfilMini singlePost={singlePost} />
+            <ProfilMini singlePost={singlePost} showSettings={showSettings} setShowSettings={setShowSettings} />
             <PostImage singlePost={singlePost} />
             <LikesCommentsButtons singlePost={singlePost} />
         </div>

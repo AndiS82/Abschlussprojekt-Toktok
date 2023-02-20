@@ -39,9 +39,24 @@
 
 /* ----- Burger Menü für Advanced Settings --- */
 /* .greyScreen input:checked  */
+.burgerClicker {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    bottom: 60px
+}
+
+.grabberSkew {
+    transform: scale(5, 1);
+
+}
+
 .grabberIcon {
     font-size: 2.3rem;
-    color: grey;
+    color: rgb(146, 145, 145);
 
 }
 
@@ -59,22 +74,14 @@
     display: none;
 }
 
-.burgerClicker {
-    cursor: pointer;
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-
 .burgerWrapper input {
     display: none;
 }
 
-.burgerWrapper input:checked {
+/* .burgerWrapper .showBurgerNav {
     opacity: 0;
     top: 50%;
-}
+} */
 
 .burgerNav {
     background: transparent;
@@ -90,14 +97,14 @@
     display: none;
 }
 
-.burgerWrapper input:checked~nav {
+.burgerWrapper .showBurgerNav {
     background-color: white;
     transition: 0.2s linear 0.2s;
     /* z-index: 1; */
     display: block;
 }
 
-.burgerWrapper input:checked~nav ul li {
+.burgerWrapper .showBurgerNav ul li {
     opacity: 1;
     transition: 0.2s linear 0.2s;
 }
@@ -106,12 +113,12 @@
     margin-right: 10px;
 }
 
-.burgerWrapper input:checked~nav ul li a {
+.burgerWrapper .showBurgerNav ul li a {
     /* z-index: 1; */
     display: block;
 }
 
-.burgerWrapper input:checked~nav ul li label .barDownBurger {
+.burgerWrapper .showBurgerNav ul li label .barDownBurger {
     /* z-index: 1; */
     display: block;
 }

@@ -8,7 +8,7 @@ import Feed from '../../components/Feed/Feed';
 import warteUhr from '../../img/Frame.png'
 
 
-const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
+const HomePage = ({ setUserData, userLoaded, setUserLoaded, showSettings, setShowSettings }) => {
     const nav = useNavigate()
     useEffect(() => {
         const getUser = async () => {
@@ -46,7 +46,7 @@ const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
                                 </Link>
                             </nav>
                         </div>
-                        <Feed userLoaded={userLoaded} />
+                        <Feed userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />
                     </div>
                     <NavbarBottom />
                 </>}

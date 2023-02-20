@@ -326,7 +326,7 @@ input:checked+.slider:before {
 }
 
 /* ----- Burger Menü für Advanced Settings --- */
-/* .greyScreen input:checked  */
+
 .greyScreenActive {
     width: 100vw;
     height: 100vh;
@@ -335,7 +335,6 @@ input:checked+.slider:before {
     background-color: rgba(128, 128, 128, 0.535);
     position: fixed;
     z-index: 1;
-
 }
 
 .greyScreenInactive {
@@ -390,12 +389,10 @@ input:checked+.slider:before {
 }
 
 .burgerWrapper input:checked~nav ul li a {
-    /* z-index: 1; */
     display: block;
 }
 
 .burgerWrapper input:checked~nav ul li label .barDownBurger {
-    /* z-index: 1; */
     display: block;
 }
 

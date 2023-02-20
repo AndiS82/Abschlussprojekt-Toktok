@@ -4,8 +4,9 @@ import { TbDotsCircleHorizontal } from "react-icons/tb";
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/UserContext';
+import SettingsView from '../SettingsView/SettingsView.jsx';
 
-const ProfilMini = () => {
+const ProfilMini = ({ showSettings, setShowSettings }) => {
     // { singlePost, post }
     const user = useContext(UserContext)
     console.log(user)
@@ -42,10 +43,12 @@ const ProfilMini = () => {
                             </div>
                         </div>
                     }
-                </div>
-                <Link to="/UnderConstruction">
-                    <TbDotsCircleHorizontal className="miniProfilIcon" />
-                </Link>
+                </div >
+                {/* <Link to="/UnderConstruction"> */}
+                <TbDotsCircleHorizontal onClick={() => setShowSettings(prev => !prev)} className={showSettings ? 'showBurgerNav miniProfilIcon' : " miniProfilIcon"} />
+                {showSettings &&
+                    <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />}
+                {/* </Link> */}
             </nav>
         </div>
 
