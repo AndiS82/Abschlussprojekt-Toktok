@@ -34,7 +34,9 @@
 
 .profileImgEdit {
     border: 1px transparent;
-    background-color: white;
+    background-color: transparent;
+    margin-top: -35px;
+    margin-left: 105px;
 }
 
 .editSection {
