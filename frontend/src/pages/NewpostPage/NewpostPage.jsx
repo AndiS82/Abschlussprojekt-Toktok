@@ -4,28 +4,24 @@ import './NewpostPage.css'
 import Gallery from '../../components/Gallery/Gallery.jsx';
 import BackButton from '../../components/BackButton/BackButton';
 import { useNavigate } from "react-router-dom";
-import UnderConstructionPage from '../UnderConstructionPage/UnderConstructionPage.jsx';
-import { Link } from "react-router-dom";
-import { TbArrowBarDown } from "react-icons/tb";
-import { FaRegHeart } from "react-icons/fa";
-import { BsBookmarkStar } from "react-icons/bs";
-import { IoQrCode } from "react-icons/io5";
-import { TfiTimer } from "react-icons/tfi";
-import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
 import { MdPhotoCamera } from "react-icons/md"
 import { IoIosArrowDown } from "react-icons/io";
 import { HiSquares2X2 } from "react-icons/hi2";
 import { CiLocationOn } from "react-icons/ci";
 import { FiSettings } from "react-icons/fi";
+import SettingsView from '../../components/SettingsView/SettingsView';
 
 const NewpostPage = ({ setUserData }) => {
     const [selectImage, setSelectImage] = useState(true)
-    const [newImage, setNewImage] = useState(false)
     const [image, setImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
     const [city, setCity] = useState(null)
     const [country, setCountry] = useState(null)
     const [userLoaded, setUserLoaded] = useState(true)
+    const [showSettings, setShowSettings] = useState(true)
+    const [lat, setLat] = useState(null);
+    const [long, setLong] = useState(null);
+    const [showLocation, setShowLocation] = useState(false)
 
     const user = useContext(UserContext)
 
@@ -53,11 +49,11 @@ const NewpostPage = ({ setUserData }) => {
             }
         }
         getUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const showImage = () => {
         setImage(URL.createObjectURL(imageRef.current.files[0]))
-        setNewImage(true)
         setImageFile(imageRef.current.files[0])
         setSelectImage(false)
     }
@@ -118,19 +114,15 @@ const NewpostPage = ({ setUserData }) => {
         const textarea = event.target
         const offSet = textarea.offsetHeight - textarea.clientHeight
         textarea.style.height = "auto"
-        console.log("Offsetheight:", textarea.offsetHeight)
+        // console.log("Offsetheight:", textarea.offsetHeight)
         textarea.style.height = textarea.scrollHeight + offSet + "px"
     }
 
-    const [lat, setLat] = useState(null);
-    const [long, setLong] = useState(null);
-    const [showLocation, setShowLocation] = useState(false)
-
     const getMyLocation = () => {
         navigator.geolocation.getCurrentPosition(function (position) {
-            console.log("Latitude: " + position.coords.latitude)
+            // console.log("Latitude: " + position.coords.latitude)
             setLat(position.coords.latitude)
-            console.log("Longitude: " + position.coords.longitude)
+            // console.log("Longitude: " + position.coords.longitude)
             setLong(position.coords.longitude)
             setShowLocation(true)
         })
@@ -138,24 +130,21 @@ const NewpostPage = ({ setUserData }) => {
 
     // console.log(lat, long)
 
-    const [addLocation, setAddLocation] = useState()
-
     useEffect(() => {
         const getLocationData = async () => {
             const location = await fetch(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat?.toString()}&lon=${long?.toString()}&limit=2&appid=${process.env.REACT_APP_WEATHER_API_KEY}`)
             const locationData = await location.json()
-            setAddLocation(locationData)
-            console.log("locationData:", locationData)
-            setCity(locationData[0].name)
-            setCountry(locationData[0].country)
+            // setAddLocation(locationData)
+            // console.log("locationData:", locationData)
+            setCity(locationData[0]?.name)
+            setCountry(locationData[0]?.country)
         }
         // console.log("addLocation:", addLocation)
         // console.log("name: ", addLocation[0].name)
         getLocationData()
     }, [lat, long])
 
-    const [showSettings, setShowSettings] = useState(true)
-    const [checked, setChecked] = useState(false)
+
     return (
         <div className='newPostMainStyle'>
             {userLoaded && <>
@@ -234,21 +223,9 @@ const NewpostPage = ({ setUserData }) => {
                                 <button className='backAndPublishButton' onClick={publish}>Publish</button>
                             </div>
                         </div>
-                        <article className='burgerWrapper'>
-                            <div className={checked ? 'greyScreenActive' : 'greyScreenInactive'}></div>
-                            <input id="burger" type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
-                            <nav className='burgerNav'>
-                                <ul>
-                                    <li><label for="burger" className='burgerDown' onClick={() => setShowSettings(prev => !prev)}><TbArrowBarDown className='barDownBurger' /></label></li>
-                                    <li><a href={checked ? "/UnderConstruction" : ""}><FiSettings className='advSetIcon' />Settings</a></li>
-                                    <li><a href="/UnderConstruction"><HiOutlineArchiveBoxArrowDown className='advSetIcon' />Archive</a></li>
-                                    <li><a href="/UnderConstruction"><TfiTimer className='advSetIcon' />Your Activity</a></li>
-                                    <li><a href="/UnderConstruction"><IoQrCode className='advSetIcon' />QR Code</a></li>
-                                    <li><a href="/UnderConstruction"><BsBookmarkStar className='advSetIcon' />Close Friends</a></li>
-                                    <li><a href="/UnderConstruction"><FaRegHeart className='advSetIcon' />Favourites</a></li>
-                                </ul>
-                            </nav>
-                        </article>
+                        {showSettings &&
+                            <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />
+                        }
                     </section>
                 }
             </>}

@@ -31,6 +31,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             else (console.log("comment not fetched"))
         }
         getData()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reRender])
     useEffect(() => {
         const getUser = async () => {
@@ -50,6 +51,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             }
         }
         getUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (

@@ -14,7 +14,7 @@ const LikeReplyTime = ({ comment, post }) => {
         if (comment?.likedBy?.includes(user._id)) {
             setLike(true)
         }
-    })
+    }, [user._id, comment])
 
     const likeHandler = async () => {
         setLike(prev => !prev)
