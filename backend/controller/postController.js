@@ -60,6 +60,7 @@ export const newComment = async (req, res) => {
         if (!dbUser) return res.status(401).end('user not verified')
         console.log(req.body.postID)
         const comment = {
+            _id: new ObjectId,
             user: {
                 _id: new ObjectId(req.body._id),
                 username: req.body.username,
@@ -150,13 +151,24 @@ export const likeSingleComment = async (req, res) => {
     try {
         if (req.body.result === true) {
             const commentid = req.body.commentId
+            console.log(commentid)
             try {
                 const db = await getDb()
-                const commentLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, {
-                    'comment._id': { commentid: { $addToSet: { likedBy: req.body.likedBy } } }
-                })
+                const commentLiked = await db.collection(COL).findOne({ _id: new ObjectId(postid), comments: [{ _id: { commentid } }] })
+                // , {
+                //     $addToSet:
+                //     {
+                //         comments: [
+                //             {
+                //                 likedBy: req.body.likedBy
+                //             }]
+                //     }
+                // })
+
+                console.log(commentLiked)
                 res.status(200).json(commentLiked)
             } catch (error) {
+                console.log(error.message)
                 res.status(400).end(error.message)
             }
         }

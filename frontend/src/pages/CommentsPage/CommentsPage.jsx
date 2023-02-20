@@ -66,7 +66,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                         </Link>
                     </nav>
                     <ProfilMini singlePost={postData} />
-                    <PostCaption />
+                    <PostCaption postData={postData} />
                     <div className='LCB-Border'>
                         <div className='LCB-Time'>
                             <p>{moment(postData.createdAt).fromNow()}</p>
