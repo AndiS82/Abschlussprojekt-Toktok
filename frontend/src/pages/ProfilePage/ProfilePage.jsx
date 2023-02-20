@@ -13,6 +13,8 @@ import './ProfilePage.css'
 import { VscGrabber } from "react-icons/vsc";
 import warteUhr from '../../img/Frame.png'
 import SettingsView from '../../components/SettingsView/SettingsView';
+import categoryIMG from '../../img/Category.png';
+import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
 
 const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
@@ -54,34 +56,48 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
     }
 
     return (
-        <main className='profile-container'>
+        <main>
             {userLoaded && <>
-                <div className='profile-topbar'>
-                    <BackButton />
-                    <p onClick={logout}>Logout</p>
-                </div>
-                <section className='profileHeader'>
-                    <div className='imageIconContainer'><img className='iconImage' src={MiniLogo} alt="toktok"></img>
+                <div className='profile-container'>
+                    <div className='profile-topbar'>
+                        <BackButton />
+                        <p onClick={logout}>Logout</p>
                     </div>
-                    <h3 className='profileH3'>{user.username}</h3>
-                    <div className='imageIconContainer'>
-                        <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo} alt="upload"></img></Link>
-                        <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo} alt="write"></img></Link>
-                        <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo} alt="edit"></img></Link>
+                    <section className='profileHeader'>
+                        <div className='imageIconContainer'>
+                            <img src={MiniLogo}></img>
+                            <h3 className='profileH3'>{user.username}</h3>
+                        </div>
+                        <div className='imageIconContainer1'>
+                            <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo}></img></Link>
+                            <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo}></img></Link>
+                            <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo}></img></Link>
+                        </div>
+                    </section>
+                    <section className='mainProfile'>
+                        <img src={user.image.url ? user.image.url : ImagePlaceholder} alt="placeholder" />
+                        <h3 className='profileH3'>{user.name}</h3>
+                        <p>{user.occupation}</p>
+                        <p>{user.aboutMe}</p>
+                        <p>{user.website}</p>
+                    </section>
+                    <div className='postsFollowers'>
+                        <div>
+                            <p className='postsFollowersNumber'>{user.numberOfPosts}</p>
+                            <p className='postsFollowersText'>Posts</p>
+                        </div>
+                        <div>
+                            <p className='postsFollowersNumber'>{user.followedBy.length}</p>
+                            <p className='postsFollowersText'>Followers</p>
+                        </div>
+                        <div>
+                            <p className='postsFollowersNumber'>{user.following.length}</p>
+                            <p className='postsFollowersText'>Following</p>
+                        </div>
                     </div>
-                </section>
-                <section className='mainProfile'>
-                    <h3 className='profileH3'>{user.name}</h3>
-                    <p>{user.occupation}</p>
-                    <p>{user.aboutMe}</p>
-                    <p>{user.website}</p>
-                </section>
-                <div>
-                    <p>{user.numberOfPosts}Posts</p>
-                    <p>{user.followedBy.length}Followers</p>
-                    <p>{user.following.length}Following</p>
+
+                    <Gallery user={user} />
                 </div>
-                <Gallery user={user} />
                 <NavbarBottom />
                 <label htmlFor="burger" className='burgerClicker' onClick={() => setShowSettings(prev => !prev)}>
                     <span className='grabberSkew'><VscGrabber className='grabberIcon' /></span>
