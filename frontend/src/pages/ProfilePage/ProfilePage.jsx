@@ -14,8 +14,9 @@ import { TfiTimer } from "react-icons/tfi";
 import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
 import { FiSettings } from "react-icons/fi";
 import { VscGrabber } from "react-icons/vsc";
+import SettingsView from '../../components/SettingsView/SettingsView';
 
-const ProfilePage = ({ setUserData, setUserLoaded, userLoaded }) => {
+const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
     const user = useContext(UserContext)
 
@@ -51,7 +52,6 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded }) => {
 
     }
 
-    const [showSettings, setShowSettings] = useState(true)
     const [checked, setChecked] = useState(false)
 
     return (
@@ -62,31 +62,18 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     <p onClick={logout}>Logout</p>
                 </div>
 
-                <ProfilMini />
+                <ProfilMini showSettings={showSettings} setShowSettings={setShowSettings} />
                 <Link to="/editprofile">TEMP LINK TO EDIT PROFILE</Link>
                 <Gallery user={user} />
                 <NavbarBottom />
-                <label for="burger" className='burgerClicker' onClick={() => setShowSettings(prev => !prev)}>
-                    <VscGrabber className='grabberIcon' />
+                <label htmlFor="burger" className='burgerClicker' onClick={() => setShowSettings(prev => !prev)}>
+                    <span className='grabberSkew'><VscGrabber className='grabberIcon' /></span>
                 </label>
-                <article className='burgerWrapper'>
-                    <div className={checked ? 'greyScreenActive' : 'greyScreenInactive'}></div>
-                    <input id="burger" type="checkbox" checked={checked} onChange={() => setChecked(!checked)} />
-                    <nav className='burgerNav'>
-                        <ul>
-                            <li><label for="burger" className='burgerDown' onClick={() => setShowSettings(prev => !prev)}><TbArrowBarDown className='barDownBurger' /></label></li>
-                            <li><a href={checked ? "/UnderConstruction" : ""}><FiSettings className='advSetIcon' />Settings</a></li>
-                            <li><a href="/UnderConstruction"><HiOutlineArchiveBoxArrowDown className='advSetIcon' />Archive</a></li>
-                            <li><a href="/UnderConstruction"><TfiTimer className='advSetIcon' />Your Activity</a></li>
-                            <li><a href="/UnderConstruction"><IoQrCode className='advSetIcon' />QR Code</a></li>
-                            <li><a href="/UnderConstruction"><BsBookmarkStar className='advSetIcon' />Close Friends</a></li>
-                            <li><a href="/UnderConstruction"><FaRegHeart className='advSetIcon' />Favourites</a></li>
-                        </ul>
-                    </nav>
-                </article>
+                {showSettings &&
+                    <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />}
             </>}
             {!userLoaded && <p>Loading ...</p>}
-        </main>
+        </main >
     );
 }
 
