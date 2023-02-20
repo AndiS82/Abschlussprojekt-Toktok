@@ -22,8 +22,8 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const [about, setAbout] = useState(user?.aboutMe)
     const [sex, setSex] = useState(user?.sex)
     const imageRef = useRef()
-
-    const [setUpdatedUser] = useState()
+    // eslint-disable-next-line 
+    const [updatedUser, setUpdatedUser] = useState()
     const [image, setImage] = useState({ defaultImage })
     const [imageFile, setImageFile] = useState(null)
     const [showFileInput, setShowFileInput] = useState(false)

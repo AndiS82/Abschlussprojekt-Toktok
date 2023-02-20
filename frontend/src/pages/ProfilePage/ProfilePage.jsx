@@ -61,13 +61,13 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     <p onClick={logout}>Logout</p>
                 </div>
                 <section className='profileHeader'>
-                    <div className='imageIconContainer'><img className='iconImage' src={MiniLogo}></img>
+                    <div className='imageIconContainer'><img className='iconImage' src={MiniLogo} alt="toktok"></img>
                     </div>
                     <h3 className='profileH3'>{user.username}</h3>
                     <div className='imageIconContainer'>
-                        <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo}></img></Link>
-                        <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo}></img></Link>
-                        <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo}></img></Link>
+                        <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo} alt="upload"></img></Link>
+                        <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo} alt="write"></img></Link>
+                        <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo} alt="edit"></img></Link>
                     </div>
                 </section>
                 <section className='mainProfile'>
