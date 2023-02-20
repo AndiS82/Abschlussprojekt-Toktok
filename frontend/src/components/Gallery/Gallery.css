@@ -4,6 +4,7 @@
     grid-column-gap: 5px;
     grid-row-gap: 5px;
     margin: 10px 0;
+    padding-bottom: 75px;
 }
 
 .div1 {
@@ -20,4 +21,31 @@
     height: 100%;
     aspect-ratio: 1/1;
     margin: 0 auto;
+}
+
+.galleryCatIMG {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    width: 33%;
+    justify-content: center;
+    border-bottom: 4px solid #FF4D67;
+    margin: 20px 0 5px 0;
+}
+
+.galleryCatIMG img {
+    width: 13px;
+    height: 13px;
+    margin-bottom: 10px;
+}
+
+.galleryCatIMG h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FF4D67;
+    margin-bottom: 10px;
+}
+
+.borderTopGallery {
+    border-top: 1px solid rgba(0, 0, 0, 0.144);
 }

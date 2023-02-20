@@ -4,21 +4,99 @@
     box-sizing: border-box;
 }
 
+.profile-container {
+    margin: 20px 20px 50px 20px;
+}
+
 .profileHeader {
-    margin: 1% auto;
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.imageIconContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.imageIconContainer1 {
+    display: flex;
+    gap: 20px;
+}
+
+.mainProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainProfile img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+}
+
+.mainProfile h3 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.mainProfile p:nth-of-type(1) {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.mainProfile p:nth-of-type(2) {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.mainProfile p:nth-of-type(3) {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #246BFD;
+}
+
+.postsFollowers {
     display: grid;
-    grid-template-columns: 0.5fr 4fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    margin: 30px 0;
+    text-align: center;
+}
+
+.postsFollowers div:nth-of-type(2) {
+    border-left: 1px solid rgba(0, 0, 0, 0.144);
+    border-right: 1px solid rgba(0, 0, 0, 0.144);
+
+}
+
+.postsFollowersNumber {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.postsFollowersText {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 5px;
 }
 
 .profileH3 {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
 }
 
 .iconImage {
-    height: 30px;
-    width: 30px;
-    margin-left: 10px;
+    height: 25px;
+    width: 25px;
 }
 
 .profile-topbar {
