@@ -11,6 +11,7 @@ const FollowButton = ({ followedUser }) => {
         if (followedUser?.followedBy.includes(user._id)) {
             setFollowing(true)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const followHandler = async () => {

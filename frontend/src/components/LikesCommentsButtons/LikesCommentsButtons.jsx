@@ -17,7 +17,7 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
             setLike(true)
         }
 
-    }, [usePost])
+    }, [usePost, user._id])
 
     useEffect(() => {
         if (singlePost) {

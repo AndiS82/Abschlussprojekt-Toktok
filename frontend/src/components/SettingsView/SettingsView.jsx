@@ -6,7 +6,6 @@ import { IoQrCode } from "react-icons/io5";
 import { TfiTimer } from "react-icons/tfi";
 import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
 import { FiSettings } from "react-icons/fi";
-import { VscGrabber } from "react-icons/vsc";
 
 const SettingsView = ({ showSettings, setShowSettings }) => {
     return (

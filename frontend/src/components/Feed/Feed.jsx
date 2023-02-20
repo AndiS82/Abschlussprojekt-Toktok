@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import Profil from '../Profil/Profil'
 import './Feed.css'
 

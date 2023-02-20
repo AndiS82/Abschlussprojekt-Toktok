@@ -1,4 +1,4 @@
-import { ObjectId, Timestamp } from "mongodb"
+import { ObjectId } from "mongodb"
 import { getDb } from "../util/db.js"
 import { verifyToken } from "../util/token.js"
 import { updateUserPostsCount } from "./userController.js"

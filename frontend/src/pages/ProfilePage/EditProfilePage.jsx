@@ -23,11 +23,12 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const [sex, setSex] = useState(user?.sex)
     const imageRef = useRef()
 
-    const [updatedUser, setUpdatedUser] = useState()
+    const [setUpdatedUser] = useState()
     const [image, setImage] = useState({ defaultImage })
     const [imageFile, setImageFile] = useState(null)
     const [showFileInput, setShowFileInput] = useState(false)
-    const [edit, setEdit] = useState(true)
+    const [edit] = useState(true)
+    const [imageUpdated, setImageUpdated] = useState(false)
 
     useEffect(() => {
         // console.log(user)
@@ -38,7 +39,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
             setImage(defaultImage)
         }
 
-    }, [])
+    }, [user])
 
     useEffect(() => {
         const getUser = async () => {
@@ -68,9 +69,8 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
             }
         }
         getUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    const [imageUpdated, setImageUpdated] = useState(false)
 
     const showImage = () => {
         if (imageRef?.current?.files[0] !== null) {
@@ -136,7 +136,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
         }
     }
 
-    console.log(nameRef)
+    // console.log(nameRef)
     return (
         <div>
             {userLoaded &&

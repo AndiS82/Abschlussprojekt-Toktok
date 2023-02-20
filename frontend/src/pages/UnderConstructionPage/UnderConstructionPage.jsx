@@ -22,6 +22,7 @@ const UnderConstructionPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             }
         }
         getUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps 
     }, [])
 
     return (
@@ -30,7 +31,7 @@ const UnderConstructionPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                 <BackButton />
                 <div className='underConstruction'>
                     <h1>Under Construction</h1>
-                    <img src='https://source.unsplash.com/random/?construction'></img>
+                    <img src='https://source.unsplash.com/random/?construction' alt="construction"></img>
                 </div>
                 <NavbarBottom />
             </>}

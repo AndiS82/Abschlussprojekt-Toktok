@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/BackButton/BackButton';
 import Gallery from '../../components/Gallery/Gallery';
@@ -10,13 +10,6 @@ import WriteLogo from '../../img/write.png';
 import EditLogo from '../../img/edit.png';
 import { UserContext } from '../../contexts/UserContext';
 import './ProfilePage.css'
-import { TbArrowBarDown } from "react-icons/tb";
-import { FaRegHeart } from "react-icons/fa";
-import { BsBookmarkStar } from "react-icons/bs";
-import { IoQrCode } from "react-icons/io5";
-import { TfiTimer } from "react-icons/tfi";
-import { HiOutlineArchiveBoxArrowDown } from "react-icons/hi2";
-import { FiSettings } from "react-icons/fi";
 import { VscGrabber } from "react-icons/vsc";
 import warteUhr from '../../img/Frame.png'
 import SettingsView from '../../components/SettingsView/SettingsView';
@@ -43,6 +36,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
             }
         }
         getUser()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     console.log(user)
@@ -58,8 +52,6 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
         }
 
     }
-
-    const [checked, setChecked] = useState(false)
 
     return (
         <main className='profile-container'>
