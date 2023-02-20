@@ -16,7 +16,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const [reRender, setReRender] = useState(false)
     const nav = useNavigate()
     const params = useParams()
-    console.log('postData', postData)
+    // console.log('postData', postData)
 
     useEffect(() => {
         const getData = async () => {
@@ -26,7 +26,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             if (posts.ok) {
                 const fetchedPosts = await posts.json()
                 setPostData(fetchedPosts)
-                console.log('fetchedPosts', fetchedPosts)
+                // console.log('fetchedPosts', fetchedPosts)
             }
             else (console.log("comment not fetched"))
         }
@@ -81,7 +81,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                         return (
                             <section key={key}>
                                 <ProfilMini post={post} />
-                                <p className='postedContent'>{post.content}</p>
+                                <p className='postedContent'>{post?.content}</p>
                                 <LikeReplyTime commentInPost={post} post={postData} />
                             </section>)
                     })}
