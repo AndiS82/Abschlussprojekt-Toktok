@@ -11,7 +11,7 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
     const [usePost, setUsePost] = useState(false)
     const [like, setLike] = useState(false) // fürs schicken ins Backend und display änderung des herzes
     let [countLikes, setCountLikes] = useState(0) // für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
-    console.log('singlePost', singlePost)
+    // console.log('singlePost', singlePost)
     useEffect(() => {
         if (usePost?.likedBy?.includes(user._id)) {
             setLike(true)

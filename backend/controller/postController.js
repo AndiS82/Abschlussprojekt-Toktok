@@ -48,36 +48,6 @@ export const newPost = async (req, res) => {
     }
 }
 
-export const newComment = async (req, res) => {
-    console.log('new comment')
-    const token = req.cookies.token
-    console.log(req.body)
-    try {
-        const db = await getDb()
-        const verify = verifyToken(token)
-        const dbUser = await db.collection('users').find({ _id: new ObjectId(verify.userid) })
-        console.log(`dbUser`)
-        if (!dbUser) return res.status(401).end('user not verified')
-        console.log(req.body.postID)
-        const comment = {
-            _id: new ObjectId,
-            user: {
-                _id: new ObjectId(req.body._id),
-                username: req.body.username,
-                occupation: req.body.occupation,
-                image: req.body.image
-            },
-            content: req.body.content,
-            createdAt: new Date(),
-        }
-
-        const result = await db.collection(COL).updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment } })
-        res.status(200).json(result)
-    } catch (error) {
-        res.status(400).end(error.message)
-    }
-}
-
 // Function, um einen Kommentar löschen zu können
 // Function, um einen Post löschen zu können
 
@@ -142,51 +112,4 @@ export const likeSinglePost = async (req, res) => {
         }
     }
     res.status(200).end()
-}
-
-export const likeSingleComment = async (req, res) => {
-    console.log('like single comment')
-    const params = req.params
-    const postid = params.id
-    try {
-        if (req.body.result === true) {
-            const commentid = req.body.commentId
-            console.log(commentid)
-            try {
-                const db = await getDb()
-                const commentLiked = await db.collection(COL).findOne({ _id: new ObjectId(postid), comments: [{ _id: { commentid } }] })
-                // , {
-                //     $addToSet:
-                //     {
-                //         comments: [
-                //             {
-                //                 likedBy: req.body.likedBy
-                //             }]
-                //     }
-                // })
-
-                console.log(commentLiked)
-                res.status(200).json(commentLiked)
-            } catch (error) {
-                console.log(error.message)
-                res.status(400).end(error.message)
-            }
-        }
-        if (req.body.result === false) {
-            try {
-                const db = await getDb()
-                const postLiked = await db.collection(COL).updateOne({ _id: new ObjectId(postid) }, {
-                    'comment._id': { commentid: { $pull: { likedBy: req.body.likedBy } } }
-                })
-                res.status(200).json(postLiked)
-            } catch (error) {
-                res.status(400).end(error.message)
-            }
-        }
-    }
-    catch (error) {
-        console.log(error.message)
-        res.status(400).end()
-    }
-
 }
