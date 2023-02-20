@@ -8,7 +8,8 @@ import LikeReplyTime from '../../components/LikeReplyTime/LikeReplyTime';
 import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
-import moment from "moment"
+import moment from "moment";
+import warteUhr from '../../img/Frame.png';
 import CommentsMiniProfil from '../../components/CommentsMiniProfil/CommentsMiniProfil';
 
 const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
@@ -88,7 +89,9 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     })}
                     <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
                 </>}
-            {!userLoaded && <p>Loading ...</p>}
+            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>}
         </div>
     );
 }

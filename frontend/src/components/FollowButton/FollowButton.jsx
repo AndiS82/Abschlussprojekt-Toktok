@@ -8,7 +8,7 @@ const FollowButton = ({ followedUser }) => {
     const user = useContext(UserContext)
 
     useEffect(() => {
-        if (followedUser?.followedBy.includes(user._id)) {
+        if (followedUser?.followedBy?.includes(user._id)) {
             setFollowing(true)
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

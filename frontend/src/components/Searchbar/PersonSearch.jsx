@@ -5,10 +5,12 @@ import './PersonSearch.css'
 
 const userFetch = process.env.REACT_APP_BACKEND_URL_USERS;
 
-const PersonSearch = () => {
+const PersonSearch = ({ useContextUser }) => {
     const [searchData, setSearchData] = useState([])
     const [filteredData, setFilteredData] = useState([])
     const [wordEntered, setWordEntered] = useState("")
+
+    const useContextUserName = useContextUser.username
 
     useEffect(() => {
         const getData = async () => {
@@ -24,9 +26,9 @@ const PersonSearch = () => {
         setWordEntered(searchWord);
         const filteredSearch = searchData.filter((user) => {
             console.log(user)
-            return user.user?.toLowerCase().includes(searchWord.toLowerCase())
-                || user.username?.toLowerCase().includes(searchWord.toLowerCase())
-                || user.name?.toLowerCase().includes(searchWord.toLowerCase())
+            return useContextUser.user.toLowerCase().includes(searchWord.toLowerCase()) !== user.user?.toLowerCase().includes(searchWord.toLowerCase())
+                || useContextUser.username.toLowerCase().includes(searchWord.toLowerCase()) !== user.username?.toLowerCase().includes(searchWord.toLowerCase())
+                || useContextUser.name.toLowerCase().includes(searchWord.toLowerCase()) !== user.name?.toLowerCase().includes(searchWord.toLowerCase())
         }, [event])
         setFilteredData(filteredSearch)
 
@@ -54,7 +56,7 @@ const PersonSearch = () => {
             {wordEntered === "" &&
                 <div id='searchResultsDiv'>
                     <div>
-                        {searchData.map((user, index) => {
+                        {searchData?.filter(user => user._id !== useContextUser._id).map((user, index) => {
                             return (
                                 <div className='searchUserContainer' key={index}>
                                     <div className='searchPicContainer'>

@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
 import PersonSearch from '../../components/Searchbar/PersonSearch';
+import { UserContext } from '../../contexts/UserContext';
+import warteUhr from '../../img/Frame.png'
 import './SearchPage.css'
 
 const SearchPage = ({ setUserData, setUserLoaded, userLoaded }) => {
+    const useContextUser = useContext(UserContext)
     const nav = useNavigate()
     useEffect(() => {
         const getUser = async () => {
@@ -31,11 +34,13 @@ const SearchPage = ({ setUserData, setUserLoaded, userLoaded }) => {
         <div className='searchPage'>
             {userLoaded && <>
                 <div>
-                    <PersonSearch />
+                    <PersonSearch useContextUser={useContextUser} />
                 </div>
                 <NavbarBottom />
             </>}
-            {!userLoaded && <p>Loading ...</p>}
+            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>}
         </div>
     )
 }
