@@ -5,16 +5,33 @@ import { useContext, useEffect, useState } from 'react';
 import moment from "moment"
 import { UserContext } from '../../contexts/UserContext';
 
-const LikeReplyTime = ({ comment, post }) => {
+const LikeReplyTime = ({ commentInPost, post }) => {
     const user = useContext(UserContext)
     const [like, setLike] = useState(false)// fürs schicken ins Backend und display änderung des herzes
     let [countLikes, setCountLikes] = useState(0)// für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
+    const [singleComment, setSingleComment] = useState()
+
+    console.log('userId', user._id)
+
 
     useEffect(() => {
-        if (comment?.likedBy?.includes(user._id)) {
+        const getComment = async () => {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${post._id}`)
+            if (response.ok) {
+                const data = await response.json()
+                setSingleComment(data[0])
+                console.log(data[0].likedBy)
+            }
+        }
+        getComment()
+    }, [post._id])
+
+    useEffect(() => {
+        if (singleComment?.likedBy?.includes(user._id)) {
             setLike(true)
         }
-    }, [user._id, comment])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [user._id])
 
     const likeHandler = async () => {
         setLike(prev => !prev)
@@ -27,7 +44,7 @@ const LikeReplyTime = ({ comment, post }) => {
         const body = {
             result: !like, // zeigt korrekt, ob der User diesen Post liked oder nicht
             likedBy: user._id,
-            commentId: comment._id
+            commentId: singleComment._id
         }
 
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${post._id}`, { // fetch muss auf dem Post zugreifen, da das Kommentar kein eigenes Dokument ist
@@ -47,15 +64,12 @@ const LikeReplyTime = ({ comment, post }) => {
         }
     }
 
-
-    console.log(comment)
-
     return (
         <div className='LRT'>
             <div className='LRT-heart' onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             <p>{countLikes}</p>
             <p>Reply</p>
-            <p>{moment(comment?.createdAt).fromNow()}</p>
+            <p>{moment(singleComment?.createdAt).fromNow()}</p>
         </div>
     );
 }

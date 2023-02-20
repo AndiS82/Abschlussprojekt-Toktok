@@ -6,8 +6,9 @@ import multer from 'multer'
 import { followUser, getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
-import { getAllPosts, getSinglePost, getUserPosts, likeSingleComment, likeSinglePost, newComment, newPost } from './controller/postController.js'
+import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
+import { getSingleComment, likeSingleComment, saveCommentToPost } from './controller/commentController.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
 const PORT = process.env.PORT
@@ -67,8 +68,12 @@ app.get('/api/:user/posts', getUserPosts)
 // get alle Posts von allen Usern
 app.get('/api/posts', getAllPosts)
 
+// COMMENTS
+// get alle Comments für den Post
+app.get('/api/comments/:id', getSingleComment)
+
 // KOMMENTARE
-app.put('/api/:user/post', newComment)
+app.put('/api/:user/post', saveCommentToPost)
 
 //LIKES
 app.put('/api/posts/:id', formReader.none(), likeSinglePost)

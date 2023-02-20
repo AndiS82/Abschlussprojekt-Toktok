@@ -82,7 +82,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                             <section key={key}>
                                 <ProfilMini post={post} />
                                 <p className='postedContent'>{post.content}</p>
-                                <LikeReplyTime comment={post} post={postData} />
+                                <LikeReplyTime commentInPost={post} post={postData} />
                             </section>)
                     })}
                     <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
