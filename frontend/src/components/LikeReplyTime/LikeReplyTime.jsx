@@ -9,29 +9,29 @@ const LikeReplyTime = ({ commentInPost, post }) => {
     const user = useContext(UserContext)
     const [like, setLike] = useState(false)// fürs schicken ins Backend und display änderung des herzes
     let [countLikes, setCountLikes] = useState(0)// für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
+
+    // eslint-disable-next-line
     const [singleComment, setSingleComment] = useState()
 
-    console.log('userId', user._id)
-
+    console.log(commentInPost)
 
     useEffect(() => {
         const getComment = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${post._id}`)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentInPost._id}`)
             if (response.ok) {
                 const data = await response.json()
                 setSingleComment(data[0])
-                console.log(data[0].likedBy)
+                console.log(data[0])
+                // console.log(user._id)
+                if (data[0]?.likedBy?.includes(user._id)) {
+                    setLike(true)
+                }
+                setCountLikes(Number(data[0]?.likedBy?.length))
             }
         }
         getComment()
-    }, [post._id])
-
-    useEffect(() => {
-        if (singleComment?.likedBy?.includes(user._id)) {
-            setLike(true)
-        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user._id])
+    }, [post._id])
 
     const likeHandler = async () => {
         setLike(prev => !prev)
@@ -44,7 +44,7 @@ const LikeReplyTime = ({ commentInPost, post }) => {
         const body = {
             result: !like, // zeigt korrekt, ob der User diesen Post liked oder nicht
             likedBy: user._id,
-            commentId: singleComment._id
+            commentId: commentInPost._id
         }
 
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${post._id}`, { // fetch muss auf dem Post zugreifen, da das Kommentar kein eigenes Dokument ist
@@ -69,7 +69,7 @@ const LikeReplyTime = ({ commentInPost, post }) => {
             <div className='LRT-heart' onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             <p>{countLikes}</p>
             <p>Reply</p>
-            <p>{moment(singleComment?.createdAt).fromNow()}</p>
+            <p>{moment(commentInPost?.createdAt).fromNow()}</p>
         </div>
     );
 }

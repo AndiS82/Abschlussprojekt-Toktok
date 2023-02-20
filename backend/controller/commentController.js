@@ -5,22 +5,20 @@ import { verifyToken } from "../util/token.js"
 const COL = 'comments'
 
 export const newComment = async (comment) => {
-    console.log(comment)
+    // console.log(comment)
     try {
         const db = await getDb()
         const result = await db.collection(COL).insertOne(comment)
-        res.status(200).json(result)
     } catch (error) {
         console.log(error.message)
-        res.status(400).end(error.message)
     }
 }
 
 export const getSingleComment = async (req, res) => {
-    console.log(req.body)
+    // console.log(req.params.id)
     try {
         const db = await getDb()
-        const result = await db.collection(COL).find().toArray()
+        const result = await db.collection(COL).find({ _id: new ObjectId(req.params.id) }).toArray()
         res.status(200).json(result)
     } catch (error) {
         console.log(error.message)
@@ -29,7 +27,7 @@ export const getSingleComment = async (req, res) => {
 }
 
 export const saveCommentToPost = async (req, res) => {
-    console.log('new comment')
+    // console.log('new comment')
     const token = req.cookies.token
     console.log(req.body)
     try {
@@ -49,6 +47,7 @@ export const saveCommentToPost = async (req, res) => {
             },
             content: req.body.content,
             createdAt: new Date(),
+            likedBy: []
         }
 
         const result = await db.collection("posts").updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment } })
@@ -60,11 +59,12 @@ export const saveCommentToPost = async (req, res) => {
 }
 
 export const likeSingleComment = async (req, res) => {
-    console.log('like single comment')
-    console.log(req.body)
+    // console.log('like single comment')
+    // console.log(req.body)
     const commentid = req.body.commentId
     try {
         if (req.body.result === true) {
+            console.log('true')
             try {
                 const db = await getDb()
                 const commentLiked = await db.collection(COL).updateOne({ _id: new ObjectId(commentid) }, { $addToSet: { likedBy: req.body.likedBy } })
@@ -75,6 +75,7 @@ export const likeSingleComment = async (req, res) => {
             }
         }
         if (req.body.result === false) {
+            console.log('false')
             try {
                 const db = await getDb()
                 const commentLiked = await db.collection(COL).updateOne({ _id: new ObjectId(commentid) }, { $pull: { likedBy: req.body.likedBy } })
