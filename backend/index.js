@@ -3,7 +3,7 @@ import express from 'express'
 import cors from 'cors'
 import morgan from 'morgan'
 import multer from 'multer'
-import { followUser, getAllUsers, getOneUser, login, logoutUser, register, updateUser } from './controller/userController.js'
+import { followUser, getAllUsers, getOneUser, getUserProfile, login, logoutUser, register, updateUser } from './controller/userController.js'
 import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
 import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newPost } from './controller/postController.js'
@@ -45,8 +45,11 @@ app.post('/api/register', encryptFunktion, register)
 //Alle Users für die Suchfunktion
 app.get('/api/users', getAllUsers)
 
-// Find einen User
+// Find den eingeloggten User
 app.get('/api/user', getOneUser)
+
+// Find einen anderen User
+app.get('/api/profile/:userid', getUserProfile)
 
 // Update einen User
 app.put('/api/user', formReader.none(), updateUser)

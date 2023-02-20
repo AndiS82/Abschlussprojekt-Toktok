@@ -8,6 +8,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPages from './pages/LoginPages/LoginPages';
 import NewpostPage from './pages/NewpostPage/NewpostPage';
 import EditProfilePage from './pages/ProfilePage/EditProfilePage';
+import OtherProfilePage from './pages/ProfilePage/OtherProfilePage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SearchPage from './pages/SearchPage/SearchPage';
 import UnderConstructionPage from './pages/UnderConstructionPage/UnderConstructionPage';
@@ -34,6 +35,7 @@ function App() {
             <Route path='/Search' element={<SearchPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
             <Route path='/UnderConstruction' element={<UnderConstructionPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
             <Route path='/Profile' element={<ProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />} />
+            <Route path='/Profile/:user' element={<OtherProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />} />
             <Route path='/EditProfile' element={<EditProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
           </Routes>
         </Router>

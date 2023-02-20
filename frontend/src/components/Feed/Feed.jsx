@@ -14,7 +14,7 @@ const Feed = ({ userLoaded, showSettings, setShowSettings }) => {
             if (response.ok) {
                 const data = await response.json()
                 setFeed(data)
-                // console.log(data)
+                console.log(data)
             }
             else {
                 console.log('feed not loaded')
