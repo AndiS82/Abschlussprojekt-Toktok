@@ -213,7 +213,7 @@ const NewpostPage = ({ setUserData }) => {
                                 </section>
                             </div>
                             <div className='wrapperSettings'>
-                                <label for="burger" className='burgerClicker' onClick={() => setShowSettings(prev => !prev)}>
+                                <label for="burger" className='advancedSettings' onClick={() => setShowSettings(prev => !prev)}>
                                     <FiSettings className='locationIcon' />
                                     <h2>Advanced Settings</h2>
                                 </label>
@@ -224,7 +224,11 @@ const NewpostPage = ({ setUserData }) => {
                             </div>
                         </div>
                         {showSettings &&
-                            <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />
+                            <>
+                                <div className='greyScreenActive'></div>
+                                <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />
+                            </>
+
                         }
                     </section>
                 }

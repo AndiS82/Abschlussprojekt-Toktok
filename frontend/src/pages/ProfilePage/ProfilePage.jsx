@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import BackButton from '../../components/BackButton/BackButton';
 import Gallery from '../../components/Gallery/Gallery';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom';
-// import ProfilMini from '../../components/ProfilMini/ProfilMini.jsx';
 import MiniLogo from '../../img/LogoMini.png';
 import UploadLogo from '../../img/upload.png';
 import WriteLogo from '../../img/write.png';
@@ -13,7 +12,6 @@ import './ProfilePage.css'
 import { VscGrabber } from "react-icons/vsc";
 import warteUhr from '../../img/Frame.png'
 import SettingsView from '../../components/SettingsView/SettingsView';
-import categoryIMG from '../../img/Category.png';
 import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
 
 const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
@@ -65,13 +63,13 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     </div>
                     <section className='profileHeader'>
                         <div className='imageIconContainer'>
-                            <img src={MiniLogo}></img>
+                            <img src={MiniLogo} alt="toktok"></img>
                             <h3 className='profileH3'>{user.username}</h3>
                         </div>
                         <div className='imageIconContainer1'>
-                            <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo}></img></Link>
-                            <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo}></img></Link>
-                            <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo}></img></Link>
+                            <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo} alt="new post"></img></Link>
+                            <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo} alt="edit profile"></img></Link>
+                            <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo} alt="settings"></img></Link>
                         </div>
                     </section>
                     <section className='mainProfile'>
@@ -103,7 +101,11 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     <span className='grabberSkew'><VscGrabber className='grabberIcon' /></span>
                 </label>
                 {showSettings &&
-                    <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />}
+                    <>
+                        <div className='greyScreenActive'></div>
+                        <SettingsView showSettings={showSettings} setShowSettings={setShowSettings} />
+                    </>
+                }
             </>}
 
             {!userLoaded && <div className="notLoadedDiv">

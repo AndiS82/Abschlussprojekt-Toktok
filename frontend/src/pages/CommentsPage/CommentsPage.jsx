@@ -9,6 +9,7 @@ import PostComment from '../../components/PostComment/PostComment';
 import BackButton from '../../components/BackButton/BackButton';
 import { useEffect, useState } from 'react';
 import moment from "moment"
+import CommentsMiniProfil from '../../components/CommentsMiniProfil/CommentsMiniProfil';
 
 const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
@@ -80,7 +81,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     {postData?.comments?.map((post, key) => {
                         return (
                             <section key={key}>
-                                <ProfilMini post={post} />
+                                <CommentsMiniProfil post={post} />
                                 <p className='postedContent'>{post?.content}</p>
                                 <LikeReplyTime commentInPost={post} post={postData} />
                             </section>)

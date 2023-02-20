@@ -33,6 +33,7 @@ const Feed = ({ userLoaded, showSettings, setShowSettings }) => {
                 </>
             }
             {!userLoaded && <p>Loading...</p>}
+            {showSettings && <div className='greyScreenActive'></div>}
         </div>
     );
 }
