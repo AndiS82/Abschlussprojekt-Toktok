@@ -15,6 +15,7 @@ import warteUhr from '../../img/Frame.png'
 import SettingsView from '../../components/SettingsView/SettingsView';
 import categoryIMG from '../../img/Category.png';
 import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
+import editIcon from '../../img/Edit_Square.png'
 
 const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
@@ -76,6 +77,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     </section>
                     <section className='mainProfile'>
                         <img src={user.image.url ? user.image.url : ImagePlaceholder} alt="placeholder" />
+                        <button className='profileImgEdit'><img src={editIcon} alt="edit" /></button>
                         <h3 className='profileH3'>{user.name}</h3>
                         <p>{user.occupation}</p>
                         <p>{user.aboutMe}</p>
@@ -95,7 +97,11 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>
-
+                    <span className='borderProfile'></span>
+                    <div className='galleryCatIMG'>
+                        <img src={categoryIMG} alt="categoryIMG" />
+                        <h3>Feeds</h3>
+                    </div>
                     <Gallery user={user} />
                 </div>
                 <NavbarBottom />

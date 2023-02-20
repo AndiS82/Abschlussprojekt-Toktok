@@ -30,21 +30,15 @@ const Gallery = () => {
     // console.log("posts Z 27 ", posts)
 
     return (
-        <div className='borderTopGallery'>
-            <div className='galleryCatIMG'>
-                <img src={categoryIMG} alt="categoryIMG" />
-                <h3>Feeds</h3>
-            </div>
-            <div className="galleryGrid">
+        <div className="galleryGrid">
 
-                {posts?.map((post, key) => {
-                    return (
-                        <article className='div1' key={key}>
-                            <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" ></img>
-                        </article>
-                    )
-                })}
-            </div>
+            {posts?.map((post, key) => {
+                return (
+                    <article className='div1' key={key}>
+                        <img className="newpostImg" src={post?.image?.url} alt="Gallerybild" ></img>
+                    </article>
+                )
+            })}
         </div>
     );
 }
