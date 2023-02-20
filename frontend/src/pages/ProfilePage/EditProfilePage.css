@@ -1,3 +1,13 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
 .profileImg-edit-section {
     display: flex;
     flex-direction: column;
@@ -22,6 +32,11 @@
     object-position: center;
 }
 
+.profileImgEdit {
+    border: 1px transparent;
+    background-color: white;
+}
+
 .editSection {
     display: flex;
     flex-direction: column;
@@ -30,6 +45,7 @@
 
 .editSection input,
 .editSection select {
+    font-family: UrbanistRegular;
     border: none;
     width: 100%;
     font-size: 14px;
@@ -43,4 +59,30 @@
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+}
+
+.editProfileSubmit {
+    font-family: UrbanistBold;
+    font-size: 14px;
+    color: #F5F5F5;
+    background-color: rgba(255, 77, 103, 1);
+    padding: 1%;
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 1px transparent;
+}
+
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
 }

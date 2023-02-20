@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { GoSearch, GoTrashcan } from "react-icons/go";
+import { GoSearch, GoTrashcan, GoPerson } from "react-icons/go";
 import FollowButton from '../FollowButton/FollowButton';
 import './PersonSearch.css'
 
@@ -46,6 +46,9 @@ const PersonSearch = () => {
                         {wordEntered !== "" && <button className='resetButton' onClick={clearButton}><GoTrashcan className='icon' /></button>}
                     </span>
                     <input className='searchInput' type="text" placeholder="Search name" onInput={enteredInput} value={wordEntered} />
+                </div>
+                <div className='goPersonDiv'>
+                    <GoPerson className='personIcon' />
                 </div>
             </form>
             {wordEntered === "" &&

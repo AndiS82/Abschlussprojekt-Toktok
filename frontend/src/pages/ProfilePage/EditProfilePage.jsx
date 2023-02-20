@@ -5,6 +5,7 @@ import './EditProfilePage.css';
 import defaultImage from '../../img/ProfileImgPlaceholder.png'
 import editIcon from '../../img/Edit_Square.png'
 import BackButton from '../../components/BackButton/BackButton';
+import warteUhr from '../../img/Frame.png'
 
 const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
     const user = useContext(UserContext)
@@ -145,7 +146,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                         <div className='profileImg-div'>
                             <img className='origProfileImg' src={image} alt="profile" />
                         </div>
-                        <button onClick={() => setShowFileInput(prev => !prev)}><img src={editIcon} alt="edit" /></button>
+                        <button className='profileImgEdit' onClick={() => setShowFileInput(prev => !prev)}><img src={editIcon} alt="edit" /></button>
                     </section>
                     <section className='editSection'>
                         {showFileInput &&
@@ -165,10 +166,12 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                         </select>
                         <input contentEditable={edit} placeholder="Website" value={user?.website} onChange={((e) => setWebsite(e.target.value))} />
                         <input contentEditable={edit} placeholder="About Me" value={user?.aboutMe} onChange={((e) => setAbout(e.target.value))} />
-                        <button onClick={submit}>Save Updates</button>
+                        <button className='editProfileSubmit' onClick={submit}>Save Updates</button>
                     </section>
                 </>}
-            {!userLoaded && <p>Loading ...</p>}
+            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>}
         </div >
     );
 }
