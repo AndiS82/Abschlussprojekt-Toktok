@@ -93,6 +93,26 @@ export const getOneUser = async (req, res) => {
     }
 }
 
+export const getUserProfile = async (req, res) => {
+    const token = req.cookies.token
+    const params = req.params.userid
+    const db = await getDb()
+    try {
+        const verify = verifyToken(token)
+        const dbUser = await db.collection(COL).findOne({ _id: new ObjectId(verify.userid) })
+        if (!dbUser) return res.status(400).end()
+        try {
+            const profile = await db.collection(COL).findOne({ _id: new ObjectId(params) })
+            res.status(200).json(profile)
+        } catch (error) {
+            console.log(error.message)
+            res.status(400).end()
+        }
+    } catch (error) {
+        res.status(401).end()
+    }
+}
+
 export const updateUser = async (req, res) => {
     console.log('update user called')
     const token = req.cookies.token

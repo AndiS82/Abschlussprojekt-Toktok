@@ -5,6 +5,12 @@
     padding: 15px 0;
 }
 
+.miniProfil a {
+    text-decoration: none;
+    color: rgba(33, 33, 33, 1);
+    cursor: pointer;
+}
+
 .miniProfilDetail {
     align-items: center;
 }
