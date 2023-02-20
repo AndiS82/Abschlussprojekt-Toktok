@@ -82,8 +82,6 @@
     margin: 20px 0 15px 0;
 }
 
-.galleryDrop {}
-
 .galleryDrop h1 {
     font-size: 1.6rem;
     display: flex;
@@ -382,6 +380,14 @@ input:checked+.slider:before {
 .burgerWrapper input:checked~nav ul li {
     opacity: 1;
     transition: 0.2s linear 0.2s;
+}
+
+.advancedSettings {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 .advSetIcon {

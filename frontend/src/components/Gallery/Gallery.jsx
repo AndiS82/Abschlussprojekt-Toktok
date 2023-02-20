@@ -18,7 +18,7 @@ const Gallery = () => {
                 // console.log("data.check", data)
                 const user = await data.json()
                 setPosts(user)
-                console.log("Gallery.jsx", user)
+                // console.log("Gallery.jsx", user)
             }
             else {
                 console.log("fetch failed")

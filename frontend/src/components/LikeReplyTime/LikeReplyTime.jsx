@@ -13,7 +13,7 @@ const LikeReplyTime = ({ commentInPost, post }) => {
     // eslint-disable-next-line
     const [singleComment, setSingleComment] = useState()
 
-    console.log(commentInPost)
+    // console.log(commentInPost)
 
     useEffect(() => {
         const getComment = async () => {
@@ -21,7 +21,7 @@ const LikeReplyTime = ({ commentInPost, post }) => {
             if (response.ok) {
                 const data = await response.json()
                 setSingleComment(data[0])
-                console.log(data[0])
+                // console.log(data[0])
                 // console.log(user._id)
                 if (data[0]?.likedBy?.includes(user._id)) {
                     setLike(true)

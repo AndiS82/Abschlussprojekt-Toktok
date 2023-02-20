@@ -11,7 +11,7 @@ const SettingsView = ({ showSettings, setShowSettings }) => {
     return (
 
         <article className='burgerWrapper'>
-            <div className='greyScreenActive'></div>
+            {/* <div className='greyScreenActive'></div> */}
             <nav className={showSettings ? 'burgerNav showBurgerNav' : "burgerNav"}>
                 <ul>
                     <li><label htmlFor="burger" className='burgerDown' onClick={() => setShowSettings(prev => !prev)}><TbArrowBarDown className='barDownBurger' /></label></li>
