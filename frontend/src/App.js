@@ -17,6 +17,10 @@ function App() {
   const [userData, setUserData] = useState()
   const [userLoaded, setUserLoaded] = useState(false)
 
+  //State für die drei Punkte
+  const [showSettings, setShowSettings] = useState(false)
+
+
   return (
     <div>
       <UserContext.Provider value={userData}>
@@ -24,12 +28,12 @@ function App() {
           <Routes>
             <Route path='/' element={<LandingPage />} />
             <Route path='/Login' element={<LoginPages setUser={setUser} />} />
-            <Route path='/Home' element={<HomePage user={user} setUserData={setUserData} userData={userData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Home' element={<HomePage user={user} setUserData={setUserData} userData={userData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />} />
             <Route path='/Comments/:postID' element={<CommentsPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
             <Route path='/Newpost' element={<NewpostPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
             <Route path='/Search' element={<SearchPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
             <Route path='/UnderConstruction' element={<UnderConstructionPage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
-            <Route path='/Profile' element={<ProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
+            <Route path='/Profile' element={<ProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />} />
             <Route path='/EditProfile' element={<EditProfilePage setUserData={setUserData} setUserLoaded={setUserLoaded} userLoaded={userLoaded} />} />
           </Routes>
         </Router>

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Profil from '../Profil/Profil'
 import './Feed.css'
 
-const Feed = ({ userLoaded }) => {
+const Feed = ({ userLoaded, showSettings, setShowSettings }) => {
     const [feed, setFeed] = useState([])
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const Feed = ({ userLoaded }) => {
             {userLoaded &&
                 <>
                     {feed?.map((singlePost, key) => {
-                        return <Profil key={key} singlePost={singlePost} />
+                        return <Profil key={key} singlePost={singlePost} showSettings={showSettings} setShowSettings={setShowSettings} />
                     })}
                 </>
             }

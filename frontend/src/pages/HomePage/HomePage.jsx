@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 import Feed from '../../components/Feed/Feed';
 
-const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
+const HomePage = ({ setUserData, userLoaded, setUserLoaded, showSettings, setShowSettings }) => {
     const nav = useNavigate()
     useEffect(() => {
         const getUser = async () => {
@@ -44,7 +44,7 @@ const HomePage = ({ setUserData, userLoaded, setUserLoaded }) => {
                                 </Link>
                             </nav>
                         </div>
-                        <Feed userLoaded={userLoaded} />
+                        <Feed userLoaded={userLoaded} showSettings={showSettings} setShowSettings={setShowSettings} />
                     </div>
                     <NavbarBottom />
                 </>}
