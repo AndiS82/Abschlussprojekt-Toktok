@@ -14,6 +14,7 @@ import warteUhr from '../../img/Frame.png'
 import SettingsView from '../../components/SettingsView/SettingsView';
 import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
 import editIcon from '../../img/Edit_Square.png'
+import categoryIMG from '../../img/Category.png';
 
 const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
