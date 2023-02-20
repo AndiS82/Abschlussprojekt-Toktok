@@ -10,6 +10,7 @@ import { HiSquares2X2 } from "react-icons/hi2";
 import { CiLocationOn } from "react-icons/ci";
 import { FiSettings } from "react-icons/fi";
 import SettingsView from '../../components/SettingsView/SettingsView';
+import warteUhr from '../../img/Frame.png';
 
 const NewpostPage = ({ setUserData }) => {
     const [selectImage, setSelectImage] = useState(true)
@@ -233,7 +234,9 @@ const NewpostPage = ({ setUserData }) => {
                     </section>
                 }
             </>}
-            {!userLoaded && <p>Loading...</p>}
+            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>}
         </div>
     );
 }

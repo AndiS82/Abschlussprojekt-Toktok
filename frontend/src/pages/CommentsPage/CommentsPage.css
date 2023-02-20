@@ -40,3 +40,17 @@
 .postedContent {
     font-size: 1.4rem;
 }
+
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
+}

@@ -5,7 +5,7 @@ import MiniLogo from '../../img/LogoMini.png';
 import { useEffect } from 'react';
 import NavbarBottom from '../../components/NavbarBottom/NavbarBottom.jsx';
 import Feed from '../../components/Feed/Feed';
-import warteUhr from '../../img/Frame.png'
+import warteUhr from '../../img/Frame.png';
 
 
 const HomePage = ({ setUserData, userLoaded, setUserLoaded, showSettings, setShowSettings }) => {
