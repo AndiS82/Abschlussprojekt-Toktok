@@ -39,7 +39,9 @@ const FollowButton = ({ followedUser }) => {
     }
 
     return (
-        <button type="button" className={following ? 'following' : 'followButton'} onClick={followHandler}>{following ? 'Following' : 'Follow'}</button>
+        <div className="followButtonContainer">
+            <button type="button" className={following ? 'following' : 'followButton'} onClick={followHandler}>{following ? 'Following' : 'Follow'}</button>
+        </div>
     );
 }
 

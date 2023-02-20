@@ -1,6 +1,14 @@
+.followButtonContainer {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 10%;
+}
+
 .followButton {
+    text-align: center;
     font-family: UrbanistLight;
-    padding: 1%;
+    padding: 20%;
     border: 2px solid rgba(255, 77, 103, 1);
     border-radius: 15px;
     color: rgba(255, 77, 103, 1);
@@ -14,12 +22,13 @@
 }
 
 .following {
+    text-align: center;
     font-family: UrbanistLight;
-    padding: 1%;
+    padding: 20%;
     border: 2px solid rgba(255, 77, 103, 1);
     border-radius: 15px;
     background-color: rgba(255, 77, 103, 1);
     color: white;
-    margin-right: 0.5%;
+    margin-right: 0;
     font-size: 2rem;
 }

@@ -1,5 +1,24 @@
-.profile-container {
-    margin: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profileHeader {
+    margin: 1% auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 0.5fr 4fr 1fr;
+}
+
+.profileH3 {
+    font-size: 2.5rem;
+}
+
+.iconImage {
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
 }
 
 .profile-topbar {
@@ -148,4 +167,18 @@
 
 .advSetIcon {
     font-size: 1.7rem;
+}
+
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
 }

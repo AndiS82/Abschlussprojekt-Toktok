@@ -1,3 +1,8 @@
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
 .homeMainStyle {
     margin: 0 20px 50px 20px;
 }
@@ -23,4 +28,31 @@
     font-size: 24px;
     color: #000;
     cursor: pointer;
+}
+
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
+}
+
+/*=======MEDIA QUERIES=======*/
+@media only screen and (max-width: 1079px) and (min-width:510px) {
+    .homeMainStyle {
+        margin: 0 20px 80px 20px;
+    }
+}
+
+@media only screen and (max-width: 3440px) and (min-width:1080px) {
+    .homeMainStyle {
+        margin: 0 20px 130px 20px;
+    }
 }

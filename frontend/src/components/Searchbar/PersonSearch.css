@@ -25,9 +25,26 @@
 .searchInput {
     font-family: UrbanistLight;
     width: 50%;
-    border: 2px solid;
+    border: 2px transparent;
     font-size: 2rem;
-    padding: 5px 10px 5px 50px;
+    padding: 10px 10px 10px 50px;
+    border-radius: 15px;
+    background-color: #F5F5F5;
+}
+
+.goPersonDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1% auto;
+    width: 95%;
+    border-bottom: 2px solid rgba(255, 77, 103, 1);
+}
+
+.personIcon {
+    margin: 1% 0;
+    color: rgba(255, 77, 103, 1);
+    font-size: 3rem;
 }
 
 .resetButton {
@@ -60,8 +77,8 @@
 }
 
 .searchUserContainer {
-    width: 95%;
-    margin-left: 1%;
+    width: 90%;
+    padding: 1%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -80,6 +97,7 @@
 
 .userInfo {
     width: 100%;
+    margin: 0 2%;
 }
 
 .searchUser {
@@ -226,6 +244,19 @@
 }
 
 @media only screen and (max-width: 3440px) and (min-width:1440px) {
+    .icon {
+        font-size: 2.5rem;
+    }
+
+    .searchInput {
+        font-family: UrbanistLight;
+        width: 50%;
+        border: 2px transparent;
+        font-size: 2.5rem;
+        padding: 10px 10px 10px 80px;
+        border-radius: 15px;
+        background-color: #F5F5F5;
+    }
 
     .personSearch {
         margin-bottom: 100px;
