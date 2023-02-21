@@ -1,3 +1,7 @@
+.underConst {
+    margin: 20px;
+}
+
 .underConstruction {
     display: flex;
     flex-direction: column;
@@ -12,6 +16,8 @@
 }
 
 .underConstruction img {
-    width: 50%;
+    aspect-ratio: 1/1;
+    width: 90%;
+    height: 50vh;
     margin: 2% 0;
 }

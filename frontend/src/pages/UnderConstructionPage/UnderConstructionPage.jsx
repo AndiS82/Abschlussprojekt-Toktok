@@ -26,7 +26,7 @@ const UnderConstructionPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     }, [])
 
     return (
-        <div>
+        <div className='underConst'>
             {userLoaded && <>
                 <BackButton />
                 <div className='underConstruction'>
