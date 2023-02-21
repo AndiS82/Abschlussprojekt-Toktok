@@ -2,7 +2,6 @@ import { ObjectId } from "mongodb";
 import { deleteImage } from "../services/cloudinary.js";
 import { getDb } from "../util/db.js";
 import { createToken, verifyToken } from "../util/token.js";
-import { updatePostUser } from "./postController.js";
 
 const COL = 'users'
 const cookieConfig = {
@@ -15,7 +14,7 @@ export const login = (req, res) => {
     console.log("userController.js console log", req.body)
     getDb()
         //1. Abfragen, ob ein entsprechender User existiert
-        .then((db) => db.collection(COL).findOne({ "user": req.body.user }))
+        .then((db) => db.collection(COL).findOne({ email: req.body.user }))
         .then(user => {
             if (user === null) {
                 //falls nein:
@@ -74,7 +73,7 @@ export const getAllUsers = async (req, res) => {
     const db = await getDb()
     try {
         const allUsers = await db.collection(COL).find().toArray()
-        console.log(`allUsers = `, allUsers)
+        // console.log(`allUsers = `, allUsers)
         res.status(200).json(allUsers)
     } catch (error) {
         console.log(error.message)
@@ -96,14 +95,17 @@ export const getOneUser = async (req, res) => {
 
 export const getUserProfile = async (req, res) => {
     const token = req.cookies.token
-    const params = req.params.userid
+    const params = req.params
+    // console.log('token ', token)
+    // console.log('params', params)
     const db = await getDb()
     try {
         const verify = verifyToken(token)
         const dbUser = await db.collection(COL).findOne({ _id: new ObjectId(verify.userid) })
         if (!dbUser) return res.status(400).end()
         try {
-            const profile = await db.collection(COL).findOne({ _id: new ObjectId(params) })
+            const profile = await db.collection(COL).findOne({ _id: new ObjectId(params.userid) })
+            // console.log(profile)
             res.status(200).json(profile)
         } catch (error) {
             console.log(error.message)
@@ -149,24 +151,24 @@ export const updateUser = async (req, res) => {
                 res.status(400).end(error.message)
             }
         }
-        updatePostUser(verify.userid, req.body)
+        // updatePostUser(verify.userid, req.body)
         res.status(200).json(dbUser)
     } catch (error) {
         res.status(401).end(error.message)
     }
 }
 
-export const updateUserPostsCount = async (token) => {
-    console.log('update # posts')
-    const db = await getDb()
-    try {
-        const verify = verifyToken(token)
-        const dbUserPosts = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $inc: { numberOfPosts: 1 } })
-        console.log(dbUserPosts)
-    } catch (error) {
-        console.log(error.message)
-    }
-}
+// export const updateUserPostsCount = async (token) => {
+//     console.log('update # posts')
+//     const db = await getDb()
+//     try {
+//         const verify = verifyToken(token)
+//         const dbUserPosts = await db.collection(COL).updateOne({ _id: new ObjectId(verify.userid) }, { $inc: { numberOfPosts: 1 } })
+//         console.log(dbUserPosts)
+//     } catch (error) {
+//         console.log(error.message)
+//     }
+// }
 
 export const logoutUser = async (_, res) => {
     res.cookie('token', '', { ...cookieConfig, maxAge: 0 })

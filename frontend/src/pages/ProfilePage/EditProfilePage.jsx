@@ -32,7 +32,7 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
 
     useEffect(() => {
         // console.log(user)
-        if (user) {
+        if (user?.image?.url) {
             setImage(user?.image?.url)
         }
         else {

@@ -1,16 +1,33 @@
 import './ProfilMini.css';
 import { TbDotsCircleHorizontal } from "react-icons/tb";
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { UserContext } from '../../contexts/UserContext';
 import SettingsView from '../SettingsView/SettingsView.jsx';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
     // {  }
     const user = useContext(UserContext)
-    // console.log('singlePost', singlePost.user.image.url)
-    console.log('post', post)
+    console.log('singlePost', singlePost?.user)
+    const [profile, setProfile] = useState()
+    // console.log('post', post)
+
+    // fetch den User Datensatz, der zu den user._id im Post gehört
+    useEffect(() => {
+        const getUserData = async () => {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/${singlePost?.user}`,
+                { credentials: 'include' })
+            if (response.ok) {
+                const data = await response.json()
+                setProfile(data)
+                console.log('profilemini', data)
+            }
+        }
+        getUserData()
+    }, [])
+
     return (
         <div>
             <nav className="miniProfil">
@@ -26,13 +43,13 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                             </div>
                         </Link>
                     }
-                    {singlePost &&
+                    {profile &&
                         <Link to={`/Profile/${singlePost?.user?._id}`}>
                             <div className='miniProfilDetail'>
-                                <img src={singlePost?.user?.image?.url ? singlePost?.user?.image?.url : placeholderImg} alt={singlePost?.user?.username} />
+                                <img src={profile?.image?.url ? profile?.image?.url : placeholderImg} alt={singlePost?.user?.username} />
                                 <div className='description'>
-                                    <h1>{singlePost?.user?.username}</h1>
-                                    <p>{singlePost?.user?.occupation}</p>
+                                    <h1>{profile?.username}</h1>
+                                    <p>{profile?.occupation}</p>
                                 </div>
                             </div>
                         </Link>
