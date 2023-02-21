@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import { deleteImage } from "../services/cloudinary.js";
 import { getDb } from "../util/db.js";
 import { createToken, verifyToken } from "../util/token.js";
+import { updatePostUser } from "./postController.js";
 
 const COL = 'users'
 const cookieConfig = {
@@ -148,6 +149,7 @@ export const updateUser = async (req, res) => {
                 res.status(400).end(error.message)
             }
         }
+        updatePostUser(verify.userid, req.body)
         res.status(200).json(dbUser)
     } catch (error) {
         res.status(401).end(error.message)

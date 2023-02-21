@@ -113,3 +113,22 @@ export const likeSinglePost = async (req, res) => {
     }
     res.status(200).end()
 }
+
+export const updatePostUser = async (userid, user) => {
+    console.log('update Post User', userid)
+    console.log('user', user)
+    const db = await getDb()
+    try {
+        const updatedUser = await db.collection(COL).updateMany({ "user._id": new ObjectId(userid) }, {
+            $set: {
+                user: {
+                    username: user.username, occupation: user.occupation, _id: new ObjectId(user._id), image: { public_id: user.public_id, url: user.image }
+                }
+            }
+        }
+        )
+        console.log(updatedUser)
+    } catch (error) {
+        console.log(error.message)
+    }
+}

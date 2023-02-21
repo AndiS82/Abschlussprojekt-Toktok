@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
     // {  }
     const user = useContext(UserContext)
-    // console.log(user)
+    console.log('singlePost', singlePost.user.image.url)
+    console.log('post', post)
     return (
         <div>
             <nav className="miniProfil">
@@ -17,7 +18,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                     {!singlePost && !post &&
                         <Link to={`/Profile/${user._id}`}>
                             <div>
-                                <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
+                                <img src={user?.image?.url ? user.image.url : placeholderImg} alt={user?.username} />
                                 <div className='description'>
                                     <h1>{user?.username ? user?.username : 'username'}</h1>
                                     <p>{user?.occupation ? user?.occupation : 'occupation'}</p>
