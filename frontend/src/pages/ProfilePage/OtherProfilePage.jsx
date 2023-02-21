@@ -11,13 +11,15 @@ import SettingsView from '../../components/SettingsView/SettingsView';
 import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
 import editIcon from '../../img/Edit_Square.png'
 import categoryIMG from '../../img/Category.png';
-import FollowButton from "../../components/FollowButton/FollowButton";
+// import FollowButton from "../../components/FollowButton/FollowButton";
+import { HiUserPlus } from "react-icons/hi2";
 
 const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
     const params = useParams()
     const profileId = params.user
     const [profile, setProfile] = useState()
+    const [otherFollowing, setOtherFollowing] = useState(false)
 
     useEffect(() => {
         const getUserProfile = async () => {
@@ -57,6 +59,12 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
         getUser()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+    const otherFollowHandler = async () => {
+        setOtherFollowing(prev => !prev)
+        //hier kommt noch const body mit response rein, kann aber aufgrund der DB-Änderungen keine Daten einsehen
+    }
+
     return (
         <main>
             {userLoaded && <>
@@ -82,20 +90,21 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
                     </section>
                     <div className='postsFollowers'>
                         <div>
-                            <p className='postsFollowersNumber'>{profile?.numberOfPosts}</p>
+                            <p className='postsFollowersNumber'>{profile?.posts?.length ? profile?.posts?.length : 0}</p>
                             <p className='postsFollowersText'>Posts</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{profile?.followedBy?.length}</p>
+                            <p className='postsFollowersNumber'>{profile?.followedBy?.length ? profile?.followedBy?.length : 0}</p>
                             <p className='postsFollowersText'>Followers</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{profile?.following?.length}</p>
+                            <p className='postsFollowersNumber'>{profile?.following?.length ? profile?.following?.length : 0}</p>
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>
                     <div className="followButtonDiv">
-                        <FollowButton followedUser={profile} />
+                        {/* <FollowButton followedUser={profile} /> */}
+                        <button className={otherFollowing ? "otherFollowing" : "otherProfileFollow"} onClick={otherFollowHandler}><HiUserPlus className="otherProfileIcon" />{otherFollowing ? " Following" : " Follow"}</button>
                     </div>
                     <div className='galleryCatIMG'>
                         <img src={categoryIMG} alt="categoryIMG" />
