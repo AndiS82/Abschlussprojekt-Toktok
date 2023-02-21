@@ -3,7 +3,7 @@ import './PostCaption.css'
 const PostCaption = ({ postData }) => {
     return (
         <div className='postCap'>
-            <p>{postData?.content}</p>
+            <p className='postCapP'>{postData?.content}</p>
         </div>
     );
 }
