@@ -27,14 +27,17 @@ const UnderConstructionPage = ({ setUserData, setUserLoaded, userLoaded }) => {
 
     return (
         <div className='underConst'>
-            {userLoaded && <>
-                <BackButton />
-                <div className='underConstruction'>
-                    <h1>Under Construction</h1>
-                    <img src='https://source.unsplash.com/random/?construction' alt="construction"></img>
-                </div>
-                <NavbarBottom />
-            </>}
+            {userLoaded &&
+                <>
+                    <div className={"backButtonDiv"}>
+                        <BackButton />
+                        <div className='underConstruction'>
+                            <h1>Under Construction</h1>
+                            <img src='https://source.unsplash.com/random/?construction' alt="construction"></img>
+                        </div>
+                    </div>
+                    <NavbarBottom />
+                </>}
         </div>
     );
 }

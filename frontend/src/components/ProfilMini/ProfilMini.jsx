@@ -35,7 +35,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                     {!singlePost && !post &&
                         <Link to={`/Profile/${user._id}`}>
                             <div>
-                                <img src={user?.image?.url ? user.image.url : placeholderImg} alt={user?.username} />
+                                <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
                                 <div className='description'>
                                     <h1>{user?.username ? user?.username : 'username'}</h1>
                                     <p>{user?.occupation ? user?.occupation : 'occupation'}</p>
