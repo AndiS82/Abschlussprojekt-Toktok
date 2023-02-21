@@ -6,6 +6,7 @@
 }
 
 .followButton {
+    text-decoration: none;
     text-align: center;
     font-family: UrbanistLight;
     padding: 20%;
@@ -18,12 +19,14 @@
 }
 
 .followButton:hover {
+    text-decoration: none;
     background-color: rgba(233, 128, 144, 1);
     border: 2px solid rgba(233, 128, 144, 1);
     color: white;
 }
 
 .following {
+    text-decoration: none;
     text-align: center;
     font-family: UrbanistLight;
     padding: 20%;

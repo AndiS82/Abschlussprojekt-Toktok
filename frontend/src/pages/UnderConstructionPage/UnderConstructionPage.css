@@ -1,8 +1,5 @@
-.underConst {
-    margin: 20px;
-}
-
 .underConstruction {
+    margin: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;

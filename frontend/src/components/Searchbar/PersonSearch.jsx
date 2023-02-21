@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { GoSearch, GoTrashcan, GoPerson } from "react-icons/go";
 import FollowButton from '../FollowButton/FollowButton';
+import { Link } from 'react-router-dom';
 import './PersonSearch.css'
 
 const userFetch = process.env.REACT_APP_BACKEND_URL_USERS;
@@ -58,16 +59,18 @@ const PersonSearch = ({ useContextUser }) => {
                     <div>
                         {searchData?.filter(user => user._id !== useContextUser._id).map((user, index) => {
                             return (
-                                <div className='searchUserContainer' key={index}>
-                                    <div className='searchPicContainer'>
-                                        <img className='searchImage' src={user?.image?.url} alt={user.username}></img>
+                                <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}>
+                                    <div className='searchUserContainer' key={index}>
+                                        <div className='searchPicContainer'>
+                                            <img className='searchImage' src={user?.image?.url} alt={user.username}></img>
+                                        </div>
+                                        <div className='userInfo'>
+                                            <p className='searchUser' key={index}>{user.username}</p>
+                                            <p className='searchOccupation'>{user.occupation}</p>
+                                        </div>
+                                        <FollowButton followedUser={user} />
                                     </div>
-                                    <div className='userInfo'>
-                                        <p className='searchUser' key={index}>{user.username}</p>
-                                        <p className='searchOccupation'>{user.occupation}</p>
-                                    </div>
-                                    <FollowButton followedUser={user} />
-                                </div>
+                                </Link>
                             )
                         })}</div>
                 </div>
@@ -77,16 +80,18 @@ const PersonSearch = ({ useContextUser }) => {
                 < div id='searchResultsDiv'>
                     {filteredData.map((user, index) => {
                         return (
-                            <div className='searchUserContainer' key={index}>
-                                <div className='searchPicContainer'>
-                                    <img className='searchImage' src={user?.image?.url} alt={user.user}></img>
+                            <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}>
+                                <div className='searchUserContainer' key={index}>
+                                    <div className='searchPicContainer'>
+                                        <img className='searchImage' src={user?.image?.url} alt={user.user}></img>
+                                    </div>
+                                    <div className='userInfo'>
+                                        <p className='searchUser' key={index}>{user.user}</p>
+                                        <p className='searchOccupation'>{user.occupation}</p>
+                                    </div>
+                                    <FollowButton followedUser={user} />
                                 </div>
-                                <div className='userInfo'>
-                                    <p className='searchUser' key={index}>{user.user}</p>
-                                    <p className='searchOccupation'>{user.occupation}</p>
-                                </div>
-                                <FollowButton followedUser={user} />
-                            </div>)
+                            </Link>)
                     })}
                 </div>
             }
