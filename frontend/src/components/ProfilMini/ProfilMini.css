@@ -47,3 +47,20 @@
     color: #000;
     cursor: pointer;
 }
+
+
+@media only screen and (min-width:610px) {
+    .miniProfil {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 13%;
+    }
+}
+
+@media only screen and (min-width:950px) {
+    .miniProfil {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 14%;
+    }
+}

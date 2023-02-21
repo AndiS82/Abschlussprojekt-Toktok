@@ -1,6 +1,33 @@
 .postImgStyle img {
+    display: flex;
+    justify-content: center;
     height: 350px;
-    border-radius: 9%;
+    border-radius: 5%;
     object-fit: cover;
     width: 90vw;
+}
+
+@media only screen and (min-width:610px) {
+    .postImgStyle {
+        display: flex;
+        justify-content: center;
+    }
+
+    .postImgStyle img {
+        height: 450px;
+        width: 70vw;
+        border-radius: 5%;
+    }
+}
+
+@media only screen and (min-width:818px) {
+    .postImgStyle {
+        display: flex;
+        justify-content: center;
+    }
+
+    .postImgStyle img {
+        aspect-ratio: 1/1;
+        border-radius: 1%;
+    }
 }
