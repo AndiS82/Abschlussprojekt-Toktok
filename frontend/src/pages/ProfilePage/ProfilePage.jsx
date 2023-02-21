@@ -52,7 +52,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
         } else {
             console.log('problem logging out')
         }
-
+        console.log(user?.posts?.length)
     }
 
     return (
@@ -84,15 +84,15 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     </section>
                     <div className='postsFollowers'>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.posts?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.posts?.length ? user?.posts?.length : 0}</p>
                             <p className='postsFollowersText'>Posts</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.followedBy?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.followedBy?.length ? user?.followedBy?.length : 0}</p>
                             <p className='postsFollowersText'>Followers</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.following?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.following?.length ? user?.following?.length : 0}</p>
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>
