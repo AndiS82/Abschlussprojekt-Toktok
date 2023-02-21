@@ -19,7 +19,7 @@ const NewpostPage = ({ setUserData }) => {
     const [city, setCity] = useState(null)
     const [country, setCountry] = useState(null)
     const [userLoaded, setUserLoaded] = useState(true)
-    const [showSettings, setShowSettings] = useState(true)
+    const [showSettings, setShowSettings] = useState(false)
     const [lat, setLat] = useState(null);
     const [long, setLong] = useState(null);
     const [showLocation, setShowLocation] = useState(false)

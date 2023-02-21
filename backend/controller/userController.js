@@ -53,8 +53,8 @@ export const register = async (req, res) => {
         sex: null,
         website: null,
         aboutMe: null,
-        following: null,
-        followedBy: null
+        following: [],
+        followedBy: []
     }
     try {
         const db = await getDb()
