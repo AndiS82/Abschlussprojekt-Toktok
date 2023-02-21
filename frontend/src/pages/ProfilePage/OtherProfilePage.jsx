@@ -93,11 +93,9 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>
-                    <span className='borderProfile'></span>
                     <div className="followButtonDiv">
                         <FollowButton followedUser={profile} />
                     </div>
-                    <span className='borderProfile'></span>
                     <div className='galleryCatIMG'>
                         <img src={categoryIMG} alt="categoryIMG" />
                         <h3>Feeds</h3>
