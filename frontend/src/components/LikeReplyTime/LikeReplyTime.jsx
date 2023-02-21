@@ -10,6 +10,8 @@ const LikeReplyTime = ({ commentInPost, post }) => {
     const [like, setLike] = useState(false)// fürs schicken ins Backend und display änderung des herzes
     let [countLikes, setCountLikes] = useState(0)// für die hoch und runterzahlung der Anzahl am Likes, NUR im Frontend 
 
+    console.log('commentinpost', commentInPost)
+
     // eslint-disable-next-line
     const [singleComment, setSingleComment] = useState()
 
@@ -17,16 +19,16 @@ const LikeReplyTime = ({ commentInPost, post }) => {
 
     useEffect(() => {
         const getComment = async () => {
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${commentInPost._id}`)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comment/${commentInPost._id}`)
             if (response.ok) {
                 const data = await response.json()
-                setSingleComment(data[0])
-                // console.log(data[0])
+                setSingleComment(data)
+                console.log('data', data)
                 // console.log(user._id)
-                if (data[0]?.likedBy?.includes(user._id)) {
+                if (data?.likedBy?.includes(user._id)) {
                     setLike(true)
                 }
-                setCountLikes(Number(data[0]?.likedBy?.length))
+                setCountLikes(Number(data?.likedBy?.length))
             }
         }
         getComment()

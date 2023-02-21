@@ -2,22 +2,42 @@ import './CommentsMiniProfil.css'
 import placeholderImg from "../../img/ProfileImgPlaceholder.png"
 import { TbDotsCircleHorizontal } from "react-icons/tb";
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 
-const CommentsMiniProfil = ({ post }) => {
-    console.log(post)
+const CommentsMiniProfil = ({ comment }) => {
+    console.log('comment user', comment.user)
+    const [profile, setProfile] = useState()
+
+    useEffect(() => {
+        const getProfile = async () => {
+            console.log('getting profile', comment)
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/${comment?.user}`, {
+                credentials: 'include'
+            })
+            if (response.ok) {
+                const data = await response.json()
+                console.log('cmp data', data)
+                setProfile(data)
+            }
+            else {
+                console.log('problem with fetching comment profile')
+            }
+        }
+        getProfile()
+    }, [])
 
     return (
         <div>
             <section className="miniProfil">
                 <div>
-                    {post &&
-                        <Link to={`/Profile/${post?.user?._id}`}>
+                    {profile &&
+                        <Link to={`/Profile/${profile?._id}`}>
                             <div>
-                                <img src={post?.user?.image?.url ? post?.user?.image?.url : placeholderImg} alt={post?.user?.username} />
+                                <img src={profile?.image?.url ? profile?.image?.url : placeholderImg} alt={profile?.username} />
                                 <div className='description'>
-                                    <h1>{post?.user?.username ? post?.user?.username : 'username'}</h1>
-                                    <p>{post?.user?.occupation ? post?.user?.occupation : 'occupation'}</p>
+                                    <h1>{profile?.username ? profile?.username : 'username'}</h1>
+                                    <p>{profile?.occupation ? profile?.occupation : 'occupation'}</p>
                                 </div>
                             </div>
                         </Link>

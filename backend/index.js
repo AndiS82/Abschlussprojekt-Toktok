@@ -8,7 +8,7 @@ import { encryptFunktion } from './middleware/encrypt.js'
 import cookieParser from 'cookie-parser'
 import { getAllPosts, getSinglePost, getUserPosts, likeSinglePost, newPost } from './controller/postController.js'
 import { verifyToken } from './util/token.js'
-import { getSingleComment, likeSingleComment, saveCommentToPost } from './controller/commentController.js'
+import { getPostComments, getSingleComment, likeSingleComment, saveCommentToPost } from './controller/commentController.js'
 
 // Falls ihr multer oder den express validator nutzt, importiert diese einfach auch
 const PORT = process.env.PORT
@@ -73,7 +73,9 @@ app.get('/api/posts', getAllPosts)
 
 // COMMENTS
 // get alle Comments für den Post
-app.get('/api/comments/:id', getSingleComment)
+app.get('/api/comments/:id', getPostComments)
+// get einen Comment
+app.get('/api/comment/:id', getSingleComment)
 
 // KOMMENTARE
 app.put('/api/:user/post', saveCommentToPost)

@@ -15,26 +15,41 @@ import CommentsMiniProfil from '../../components/CommentsMiniProfil/CommentsMini
 const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const postsFetch = process.env.REACT_APP_BACKEND_URL;
     const [postData, setPostData] = useState([])
+    const [comments, setComments] = useState([])
     const [reRender, setReRender] = useState(false)
     const nav = useNavigate()
     const params = useParams()
+    const postid = params.postID
+    console.log('postID params', postid)
     // console.log('postData', postData)
 
     useEffect(() => {
         const getData = async () => {
-            const posts = await fetch(postsFetch + `/api/posts/${params.postID}`, {
+            const posts = await fetch(postsFetch + `/api/posts/${postid}`, {
                 credentials: "include"
             })
             if (posts.ok) {
                 const fetchedPosts = await posts.json()
                 setPostData(fetchedPosts)
-                // console.log('fetchedPosts', fetchedPosts)
+                console.log('fetchedPosts', fetchedPosts)
             }
             else (console.log("comment not fetched"))
         }
         getData()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reRender])
+
+    useEffect(() => {
+        const getComments = async () => {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/comments/${postid}`)
+            if (response.ok) {
+                const data = await response.json()
+                setComments(data)
+                console.log('comments', data)
+            }
+        }
+        getComments()
+    }, [])
     useEffect(() => {
         const getUser = async () => {
             setUserLoaded(false)
@@ -73,21 +88,21 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     <PostCaption postData={postData} />
                     <div className='LCB-Border'>
                         <div className='LCB-Time'>
-                            <p>{moment(postData.createdAt).fromNow()}</p>
+                            <p>{moment(postData?.createdAt).fromNow()}</p>
                         </div>
                         <div className='LCB-edit' >
                             <LikesCommentsButtons singlePost={postData} />
                         </div>
                     </div>
-                    {postData?.comments?.map((post, key) => {
+                    {comments?.map((comment, key) => {
                         return (
                             <section key={key}>
-                                <CommentsMiniProfil post={post} />
-                                <p className='postedContent'>{post?.content}</p>
-                                <LikeReplyTime commentInPost={post} post={postData} />
+                                <CommentsMiniProfil comment={comment} />
+                                <p className='postedContent'>{comment?.content}</p>
+                                <LikeReplyTime commentInPost={comment} post={postData} />
                             </section>)
                     })}
-                    <PostComment user={postData?.user} postID={postData?._id} setReRender={setReRender} />
+                    <PostComment user={postData.user} postID={postData._id} setReRender={setReRender} />
                 </>}
             {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
                 <img className='warteUhr' src={warteUhr} alt='Warteuhr' />

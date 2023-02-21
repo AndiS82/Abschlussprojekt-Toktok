@@ -66,7 +66,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     <section className='profileHeader'>
                         <div className='imageIconContainer'>
                             <img src={MiniLogo} alt="toktok"></img>
-                            <h3 className='profileH3'>{user.username}</h3>
+                            <h3 className='profileH3'>{user?.username}</h3>
                         </div>
                         <div className='imageIconContainer1'>
                             <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo} alt="new post"></img></Link>
@@ -75,24 +75,24 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                         </div>
                     </section>
                     <section className='mainProfile'>
-                        <img src={user.image.url ? user.image.url : ImagePlaceholder} alt="placeholder" />
+                        <img src={user?.image?.url ? user?.image?.url : ImagePlaceholder} alt="placeholder" />
                         <button className='profileImgEdit'><img src={editIcon} alt="edit" /></button>
-                        <h3 className='profileH3'>{user.name}</h3>
-                        <p>{user.occupation}</p>
-                        <p>{user.aboutMe}</p>
-                        <p>{user.website}</p>
+                        <h3 className='profileH3'>{user?.name}</h3>
+                        <p>{user?.occupation}</p>
+                        <p>{user?.aboutMe}</p>
+                        <p>{user?.website}</p>
                     </section>
                     <div className='postsFollowers'>
                         <div>
-                            <p className='postsFollowersNumber'>{user.numberOfPosts}</p>
+                            <p className='postsFollowersNumber'>{user?.posts?.length}</p>
                             <p className='postsFollowersText'>Posts</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user.followedBy.length}</p>
+                            <p className='postsFollowersNumber'>{user?.followedBy?.length}</p>
                             <p className='postsFollowersText'>Followers</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user.following.length}</p>
+                            <p className='postsFollowersNumber'>{user?.following?.length}</p>
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>

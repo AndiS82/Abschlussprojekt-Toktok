@@ -4,21 +4,11 @@ import { verifyToken } from "../util/token.js"
 
 const COL = 'comments'
 
-export const newComment = async (comment) => {
-    // console.log(comment)
-    try {
-        const db = await getDb()
-        const result = await db.collection(COL).insertOne(comment)
-    } catch (error) {
-        console.log(error.message)
-    }
-}
-
-export const getSingleComment = async (req, res) => {
+export const getPostComments = async (req, res) => {
     // console.log(req.params.id)
     try {
         const db = await getDb()
-        const result = await db.collection(COL).find({ _id: new ObjectId(req.params.id) }).toArray()
+        const result = await db.collection(COL).find({ post: req.params.id }).toArray()
         res.status(200).json(result)
     } catch (error) {
         console.log(error.message)
@@ -26,33 +16,46 @@ export const getSingleComment = async (req, res) => {
     }
 }
 
+export const getSingleComment = async (req, res) => {
+    console.log('params for single comment', req.params)
+    try {
+        const db = await getDb()
+        const result = await db.collection(COL).findOne({ _id: req.params.id })
+        res.status(200).json(result)
+    } catch (error) {
+        console.log(error.message)
+        res.status(400).end()
+    }
+}
+
 export const saveCommentToPost = async (req, res) => {
     // console.log('new comment')
     const token = req.cookies.token
-    console.log(req.body)
+    // console.log('userid', req.body.userid)
+    const db = await getDb()
+    const verify = verifyToken(token)
+    const dbUser = await db.collection('users').find({ _id: new ObjectId(verify.userid) })
+    if (!dbUser) return res.status(401).end('user not verified')
     try {
-        const db = await getDb()
-        const verify = verifyToken(token)
-        const dbUser = await db.collection('users').find({ _id: new ObjectId(verify.userid) })
-        console.log(`dbUser`)
-        if (!dbUser) return res.status(401).end('user not verified')
-        console.log(req.body.postID)
         const comment = {
             _id: new ObjectId,
-            user: {
-                _id: new ObjectId(req.body._id),
-                username: req.body.username,
-                occupation: req.body.occupation,
-                image: req.body.image
-            },
+            user: req.body.userid,
+            post: req.body.postID,
             content: req.body.content,
             createdAt: new Date(),
+            updatedAt: new Date(),
             likedBy: []
         }
-
-        const result = await db.collection("posts").updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment } })
-        newComment(comment)
-        res.status(200).json(result)
+        // console.log('comment', comment)
+        const result = await db.collection(COL).insertOne(comment)
+        // console.log('commentid', comment._id)
+        try {
+            const userResult = await db.collection('posts').updateOne({ _id: new ObjectId(req.body.postID) }, { $addToSet: { comments: comment._id } })
+            res.status(200).json(userResult)
+        } catch (error) {
+            console.log(error.message)
+            res.status(400).end()
+        }
     } catch (error) {
         res.status(400).end(error.message)
     }
