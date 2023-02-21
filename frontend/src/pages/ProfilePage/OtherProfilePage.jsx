@@ -34,6 +34,7 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
             }
         }
         getUserProfile()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [profileId])
 
     useEffect(() => {

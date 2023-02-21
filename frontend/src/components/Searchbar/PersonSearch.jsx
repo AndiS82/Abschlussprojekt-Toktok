@@ -10,7 +10,7 @@ const PersonSearch = ({ useContextUser }) => {
     const [filteredData, setFilteredData] = useState([])
     const [wordEntered, setWordEntered] = useState("")
 
-    const useContextUserName = useContextUser.username
+    // const useContextUserName = useContextUser.username
 
     useEffect(() => {
         const getData = async () => {
