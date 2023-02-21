@@ -29,7 +29,7 @@ const LoginPages = ({ setUser }) => {
     const userData = async (e) => {
         e.preventDefault()
         const form = {
-            user: emailRef.current.value,
+            email: emailRef.current.value,
             password: passwordRef.current.value
         }
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${isActive ? 'register' : 'login'}`, {
