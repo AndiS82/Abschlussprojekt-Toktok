@@ -114,7 +114,11 @@
 
 /*=======MEDIA QUERIES=======*/
 
-@media only screen and (max-width: 1440px) and (min-width:821px) {
+@media only screen and (min-width:700px) {
+    .loginMainStyle {
+        margin: 0 100px
+    }
+
     .loginTitle {
         font-size: 3.5rem;
         padding: 5% 0 0 0;
@@ -132,132 +136,5 @@
         flex-direction: column;
         gap: 20px;
         margin: 8% auto;
-    }
-}
-
-@media only screen and (max-width: 1920px) and (min-width:1440px) {
-    .loginTitle {
-        font-size: 3.5rem;
-        padding: 5% 0 0 0;
-    }
-
-    .loginLogo {
-        display: block;
-        width: 10%;
-        margin: 5% auto;
-        /* padding: 15% 0; */
-    }
-
-    .loginForm {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin: 8% auto;
-    }
-}
-
-@media only screen and (max-width: 2560px) and (min-width:1440px) {
-    .loginTitle {
-        font-size: 5rem;
-        padding: 5% 0 0 0;
-    }
-
-    .loginLogo {
-        display: block;
-        width: 12%;
-        margin: 5% auto;
-        /* padding: 15% 0; */
-    }
-
-    .loginForm {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin: 9% auto;
-    }
-
-    .loginFooter p {
-        font-size: 2.6rem;
-    }
-
-    .inTextButton {
-        color: rgba(233, 128, 144, 1);
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        font-size: 2.6rem;
-    }
-
-    .loginDiv input {
-        background-color: transparent;
-        border: none;
-        align-items: center;
-        /* padding: 14px 0; */
-        outline: none;
-        cursor: pointer;
-        font-size: 2.5rem;
-    }
-
-    .pinkButton {
-        background-color: rgba(233, 128, 144, 1);
-        height: 60px;
-        border: none;
-        border-radius: 40px;
-        color: white;
-        cursor: pointer;
-        font-size: 2.6rem;
-    }
-}
-
-@media only screen and (max-width: 3440px) and (min-width:1440px) {
-    .loginTitle {
-        font-size: 4.5rem;
-        padding: 1% 0 0 0;
-    }
-
-    .loginLogo {
-        display: block;
-        width: 8%;
-        margin: 1% auto;
-        /* padding: 15% 0; */
-    }
-
-    .loginForm {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        margin: 1.5% auto;
-    }
-
-    .loginFooter p {
-        font-size: 2rem;
-    }
-
-    .inTextButton {
-        color: rgba(233, 128, 144, 1);
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        font-size: 2rem;
-    }
-
-    .loginDiv input {
-        background-color: transparent;
-        border: none;
-        align-items: center;
-        /* padding: 14px 0; */
-        outline: none;
-        cursor: pointer;
-        font-size: 2rem;
-    }
-
-    .pinkButton {
-        background-color: rgba(233, 128, 144, 1);
-        height: 60px;
-        border: none;
-        border-radius: 40px;
-        color: white;
-        cursor: pointer;
-        font-size: 2rem;
     }
 }

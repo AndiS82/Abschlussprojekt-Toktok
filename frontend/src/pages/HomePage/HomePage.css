@@ -45,14 +45,18 @@
 }
 
 /*=======MEDIA QUERIES=======*/
-@media only screen and (max-width: 1079px) and (min-width:510px) {
-    .homeMainStyle {
-        margin: 0 20px 80px 20px;
+@media only screen and (min-width:610px) {
+    .homeNavbar {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 13%;
     }
 }
 
-@media only screen and (max-width: 3440px) and (min-width:1080px) {
-    .homeMainStyle {
-        margin: 0 20px 130px 20px;
+@media only screen and (min-width:950px) {
+    .homeNavbar {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 14%;
     }
 }
