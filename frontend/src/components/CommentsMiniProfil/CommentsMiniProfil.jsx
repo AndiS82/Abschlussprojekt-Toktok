@@ -6,18 +6,18 @@ import { useEffect, useState } from 'react';
 
 
 const CommentsMiniProfil = ({ comment }) => {
-    console.log('comment user', comment.user)
+    // console.log('comment user', comment.user)
     const [profile, setProfile] = useState()
 
     useEffect(() => {
         const getProfile = async () => {
-            console.log('getting profile', comment)
+            // console.log('getting profile', comment)
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/${comment?.user}`, {
                 credentials: 'include'
             })
             if (response.ok) {
                 const data = await response.json()
-                console.log('cmp data', data)
+                // console.log('cmp data', data)
                 setProfile(data)
             }
             else {
@@ -25,6 +25,7 @@ const CommentsMiniProfil = ({ comment }) => {
             }
         }
         getProfile()
+        // eslint-disable-next-line
     }, [])
 
     return (

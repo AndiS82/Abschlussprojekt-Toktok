@@ -10,7 +10,7 @@ import { useEffect } from 'react';
 const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
     // {  }
     const user = useContext(UserContext)
-    console.log('singlePost', singlePost?.user)
+    // console.log('singlePost', singlePost?.user)
     const [profile, setProfile] = useState()
     // console.log('post', post)
 
@@ -22,10 +22,11 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
             if (response.ok) {
                 const data = await response.json()
                 setProfile(data)
-                console.log('profilemini', data)
+                // console.log('profilemini', data)
             }
         }
         getUserData()
+        // eslint-disable-next-line 
     }, [])
 
     return (

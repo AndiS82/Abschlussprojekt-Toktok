@@ -20,7 +20,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
     const nav = useNavigate()
     const params = useParams()
     const postid = params.postID
-    console.log('postID params', postid)
+    // console.log('postID params', postid)
     // console.log('postData', postData)
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             if (posts.ok) {
                 const fetchedPosts = await posts.json()
                 setPostData(fetchedPosts)
-                console.log('fetchedPosts', fetchedPosts)
+                // console.log('fetchedPosts', fetchedPosts)
             }
             else (console.log("comment not fetched"))
         }
@@ -45,10 +45,11 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
             if (response.ok) {
                 const data = await response.json()
                 setComments(data)
-                console.log('comments', data)
+                // console.log('comments', data)
             }
         }
         getComments()
+        // eslint-disable-next-line
     }, [])
     useEffect(() => {
         const getUser = async () => {
