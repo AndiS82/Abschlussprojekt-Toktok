@@ -60,24 +60,24 @@ const PersonSearch = ({ useContextUser }) => {
                     <div>
                         {searchData?.filter(user => user._id !== useContextUser._id).map((user, index) => {
                             return (
-                                <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}>
-                                    <div className='searchUserContainer' key={index}>
-                                        <div className='searchPicContainer'>
-                                            <img className='searchImage' src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user.username}></img>
-                                        </div>
+                                <div className='searchUserContainer' key={index}>
+                                    <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}><div className='searchPicContainer'>
+                                        <img className='searchImage' src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user.username}></img>
+                                    </div>
                                         <div className='userInfo'>
                                             <p className='searchUser' key={index}>{user.username}</p>
                                             <p className='searchOccupation'>{user.occupation}</p>
                                         </div>
-                                        <FollowButton followedUser={user} />
-                                    </div>
-                                </Link>
+                                    </Link>
+                                    <FollowButton followedUser={user} />
+                                </div>
                             )
                         })}</div>
                 </div>
             }
 
-            {filteredData && wordEntered !== "" &&
+            {
+                filteredData && wordEntered !== "" &&
                 < div id='searchResultsDiv'>
                     {filteredData.map((user, index) => {
                         return (
@@ -97,7 +97,8 @@ const PersonSearch = ({ useContextUser }) => {
                 </div>
             }
 
-            {wordEntered.includes(filteredData) && wordEntered !== "" &&
+            {
+                wordEntered.includes(filteredData) && wordEntered !== "" &&
                 <div className='noResults'>
                     <p className='searchUser'>No results</p>
                 </div>

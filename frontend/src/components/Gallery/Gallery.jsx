@@ -1,11 +1,12 @@
-import { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../contexts/UserContext';
+import { useEffect, useState } from 'react';
+// import { UserContext } from '../../contexts/UserContext';
 import './Gallery.css'
 
-const Gallery = () => {
+const Gallery = ({ user }) => {
     const [posts, setPosts] = useState(null)
+    // const [profile, setProfile] = useState(user)
 
-    const user = useContext(UserContext)
+    // const user = useContext(UserContext)
 
     useEffect(() => {
         const fetchFotos = async () => {
@@ -17,14 +18,14 @@ const Gallery = () => {
                 // console.log("data.check", data)
                 const user = await data.json()
                 setPosts(user)
-                // console.log("Gallery.jsx", user)
+                console.log("Gallery.jsx", user)
             }
             else {
                 console.log("fetch failed")
             }
         }
         fetchFotos()
-    }, [user._id]
+    }, [user?._id]
     )
     // console.log("posts Z 27 ", posts)
 

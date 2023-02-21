@@ -55,6 +55,7 @@ export const newPost = async (req, res) => {
 
 export const getAllPosts = async (req, res) => {
     console.log('get all posts')
+
     try {
         const db = await getDb()
         const posts = await db.collection(COL).find().toArray()
@@ -68,9 +69,10 @@ export const getUserPosts = async (req, res) => {
     console.log('get user posts')
     const params = req.params
     const userid = params.user
+    console.log('userid', userid)
     try {
         const db = await getDb()
-        const posts = await db.collection(COL).find({ 'user._id': new ObjectId(userid) }).toArray()
+        const posts = await db.collection(COL).find({ user: userid }).toArray()
         res.status(200).json(posts)
     } catch (error) {
         res.status(400).end(error.message)

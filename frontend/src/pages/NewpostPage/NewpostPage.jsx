@@ -166,7 +166,7 @@ const NewpostPage = ({ setUserData }) => {
                             <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
                             <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
                         </div>
-                        {userLoaded && <Gallery className="galleryComponent" />}
+                        {userLoaded && <Gallery user={user} className="galleryComponent" />}
                     </>}
                 {!selectImage && // hier kann man den text hinzufügen, wird gezeigt wenn selectImage === false
                     <section>
