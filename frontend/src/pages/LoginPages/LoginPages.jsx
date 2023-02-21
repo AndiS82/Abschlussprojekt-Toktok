@@ -5,6 +5,10 @@ import LoginLogo from '../../img/LoginLogo.png';
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { MdEmail } from "react-icons/md"
 import { HiLockClosed } from "react-icons/hi"
+//import Message from './Message.js';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginPages = ({ setUser }) => {
 
@@ -48,12 +52,14 @@ const LoginPages = ({ setUser }) => {
             }
         }
         else {
-            console.log('fetch failed')
+            toast('UPS! Für diese Mailadresse wurde bereits ein Account registriert.');
+            console.log('fetch failed', response.status);
         }
     }
 
     return (
         <div className='loginMainStyle'>
+
             <h1 className='loginTitle'>{isActive ? "Create your" : "Login to your"} <br />Account</h1>
             <img className='loginLogo' src={LoginLogo} alt="Login Logo"></img>
             <form className='loginForm'>
@@ -78,6 +84,18 @@ const LoginPages = ({ setUser }) => {
                 <p>{isActive ? "Already have an account?" : "Don't have an account?"}</p>
                 <button onClick={handleClick} className='inTextButton'>{isActive ? "Sign in" : "Sign up"}</button>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 }

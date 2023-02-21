@@ -47,7 +47,7 @@ export const register = async (req, res) => {
         username: null,
         occupation: null,
         dob: null,
-        email: req.body.user,
+        user: req.body.user,
         password: req.body.password,
         tel: null,
         sex: null,
@@ -58,6 +58,12 @@ export const register = async (req, res) => {
     }
     try {
         const db = await getDb()
+
+        const existingUser = await db.collection(COL).findOne({ user: completeUser.user });
+        if (existingUser) {
+            console.log('E-Mail-Adresse bereits registriert');
+            return res.status(409).send({ message: 'E-Mail-Adresse bereits registriert' });
+        }
         const result = await db.collection(COL).insertOne(completeUser)
         console.log("register Funktion result = ", result)
         res.status(200).end()
