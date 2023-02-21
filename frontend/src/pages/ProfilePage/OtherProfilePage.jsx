@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate, useParams, Link } from "react-router-dom"
 import "./OtherProfilePage.css"
 import BackButton from '../../components/BackButton/BackButton';
@@ -13,6 +13,7 @@ import editIcon from '../../img/Edit_Square.png'
 import categoryIMG from '../../img/Category.png';
 // import FollowButton from "../../components/FollowButton/FollowButton";
 import { HiUserPlus } from "react-icons/hi2";
+import { UserContext } from "../../contexts/UserContext";
 
 const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, showSettings }) => {
     const nav = useNavigate()
@@ -20,6 +21,7 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
     const profileId = params.user
     const [profile, setProfile] = useState()
     const [otherFollowing, setOtherFollowing] = useState(false)
+    const user = useContext(UserContext);
 
     useEffect(() => {
         const getUserProfile = async () => {
@@ -60,9 +62,31 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    console.log(profile)
+
     const otherFollowHandler = async () => {
         setOtherFollowing(prev => !prev)
-        //hier kommt noch const body mit response rein, kann aber aufgrund der DB-Änderungen keine Daten einsehen
+        console.log('follow Handler')
+
+        const body = {
+            result: !otherFollowing,
+            _id: user._id,
+            following: profile._id
+        }
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user/${user._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(body)
+        })
+        if (response.ok) {
+            console.log('follows updated')
+        }
+        else {
+            console.log('problem with follows')
+        }
     }
 
     return (
