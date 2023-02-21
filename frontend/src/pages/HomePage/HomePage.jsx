@@ -42,7 +42,7 @@ const HomePage = ({ setUserData, userLoaded, setUserLoaded, showSettings, setSho
                                     <img src={MiniLogo} alt="MiniLogo" />
                                     <h1>TokTok</h1>
                                 </div>
-                                <Link to="/UnderConstruction">
+                                <Link to="/UnderConstructionPage">
                                     <FaRegHeart className="homeIcon" />
                                 </Link>
                             </nav>

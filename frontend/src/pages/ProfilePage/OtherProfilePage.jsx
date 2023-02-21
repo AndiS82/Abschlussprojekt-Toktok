@@ -23,6 +23,8 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
     const [otherFollowing, setOtherFollowing] = useState(false)
     const user = useContext(UserContext);
 
+    console.log(profileId)
+
     useEffect(() => {
         const getUserProfile = async () => {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/${profileId}`,
@@ -62,7 +64,9 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    console.log(profile)
+    console.log(profile?._id)
+
+    console.log("userloaded " + user?._id)
 
     const otherFollowHandler = async () => {
         setOtherFollowing(prev => !prev)
@@ -106,7 +110,7 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
                     </section>
                     <section className='mainProfile'>
                         <img src={profile?.image?.url ? profile?.image?.url : ImagePlaceholder} alt="placeholder" />
-                        <button className='profileImgEdit'><img src={editIcon} alt="edit" /></button>
+                        <button className={profile?._id === user?._id ? 'profileImgEdit' : 'invisibleImgEdit'}><img src={editIcon} alt="edit" /></button>
                         <h3 className='profileH3'>{profile?.name}</h3>
                         <p>{profile?.occupation}</p>
                         <p>{profile?.aboutMe}</p>

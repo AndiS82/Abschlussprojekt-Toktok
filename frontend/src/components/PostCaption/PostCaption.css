@@ -1,3 +1,8 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
 .postCap {
     margin: 0px 0 15px 0;
     border-top: 1px solid #0000002c;
@@ -5,6 +10,8 @@
 }
 
 .postCap p {
+    margin: 20px 14%;
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     line-height: 20px;
     margin-top: -10px;

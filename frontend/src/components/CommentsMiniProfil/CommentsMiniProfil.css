@@ -1,0 +1,19 @@
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+.miniProfilCommentsH1 {
+    font-family: UrbanistBold;
+    font-size: 2rem;
+}
+
+.miniProfilCommentsP {
+    font-family: UrbanistRegular;
+    font-size: 2rem;
+}

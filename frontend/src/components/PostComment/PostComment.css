@@ -1,3 +1,19 @@
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+
+.postButtonComments {
+    font-size: 2rem;
+    font-family: UrbanistBold;
+}
+
 .postCommentBorder {
     border-top: 1px solid #0000002c;
     border-radius: 30px;
@@ -13,6 +29,7 @@
 }
 
 .postComment input {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     border: transparent;
     border-radius: 10px;

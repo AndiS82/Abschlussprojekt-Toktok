@@ -66,20 +66,20 @@ const LikesCommentsButtons = ({ singlePost, post }) => {
             <div onClick={likeHandler} ><img src={like ? pinkHeart : emptyHeart} alt="heart" className='homeHeartIconBottom' /></div>
             {post &&
                 <>
-                    <p>{countLikes}</p>
+                    <p className='LCBP'>{countLikes}</p>
                     <Link to={`/comments/${post?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
-                    <p>{post?.comments ? new Intl.NumberFormat().format(post?.comments?.length) : 0}</p>
+                    <p className='LCBP'>{post?.comments ? new Intl.NumberFormat().format(post?.comments?.length) : 0}</p>
                 </>
             }
             {!post &&
                 <>
-                    <p>{countLikes}</p>
+                    <p className='LCBP'>{countLikes}</p>
                     <Link to={`/comments/${singlePost?._id}`}>
                         <BsChatDots className='homeCommentButtonBottom' />
                     </Link>
-                    <p>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost?.comments?.length) : 0}</p>
+                    <p className='LCBP'>{singlePost?.comments ? new Intl.NumberFormat().format(singlePost?.comments?.length) : 0}</p>
                 </>
             }
         </div>

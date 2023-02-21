@@ -1,7 +1,21 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.logout {
+    font-family: UrbanistRegular;
 }
 
 .profile-container {
@@ -41,18 +55,21 @@
 }
 
 .mainProfile h3 {
+    font-family: UrbanistBold;
     font-size: 2.4rem;
     font-weight: 700;
     margin: 10px 0;
 }
 
 .mainProfile p:nth-of-type(1) {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
 .mainProfile p:nth-of-type(2) {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 10px;
@@ -60,6 +77,7 @@
 }
 
 .mainProfile p:nth-of-type(3) {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     font-weight: 700;
     color: #246BFD;
@@ -88,12 +106,14 @@
 }
 
 .postsFollowersNumber {
+    font-family: UrbanistRegular;
     font-size: 2.4rem;
     font-weight: 700;
     margin-bottom: 10px;
 }
 
 .postsFollowersText {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 5px;
@@ -116,6 +136,7 @@
 }
 
 .galleryCatIMG h3 {
+    font-family: UrbanistRegular;
     font-size: 1.6rem;
     font-weight: 600;
     color: #FF4D67;
@@ -123,6 +144,7 @@
 }
 
 .profileH3 {
+    font-family: UrbanistBold;
     font-size: 2.4rem;
 }
 
