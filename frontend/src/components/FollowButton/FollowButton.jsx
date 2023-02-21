@@ -6,7 +6,7 @@ const FollowButton = ({ followedUser }) => {
     const [following, setFollowing] = useState(false)
 
     const user = useContext(UserContext)
-
+    console.log(followedUser)
     useEffect(() => {
         if (followedUser?.followedBy?.includes(user._id)) {
             setFollowing(true)
