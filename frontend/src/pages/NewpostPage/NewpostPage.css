@@ -40,14 +40,14 @@
 
 .articleUploadButton {
     background-color: rgba(158, 158, 158, 1);
-    width: 100%;
-    height: 100%;
+    width: 90vw;
+    height: 300px;
     aspect-ratio: 1/1;
     border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 15px 0;
+    margin: 15px auto;
 }
 
 .uploadButton {
@@ -461,3 +461,13 @@ input:checked+.slider:before {
     font-size: 3rem;
     color: rgba(33, 33, 33, 1);
 }
+
+
+
+/* @media only screen and (min-width:710px) {
+    .articleUploadButton {
+        width: 50px;
+        height: 50px;
+        margin: 15px auto;
+    }
+} */
