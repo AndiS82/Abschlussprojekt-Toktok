@@ -1,0 +1,14 @@
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    padding-top: 10%;
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
+}

@@ -29,17 +29,22 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
         // eslint-disable-next-line 
     }, [])
 
+    console.log("hier " + user?._id)
+    console.log("hier " + profile?._id)
+    console.log("hier " + profile?.username)
+    console.log("singlePost " + singlePost?.user?._id)
+
     return (
         <div>
             <nav className="miniProfil">
                 <div>
                     {!singlePost && !post &&
-                        <Link to={`/Profile/${user._id}`}>
+                        <Link to={`/Profile/${profile?._id}`}>
                             <div>
                                 <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
                                 <div className='description'>
-                                    <h1>{user?.username ? user?.username : 'username'}</h1>
-                                    <p>{user?.occupation ? user?.occupation : 'occupation'}</p>
+                                    <h1 className="miniProfilH1">{user?.username ? user?.username : 'username'}</h1>
+                                    <p className="miniProfilP">{user?.occupation ? user?.occupation : 'occupation'}</p>
                                 </div>
                             </div>
                         </Link>
@@ -49,8 +54,8 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                             <div className='miniProfilDetail'>
                                 <img src={profile?.image?.url ? profile?.image?.url : placeholderImg} alt={singlePost?.user?.username} />
                                 <div className='description'>
-                                    <h1>{profile?.username}</h1>
-                                    <p>{profile?.occupation}</p>
+                                    <h1 className="miniProfilH1">{profile?.username}</h1>
+                                    <p className="miniProfilP">{profile?.occupation}</p>
                                 </div>
                             </div>
                         </Link>
@@ -60,8 +65,8 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                             <div>
                                 <img src={post?.user?.image ? post?.user?.image : placeholderImg} alt={post?.user?.username} />
                                 <div className='description'>
-                                    <h1>{post?.username ? post?.username : 'username'}</h1>
-                                    <p>{post?.occupation ? post?.occupation : 'occupation'}</p>
+                                    <h1 className="miniProfilH1">{post?.username ? post?.username : 'username'}</h1>
+                                    <p className="miniProfilP">{post?.occupation ? post?.occupation : 'occupation'}</p>
                                 </div>
                             </div>
                         </Link>

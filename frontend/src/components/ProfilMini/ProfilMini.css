@@ -1,8 +1,28 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
 .miniProfil {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
+}
+
+.miniProfilH1 {
+    font-size: 3rem;
+    font-family: UrbanistBold;
+}
+
+.miniProfilP {
+    font-size: 2rem;
+    font-family: UrbanistRegular;
 }
 
 .miniProfil a {

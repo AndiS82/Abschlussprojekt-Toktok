@@ -1,3 +1,13 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
 .LCB {
     display: flex;
     align-items: center;
@@ -6,6 +16,7 @@
 }
 
 .LCB p {
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
 }
 

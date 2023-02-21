@@ -75,6 +75,10 @@
     border: 1px transparent;
 }
 
+.backButtonContainerEdit {
+    margin: 20px;
+}
+
 /*=======LOADING=======*/
 
 .notLoadedDiv {

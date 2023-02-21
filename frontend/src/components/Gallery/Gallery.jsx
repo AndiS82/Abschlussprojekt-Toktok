@@ -7,10 +7,10 @@ const Gallery = ({ user }) => {
     // const [profile, setProfile] = useState(user)
 
     // const user = useContext(UserContext)
-
+    console.log(user?._id)
     useEffect(() => {
         const fetchFotos = async () => {
-            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user._id}/posts`,
+            const data = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/${user?._id}/posts`,
                 {
                     credentials: "include"
                 })

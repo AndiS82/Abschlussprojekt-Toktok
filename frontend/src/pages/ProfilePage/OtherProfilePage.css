@@ -45,6 +45,10 @@
     font-size: 2rem;
 }
 
+.invisibleImgEdit {
+    display: none;
+}
+
 /*=======LOADING=======*/
 
 .notLoadedDiv {

@@ -4,6 +4,16 @@
 }
 
 @font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
+@font-face {
+    font-family: UrbanistBold;
+    src: url("../../fonts/Urbanist-Bold.ttf");
+}
+
+@font-face {
     font-family: UrbanistMedium;
     src: url("../../fonts/Urbanist-Medium.ttf");
 }
@@ -23,6 +33,16 @@
     align-items: center;
     margin: 5px 0;
     gap: 10px;
+}
+
+.newPostHeaderH1 {
+    font-size: 3rem;
+    font-family: UrbanistBold;
+}
+
+.newPostH2 {
+    font-size: 2rem;
+    font-family: UrbanistRegular;
 }
 
 .newPostBack {
@@ -51,6 +71,7 @@
 }
 
 .uploadButton {
+    font-family: UrbanistRegular;
     background-color: rgba(255, 77, 103, 1);
     padding: 5px 10px;
     border: none;
@@ -66,6 +87,7 @@
 }
 
 .uploadButtonIcon {
+    font-family: UrbanistRegular;
     font-size: 1.8rem;
     height: 100%;
 }
@@ -309,6 +331,8 @@ input:checked+.slider:before {
 }
 
 .backAndPublishButton {
+    font-family: UrbanistBold;
+    font-size: 2rem;
     background-color: rgba(255, 77, 103, 1);
     padding: 5px 10px;
     border: none;

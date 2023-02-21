@@ -141,7 +141,9 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
         <div>
             {userLoaded &&
                 <>
-                    <BackButton />
+                    <div className='backButtonContainerEdit'>
+                        <BackButton className="backButtonEdit" />
+                    </div>
                     <section className='profileImg-edit-section'>
                         <div className='profileImg-div'>
                             <img className='origProfileImg' src={image} alt="profile" />
