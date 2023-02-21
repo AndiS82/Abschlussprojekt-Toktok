@@ -14,7 +14,7 @@ export const login = (req, res) => {
     console.log("userController.js console log", req.body)
     getDb()
         //1. Abfragen, ob ein entsprechender User existiert
-        .then((db) => db.collection(COL).findOne({ email: req.body.user }))
+        .then((db) => db.collection(COL).findOne({ email: req.body.email }))
         .then(user => {
             if (user === null) {
                 //falls nein:
@@ -47,7 +47,7 @@ export const register = async (req, res) => {
         username: null,
         occupation: null,
         dob: null,
-        user: req.body.user,
+        email: req.body.email,
         password: req.body.password,
         tel: null,
         sex: null,
@@ -59,10 +59,13 @@ export const register = async (req, res) => {
     try {
         const db = await getDb()
 
-        const existingUser = await db.collection(COL).findOne({ user: completeUser.user });
+        const existingUser = await db.collection(COL).findOne({ email: completeUser.email });
+        console.log("completeuser ist:", completeUser)
+        console.log("existingUser ist:", existingUser)
         if (existingUser) {
             console.log('E-Mail-Adresse bereits registriert');
             return res.status(409).send({ message: 'E-Mail-Adresse bereits registriert' });
+
         }
         const result = await db.collection(COL).insertOne(completeUser)
         console.log("register Funktion result = ", result)
