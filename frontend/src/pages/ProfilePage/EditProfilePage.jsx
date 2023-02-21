@@ -152,20 +152,20 @@ const EditProfilePage = ({ userLoaded, setUserLoaded, setUserData }) => {
                         {showFileInput &&
                             <input type="file" onChange={showImage} ref={imageRef} />
                         }
-                        <input contentEditable={edit} placeholder="Name" value={user?.name} onChange={((e) => setNameRef(e.target.value))} />
-                        <input contentEditable={edit} placeholder="Username" value={user?.username} onChange={((e) => setUsername(e.target.value))} />
-                        <input contentEditable={edit} placeholder="Occupation" value={user?.occupation} onChange={((e) => setOccupation(e.target.value))} />
-                        <input contentEditable={edit} placeholder="Date of Birth" value={user?.dob} onChange={((e) => setDob(e.target.value))} />
-                        <input contentEditable={edit} placeholder="Email Address" value={user?.email} onChange={((e) => setEmail(e.target.value))} />
-                        <input contentEditable={edit} placeholder="Telephone" value={user?.tel} onChange={((e) => setTel(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Name" value={nameRef} onChange={((e) => setNameRef(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Username" value={username} onChange={((e) => setUsername(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Occupation" value={occupation} onChange={((e) => setOccupation(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Date of Birth" value={dob} onChange={((e) => setDob(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Email Address" value={email} onChange={((e) => setEmail(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Telephone" value={tel} onChange={((e) => setTel(e.target.value))} />
                         <select onChange={(e) => setSex(e.target.value)}>
                             <option value="default" disabled >-select-</option>
                             <option value="male" selected={sex === "male"}>Male</option>
                             <option value="female" selected={sex === "female"}>Female</option>
                             <option value="other" selected={sex === "other"}>Other</option>
                         </select>
-                        <input contentEditable={edit} placeholder="Website" value={user?.website} onChange={((e) => setWebsite(e.target.value))} />
-                        <input contentEditable={edit} placeholder="About Me" value={user?.aboutMe} onChange={((e) => setAbout(e.target.value))} />
+                        <input contentEditable={edit} placeholder="Website" value={website} onChange={((e) => setWebsite(e.target.value))} />
+                        <input contentEditable={edit} placeholder="About Me" value={about} onChange={((e) => setAbout(e.target.value))} />
                         <button className='editProfileSubmit' onClick={submit}>Save Updates</button>
                     </section>
                 </>}
