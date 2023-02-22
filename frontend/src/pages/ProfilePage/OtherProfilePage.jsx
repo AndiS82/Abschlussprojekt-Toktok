@@ -19,6 +19,7 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
     const nav = useNavigate()
     const params = useParams()
     const profileId = params.user
+
     const [profile, setProfile] = useState()
     const [otherFollowing, setOtherFollowing] = useState(false)
     const user = useContext(UserContext);
@@ -32,11 +33,11 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
             if (response.ok) {
                 const data = await response.json()
                 setProfile(data)
-                console.log(data)
+                console.log('PROFILE DATA', data)
             }
             else {
                 console.log('problem displaying profile')
-                nav('/UnderConstruction')
+                // nav('/UnderConstruction')
             }
         }
         getUserProfile()
@@ -118,7 +119,9 @@ const OtherProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSetti
                     </section>
                     <div className='postsFollowers'>
                         <div>
+
                             <p className='postsFollowersNumber'>{profile?.posts?.length ? profile?.posts?.length : 0}</p>
+
                             <p className='postsFollowersText'>Posts</p>
                         </div>
                         <div>
