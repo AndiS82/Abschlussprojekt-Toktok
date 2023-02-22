@@ -127,6 +127,35 @@
     height: 85vh;
 }
 
+.noResultsP {
+    margin: 2% 40%;
+    font-size: 4rem;
+    font-family: UrbanistBold;
+    color: rgba(255, 77, 103, 1);
+
+}
+
+.blink {
+    animation-name: animation_blink;
+    animation-timing-function: ease-in;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes animation_blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 /* ======= MEDIA QUERIES =======*/
 
 @media only screen and (max-width: 280px) {
