@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import Profil from '../Profil/Profil'
+import Profil from '../Profil/Profil';
+import warteUhr from '../../img/Frame.png';
 import './Feed.css'
 
 const Feed = ({ userLoaded, showSettings, setShowSettings }) => {
@@ -32,7 +33,9 @@ const Feed = ({ userLoaded, showSettings, setShowSettings }) => {
                     })}
                 </>
             }
-            {!userLoaded && <p>Loading...</p>}
+            {!userLoaded && <div className="notLoadedDiv"><p className='loadingP'>Loading ...</p>
+                <img className='warteUhr' src={warteUhr} alt='Warteuhr' />
+            </div>}
             {showSettings && <div className='greyScreenActive'></div>}
         </div>
     );

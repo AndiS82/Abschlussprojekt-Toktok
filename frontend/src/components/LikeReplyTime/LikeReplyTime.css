@@ -1,11 +1,18 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
 .LRT {
+    margin: 20px 14%;
     display: flex;
     gap: 20px;
-    margin: 15px 0;
+    /* margin: 15px 0; */
     align-items: center;
 }
 
 .LRT p {
+    font-family: UrbanistRegular;
     font-size: 1.2rem;
 }
 

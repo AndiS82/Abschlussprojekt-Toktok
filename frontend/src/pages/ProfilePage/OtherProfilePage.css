@@ -2,3 +2,64 @@
     display: flex;
     justify-content: center;
 }
+
+.otherProfileFollow {
+    height: 2%;
+    align-self: center;
+    text-align: center;
+    font-family: UrbanistLight;
+    padding: 2%;
+    border: 2px solid rgba(255, 77, 103, 1);
+    border-radius: 15px;
+    color: rgba(255, 77, 103, 1);
+    background-color: #f5f5f5;
+    margin-right: 0.5%;
+    font-size: 2rem;
+}
+
+.otherProfileFollow:hover {
+    height: 2%;
+    text-decoration: none;
+    background-color: rgba(233, 128, 144, 1);
+    border: 2px solid rgba(233, 128, 144, 1);
+    color: white;
+}
+
+.otherFollowing {
+    height: 2%;
+    align-self: center;
+    text-decoration: none;
+    font-family: UrbanistLight;
+    padding: 2%;
+    border: 2px solid rgba(255, 77, 103, 1);
+    border-radius: 15px;
+    background-color: rgba(255, 77, 103, 1);
+    color: white;
+    margin-right: 0;
+    font-size: 2rem;
+}
+
+.otherProfileIcon {
+    margin-top: 0.5%;
+    align-self: center;
+    font-size: 2rem;
+}
+
+.invisibleImgEdit {
+    display: none;
+}
+
+/*=======LOADING=======*/
+
+.notLoadedDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loadingP {
+    margin-top: 50px;
+    font-family: UrbanistBold;
+    font-size: 3rem;
+    color: rgba(33, 33, 33, 1);
+}

@@ -151,7 +151,7 @@ const NewpostPage = ({ setUserData }) => {
             {userLoaded && <>
                 <section className='newPostHeader'>
                     <BackButton />
-                    <h1>New Post</h1>
+                    <h1 className='newPostHeaderH1'>New Post</h1>
                 </section>
 
                 {selectImage && // hier kann man das Bild auswählen, wird gezeigt wenn selectImage === true
@@ -163,7 +163,7 @@ const NewpostPage = ({ setUserData }) => {
                         </article>
                         <input id="fotoUpload" type="file" ref={imageRef} onChange={showImage}></input>
                         <div className='galleryHeader'>
-                            <article className='galleryDrop'><h1>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
+                            <article className='galleryDrop'><h1 className='newPostHeaderH1'>Gallery <IoIosArrowDown className='galleryDropIcon' /></h1></article>
                             <article className='galleryIconsRight'> <HiSquares2X2 className='galleryIcons' /> <MdPhotoCamera className='galleryIcons' /></article>
                         </div>
                         {userLoaded && <Gallery user={user} className="galleryComponent" />}
@@ -179,16 +179,16 @@ const NewpostPage = ({ setUserData }) => {
                             <div className='wrapperLocation'>
                                 <button className='locationButton' onClick={getMyLocation}>
                                     <CiLocationOn className='locationIcon' />
-                                    <h2>Add Location</h2>
-                                    {showLocation && <h2>Location: {city} {country}</h2>}
+                                    <h2 className='newPostH2'>Add Location</h2>
+                                    {showLocation && <h2 className='newPostH2'>Location: {city} {country}</h2>}
                                 </button>
                             </div>
                             <div className='wrapperSmToggles'>
                                 <section className='sMToggle'>
-                                    <h2>Also post to</h2>
+                                    <h2 className='newPostH2'>Also post to</h2>
                                 </section>
                                 <section className='sMToggle'>
-                                    <h2>Facebook</h2>
+                                    <h2 className='newPostH2'>Facebook</h2>
                                     <label className="switch">
                                         <input type="checkbox" />
                                         <span className="slider round">
@@ -197,7 +197,7 @@ const NewpostPage = ({ setUserData }) => {
                                     </label>
                                 </section>
                                 <section className='sMToggle'>
-                                    <h2>Twitter</h2>
+                                    <h2 className='newPostH2'>Twitter</h2>
                                     <label className="switch">
                                         <input type="checkbox" />
                                         <span className="slider round">
@@ -205,7 +205,7 @@ const NewpostPage = ({ setUserData }) => {
                                     </label>
                                 </section>
                                 <section className='sMToggle'>
-                                    <h2>Tumblr</h2>
+                                    <h2 className='newPostH2'>Tumblr</h2>
                                     <label className="switch">
                                         <input type="checkbox" />
                                         <span className="slider round">
@@ -216,7 +216,7 @@ const NewpostPage = ({ setUserData }) => {
                             <div className='wrapperSettings'>
                                 <label for="burger" className='advancedSettings' onClick={() => setShowSettings(prev => !prev)}>
                                     <FiSettings className='locationIcon' />
-                                    <h2>Advanced Settings</h2>
+                                    <h2 className='newPostH2'>Advanced Settings</h2>
                                 </label>
                             </div>
                             <div className='newPostNavButtonWrapper'>

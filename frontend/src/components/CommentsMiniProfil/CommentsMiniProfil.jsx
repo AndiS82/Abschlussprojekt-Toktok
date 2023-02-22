@@ -28,6 +28,9 @@ const CommentsMiniProfil = ({ comment }) => {
         // eslint-disable-next-line
     }, [])
 
+    console.log("HIERMINIComments " + profile?._id)
+    console.log("HIERMINICommentscomment " + comment?.user)
+    console.log("fucking " + profile?.name)
     return (
         <div>
             <section className="miniProfil">
@@ -37,8 +40,8 @@ const CommentsMiniProfil = ({ comment }) => {
                             <div>
                                 <img src={profile?.image?.url ? profile?.image?.url : placeholderImg} alt={profile?.username} />
                                 <div className='description'>
-                                    <h1>{profile?.username ? profile?.username : 'username'}</h1>
-                                    <p>{profile?.occupation ? profile?.occupation : 'occupation'}</p>
+                                    <h1 className="miniProfilCommentsH1" >{profile?.username ? profile?.username : 'username'}</h1>
+                                    <p className="miniProfilCommentsP">{profile?.occupation ? profile?.occupation : 'occupation'}</p>
                                 </div>
                             </div>
                         </Link>

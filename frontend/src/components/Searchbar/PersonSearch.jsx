@@ -28,9 +28,9 @@ const PersonSearch = ({ useContextUser }) => {
         setWordEntered(searchWord);
         const filteredSearch = searchData.filter((user) => {
             console.log(user)
-            return useContextUser.user.toLowerCase().includes(searchWord.toLowerCase()) !== user.user?.toLowerCase().includes(searchWord.toLowerCase())
-                || useContextUser.username.toLowerCase().includes(searchWord.toLowerCase()) !== user.username?.toLowerCase().includes(searchWord.toLowerCase())
-                || useContextUser.name.toLowerCase().includes(searchWord.toLowerCase()) !== user.name?.toLowerCase().includes(searchWord.toLowerCase())
+            return useContextUser?.user?.toLowerCase().includes(searchWord.toLowerCase()) !== user.user?.toLowerCase().includes(searchWord.toLowerCase())
+                || useContextUser?.username?.toLowerCase().includes(searchWord.toLowerCase()) !== user.username?.toLowerCase().includes(searchWord.toLowerCase())
+                || useContextUser?.name?.toLowerCase().includes(searchWord.toLowerCase()) !== user.name?.toLowerCase().includes(searchWord.toLowerCase())
         }, [event])
         setFilteredData(filteredSearch)
 

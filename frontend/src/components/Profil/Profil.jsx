@@ -4,7 +4,7 @@ import ProfilMini from '../ProfilMini/ProfilMini';
 import './Profil.css'
 
 const Profil = ({ singlePost, showSettings, setShowSettings }) => {
-    console.log('singlePost', singlePost)
+    // console.log('singlePost', singlePost)
     return (
         <div>
             <ProfilMini singlePost={singlePost} showSettings={showSettings} setShowSettings={setShowSettings} />

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: UrbanistRegular;
+    src: url("../../fonts/Urbanist-Regular.ttf");
+}
+
 .commentsMainStyle {
     margin: 0 20px 50px 20px;
 }
@@ -38,6 +43,14 @@
 }
 
 .postedContent {
+    margin: 20px 14%;
+    font-family: UrbanistRegular;
+    font-size: 1.4rem;
+}
+
+.LCB-TimeP {
+    margin: 20px 14%;
+    font-family: UrbanistRegular;
     font-size: 1.4rem;
 }
 
@@ -50,6 +63,7 @@
 }
 
 .loadingP {
+    padding-top: 10%;
     font-family: UrbanistBold;
     font-size: 3rem;
     color: rgba(33, 33, 33, 1);

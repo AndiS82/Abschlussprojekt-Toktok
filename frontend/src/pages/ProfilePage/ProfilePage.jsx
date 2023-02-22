@@ -10,7 +10,7 @@ import EditLogo from '../../img/edit.png';
 import { UserContext } from '../../contexts/UserContext';
 import './ProfilePage.css'
 import { VscGrabber } from "react-icons/vsc";
-import warteUhr from '../../img/Frame.png'
+import warteUhr from '../../img/Frame.png';
 import SettingsView from '../../components/SettingsView/SettingsView';
 import ImagePlaceholder from '../../img/ProfileImgPlaceholder.png';
 import editIcon from '../../img/Edit_Square.png'
@@ -52,7 +52,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
         } else {
             console.log('problem logging out')
         }
-
+        console.log(user?.posts?.length)
     }
 
     return (
@@ -61,7 +61,7 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                 <div className='profile-container'>
                     <div className='profile-topbar'>
                         <BackButton />
-                        <p onClick={logout}>Logout</p>
+                        <p className='logout' onClick={logout}>Logout</p>
                     </div>
                     <section className='profileHeader'>
                         <div className='imageIconContainer'>
@@ -71,12 +71,12 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                         <div className='imageIconContainer1'>
                             <Link to={"/Newpost"}><img className='iconImage' src={UploadLogo} alt="new post"></img></Link>
                             <Link to={"/EditProfile"}><img className='iconImage' src={WriteLogo} alt="edit profile"></img></Link>
-                            <Link to={"/UnderConstruction"}><img className='iconImage' src={EditLogo} alt="settings"></img></Link>
+                            <Link to={"/UnderConstructionPage"}><img className='iconImage' src={EditLogo} alt="settings"></img></Link>
                         </div>
                     </section>
                     <section className='mainProfile'>
                         <img src={user?.image?.url ? user?.image?.url : ImagePlaceholder} alt="placeholder" />
-                        <button className='profileImgEdit'><img src={editIcon} alt="edit" /></button>
+                        <Link to={"/EditProfile"}><button className='profileImgEdit'><img src={editIcon} alt="edit" /></button></Link>
                         <h3 className='profileH3'>{user?.name}</h3>
                         <p>{user?.occupation}</p>
                         <p>{user?.aboutMe}</p>
@@ -84,15 +84,15 @@ const ProfilePage = ({ setUserData, setUserLoaded, userLoaded, setShowSettings, 
                     </section>
                     <div className='postsFollowers'>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.posts?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.posts?.length ? user?.posts?.length : 0}</p>
                             <p className='postsFollowersText'>Posts</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.followedBy?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.followedBy?.length ? user?.followedBy?.length : 0}</p>
                             <p className='postsFollowersText'>Followers</p>
                         </div>
                         <div>
-                            <p className='postsFollowersNumber'>{user?.following?.length}</p>
+                            <p className='postsFollowersNumber'>{user?.following?.length ? user?.following?.length : 0}</p>
                             <p className='postsFollowersText'>Following</p>
                         </div>
                     </div>

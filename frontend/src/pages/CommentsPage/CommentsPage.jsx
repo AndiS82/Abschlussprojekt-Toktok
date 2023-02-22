@@ -89,7 +89,7 @@ const CommentsPage = ({ setUserData, setUserLoaded, userLoaded }) => {
                     <PostCaption postData={postData} />
                     <div className='LCB-Border'>
                         <div className='LCB-Time'>
-                            <p>{moment(postData?.createdAt).fromNow()}</p>
+                            <p className='LCB-TimeP'>{moment(postData?.createdAt).fromNow()}</p>
                         </div>
                         <div className='LCB-edit' >
                             <LikesCommentsButtons singlePost={postData} />
