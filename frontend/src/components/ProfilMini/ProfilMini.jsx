@@ -14,6 +14,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
     const [profile, setProfile] = useState()
     // console.log('post', post)
 
+
     // fetch den User Datensatz, der zu den user._id im Post gehört
     useEffect(() => {
         const getUserData = async () => {
@@ -34,7 +35,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
             <nav className="miniProfil">
                 <div>
                     {!singlePost && !post &&
-                        <Link to={`/Profile/${user._id}`}>
+                        <Link to={`/Profile/${user?._id}`}>
                             <div>
                                 <img src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user?.username} />
                                 <div className='description'>
@@ -45,7 +46,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                         </Link>
                     }
                     {profile &&
-                        <Link to={`/Profile/${singlePost?.user?._id}`}>
+                        <Link to={`/Profile/${singlePost?.user}`}>
                             <div className='miniProfilDetail'>
                                 <img src={profile?.image?.url ? profile?.image?.url : placeholderImg} alt={singlePost?.user?.username} />
                                 <div className='description'>
@@ -56,7 +57,7 @@ const ProfilMini = ({ showSettings, setShowSettings, singlePost, post }) => {
                         </Link>
                     }
                     {post &&
-                        <Link to={`/Profile/${post?.user?._id}`}>
+                        <Link to={`/Profile/${post?.user}`}>
                             <div>
                                 <img src={post?.user?.image ? post?.user?.image : placeholderImg} alt={post?.user?.username} />
                                 <div className='description'>
