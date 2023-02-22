@@ -11,7 +11,7 @@ const PersonSearch = ({ useContextUser }) => {
     const [searchData, setSearchData] = useState([])
     const [filteredData, setFilteredData] = useState([])
     const [wordEntered, setWordEntered] = useState("")
-
+    const excluded = [`${useContextUser?.name},${useContextUser?.email}, ${useContextUser?.username} `]
     // const useContextUserName = useContextUser.username
 
     useEffect(() => {
@@ -20,6 +20,8 @@ const PersonSearch = ({ useContextUser }) => {
             const userData = await users.json()
             setSearchData(userData)
         }
+        // const newUserData = searchData?.filter(user => !user?.includes(excluded))?.map(filteredNewUserData => (filteredNewUserData))
+        // console.log(newUserData)
         getData()
     }, [])
 
@@ -28,7 +30,7 @@ const PersonSearch = ({ useContextUser }) => {
         setWordEntered(searchWord);
         const filteredSearch = searchData.filter((user) => {
             console.log(user)
-            return useContextUser?.user?.toLowerCase().includes(searchWord.toLowerCase()) !== user.user?.toLowerCase().includes(searchWord.toLowerCase())
+            return useContextUser?.email?.toLowerCase().includes(searchWord.toLowerCase()) !== user.email?.toLowerCase().includes(searchWord.toLowerCase())
                 || useContextUser?.username?.toLowerCase().includes(searchWord.toLowerCase()) !== user.username?.toLowerCase().includes(searchWord.toLowerCase())
                 || useContextUser?.name?.toLowerCase().includes(searchWord.toLowerCase()) !== user.name?.toLowerCase().includes(searchWord.toLowerCase())
         }, [event])
@@ -41,6 +43,7 @@ const PersonSearch = ({ useContextUser }) => {
         setWordEntered("")
     }
     console.log(searchData)
+    console.log(excluded)
     return (
         <div className='personSearch'>
             <form className='form'>
@@ -55,7 +58,7 @@ const PersonSearch = ({ useContextUser }) => {
                     <GoPerson className='personIcon' />
                 </div>
             </form>
-            {wordEntered === "" &&
+            {wordEntered === "" && wordEntered !== wordEntered?.includes(excluded) &&
                 <div id='searchResultsDiv'>
                     <div>
                         {searchData?.filter(user => user._id !== useContextUser._id).map((user, index) => {
@@ -77,22 +80,24 @@ const PersonSearch = ({ useContextUser }) => {
             }
 
             {
-                filteredData && wordEntered !== "" &&
+                filteredData && wordEntered !== "" && wordEntered !== wordEntered?.includes(excluded) &&
                 < div id='searchResultsDiv'>
-                    {filteredData.map((user, index) => {
+                    {filteredData?.filter(user => user._id !== useContextUser._id).map((user, index) => {
                         return (
-                            <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}>
-                                <div className='searchUserContainer' key={index}>
+
+                            <div className='searchUserContainer' key={index}>
+                                <Link className='searchLink' style={{ textDecoration: 'none' }} to={`/Profile/${user._id}`}>
                                     <div className='searchPicContainer'>
                                         <img className='searchImage' src={user?.image?.url ? user?.image?.url : placeholderImg} alt={user.user}></img>
                                     </div>
                                     <div className='userInfo'>
-                                        <p className='searchUser' key={index}>{user.user}</p>
+                                        <p className='searchUser' key={index}>{user?.username}</p>
                                         <p className='searchOccupation'>{user.occupation}</p>
                                     </div>
-                                    <FollowButton followedUser={user} />
-                                </div>
-                            </Link>)
+                                </Link>
+                                <FollowButton followedUser={user} />
+                            </div>
+                        )
                     })}
                 </div>
             }
@@ -100,7 +105,7 @@ const PersonSearch = ({ useContextUser }) => {
             {
                 wordEntered.includes(filteredData) && wordEntered !== "" &&
                 <div className='noResults'>
-                    <p className='searchUser'>No results</p>
+                    <span className='blink'><p className='noResultsP'>No results</p></span>
                 </div>
             }
         </div >
